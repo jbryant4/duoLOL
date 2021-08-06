@@ -1,0 +1,27 @@
+{
+  "name": "duoLOL",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "build": "cd client && npm run build",
+    "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "seed": "cd server && npm run seed"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jbryant4/duoLOL.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jbryant4/duoLOL/issues"
+  },
+  "homepage": "https://github.com/jbryant4/duoLOL#readme",
+  "devDependencies": {
+    "concurrently": "^6.2.0"
+  }
+}
