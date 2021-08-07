@@ -1,7 +1,6 @@
-const { User, Thought } = require('../models');
+const { User, Build } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
-const { sign } = require('jsonwebtoken');
 
 const resolvers = {
     Query: {
@@ -29,13 +28,14 @@ const resolvers = {
     },
     Mutation: {
         addUser: async (parent, args) => {
-
-            const user = await User.create(args);
+            // console.log(args);
+            const user = await User.create(args.content);
             const token = signToken(user);
 
             return { user, token }
         },
-        login: async (parent, { email, password }) => {
+        login: async (parent, {email, password}) => {
+            // console.log(email , password)
             const user = await User.findOne({ email });
 
             if (!user) {
