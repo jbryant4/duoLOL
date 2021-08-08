@@ -5,6 +5,7 @@ const { signToken } = require('../utils/auth');
 const resolvers = {
     Query: {
         me: async (parent, args, context) => {
+            // console.log(context.user)
             if (context.user) {
                 const userData = await User.findOne({ _id: context.user._id })
                     .select('-__v -password')
@@ -51,9 +52,10 @@ const resolvers = {
             const token = signToken(user)
             return { user, token };
         },
-        addBuild: async (parent, args, context) => {
+        addBuild: async (parent, {content}, context) => {
+            
             if (context.user) {
-                const build = await Build.create({ ...args, username: context.user.username });
+                const build = await Build.create({ ...content, username: context.user.username });
 
                 await User.findByIdAndUpdate(
                     { _id: context.user._id },
