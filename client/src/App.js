@@ -1,4 +1,3 @@
-import MainNavigation from "./components/layout/MainNavigation";
 import "./App.css";
 import { Route, Switch } from "react-router-dom";
 
@@ -12,6 +11,8 @@ import SignUp from "./pages/Contact";
 // Components
 import Navbar from "./components/layout/Navbar.js";
 
+
+// Routes
 function App() {
 	return (
 		<div>
@@ -44,4 +45,5 @@ function App() {
 	);
 }
 
+// Export APP
 export default App;
