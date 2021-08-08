@@ -1,14 +1,14 @@
 // React
 import React from "react";
 
-// FindADual
-function FindADual() {
+// DualFinder
+function DualFinder() {
 	return (
 		<section>
-			<h1> FindADual Sample Text </h1>
+			<h1> DualFinder Sample Text </h1>
 		</section>
 	);
 }
 
-// export FindADual
-export default FindADual;
+// export DualFinder
+export default DualFinder;
