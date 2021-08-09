@@ -15,12 +15,9 @@ import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 
-//material UI
-import Container from "@material-ui/core/Container";
-
 // Components
 import Navbar from "./components/layout/Navbar.js";
-
+import {Container} from '@material-ui/core';
 
 
 const httpLink = createHttpLink({
