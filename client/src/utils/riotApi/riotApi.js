@@ -1,11 +1,40 @@
+//import packages
+const TeemoJS = require('teemojs');
+const axios = require('axios');
 
 //riot api key 
 //! will be saved to an .env when we go to production 
-const key = '';
+const key = 'RGAPI-104c4d2a-edaa-42d5-ad2f-3705a50f388a';
+//incoming data(test data)
+let userData = {
+    username: 'jbryant',
+    email: 'j@j.com',
+    password: 'j1234',
+    region: 'na1',
+    sumName: 'KingOre0'
+}
 
-//incoming data 
-const region = '';
-const sumName = '';
+//set api key
+let api = TeemoJS(key)
+
+async function riotDataSignUp(region, sumName) {
+
+    //Riot LOL ida
+    userData.riotId = await api.get(region, 'summoner.getBySummonerName', sumName)
+        .then(data => { return data.id });
+    //solo que 
+    const lolData =  await api.get(region, 'league.getLeagueEntriesForSummoner', userData.riotId)
+        .then(data => { return data[0] });
+
+    //
+    userData.rank = lolData.tier;
+    userData.win = lolData.wins;
+    userData.loss = lolData.losses;
+
+    console.log(userData)
+}
+riotData(userData.region, userData.sumName);
+
 
 //! api calls made from riot endpoints using teemojs
 //first api call will be from summoner.getBySummonerName(sumName,region)

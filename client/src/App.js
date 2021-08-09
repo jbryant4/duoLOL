@@ -6,11 +6,11 @@ import Homepage from "./pages/Homepage";
 import DualFinder from "./pages/DualFinder";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
-import SignUp from "./pages/Contact";
+import SignUp from "./pages/SignUp";
 
 // Components
 import Navbar from "./components/layout/Navbar.js";
-
+import {Container} from '@material-ui/core';
 
 // Routes
 function App() {
