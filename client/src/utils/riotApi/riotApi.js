@@ -5,6 +5,11 @@ const axios = require('axios');
 //riot api key 
 //! will be saved to an .env when we go to production 
 const key = 'RGAPI-104c4d2a-edaa-42d5-ad2f-3705a50f388a';
+//set key for all axios calls 
+axios.defaults.headers.common[ "X-Riot-Token"] = key;
+//set api key for riot api wrapper
+let api = TeemoJS(key)
+
 //incoming data(test data)
 let userData = {
     username: 'jbryant',
@@ -13,17 +18,19 @@ let userData = {
     region: 'na1',
     sumName: 'KingOre0'
 }
+const userRiotId = 'wj_3dqWL9Nu7yD7lYZQqoIRWfnTiL2lL4HUQZRLzZ7FYmPE'
+const userPuuId = 'aCY9__fgp6sfVzmlSpnPqwVLJeD56lySAEyuRihEgzhGB_u-6aYHGmAZfhXdGDmMKO-pVZxdGQ0ibA'
 
-//set api key
-let api = TeemoJS(key)
 
+//? (regions: BR1,EUN1,EUW1,JP1,KR,LA1,LA2,NA1,OC1,TR1,RU)()
+//gather riot info on sign up
 async function riotDataSignUp(region, sumName) {
 
     //Riot LOL ida
     userData.riotId = await api.get(region, 'summoner.getBySummonerName', sumName)
         .then(data => { return data.id });
     //solo que 
-    const lolData =  await api.get(region, 'league.getLeagueEntriesForSummoner', userData.riotId)
+    const lolData = await api.get(region, 'league.getLeagueEntriesForSummoner', userData.riotId)
         .then(data => { return data[0] });
 
     //
@@ -33,17 +40,45 @@ async function riotDataSignUp(region, sumName) {
 
     console.log(userData)
 }
-riotData(userData.region, userData.sumName);
+//update riot info on login
+async function riotDataLogin(region) {
+    //solo que data
+    const lolData = await api.get(region, 'league.getLeagueEntriesForSummoner', userData.riotId)
+        .then(data => { return data[0] });
 
+    //
+    userData.rank = lolData.tier;
+    userData.win = lolData.wins;
+    userData.loss = lolData.losses;
 
-//! api calls made from riot endpoints using teemojs
-//first api call will be from summoner.getBySummonerName(sumName,region)
-//api calls that can be made
-//? all user champion mastery or specific champion mastery for a user
+    console.log(userData)
+}
+//get mastery for all champs for a user 
+async function champMasteryData(region, riotId) {
+    //return user top 20 champion (most played) 
+    const championMastery = await api.get(region, 'championMastery.getAllChampionMasteries', riotId)
+        .then(data => { return data.slice(0, 20) });
 
-//? get list of match ids requires the users puuid also needs region(Americas,Asia,Europe)
-//? get match data from match id
-//? league data by summonerid
+    //return top 
+    console.log(championMastery);
+}
+
+// get all match info for the last 20 matches 
+//? (regions: americas asia or europe)(puuid)(ranked or normal)
+async function matchHistoryIds(region,type, puuid) {
+    const link = `https://${region}.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?type=${type}&start=0&count=20`
+    const matchIds = await axios.get(link)
+        .then( data => {return data.data})
+    //map over the ids and send each one to the matchData function
+}
+async function matchData(region,matchId) {
+    const link = `https://${region}.api.riotgames.com/lol/match/v5/matches/${matchId}`
+    const matchData = await axios.get(link)
+        .then(data => {return data.data})
+    
+        console.log(matchData)
+    //alot of data in here we just have to figure out what data we want
+}
 
 //!json calls prob with axios
 
