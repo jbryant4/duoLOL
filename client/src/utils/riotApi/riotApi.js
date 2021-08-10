@@ -97,7 +97,7 @@ async function matchData(region, matchId) {
     //alot of data in here we just have to figure out what data we want
 }
 
-//list of current champions
+//Data for champlist component  of current champions
 async function getChampList() {
     //check current patch
     const patch = await setPatch();
@@ -116,14 +116,61 @@ async function getChampList() {
             }
         })
         .catch(e => console.log(e))
-        
-        // console.log(champList)
-        return champList
+
+    // console.log(champList)
+    return champList
 }
 
-getChampList()
-//?champions all
-//http://ddragon.leagueoflegends.com/cdn/11.15.1/data/en_US/champion.json
+//Data for about Champ Component
+async function aboutChamp(champName) {
+    //check current patch
+    const patch = await setPatch();
+
+    let champInfo = {}
+    //link to specific champdata
+    const link = `http://ddragon.leagueoflegends.com/cdn/${patch}/data/en_US/champion/${champName}.json`;
+
+    axios.get(link)
+        .then(function ({ data }) {
+            //navigate down into the obj with the data we want 
+            const champ = data.data[champName];
+
+            //set up out champInfo with the data we want returned
+            champInfo.name = champ.name;
+            champInfo.title = champ.title;
+            champInfo.images = [];
+            //store all images in obj with titles
+            champ.skins.map(skin =>
+                champInfo.images.push({
+                    name: skin.name,
+                    img: `http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${champName}_${skin.num}.jpg`
+                }));
+
+            champInfo.lore = champ.lore;
+            champInfo.type = champ.tags;
+            champInfo.passive = {
+                name: champ.passive.name,
+                desc: champ.passive.description,
+                img: `http://ddragon.leagueoflegends.com/cdn/${patch}/img/passive/${champ.passive.image.full}.png`
+            };
+
+
+            champInfo.spells = [];
+            //store all skins in obj with titles/img/descriptions
+            champ.spells.map(spell =>
+                champInfo.spells.push({
+                    name: spell.name,
+                    desc: spell.description,
+                    img: `http://ddragon.leagueoflegends.com/cdn/${patch}/img/spell/${spell.image.full}`
+                }));
+
+
+            return champInfo
+        })
+        .catch(e => console.log(e))
+
+}
+
 //?specific champions
 //http://ddragon.leagueoflegends.com/cdn/11.15.1/data/en_US/champion/Aatrox.json
 //? so much more
