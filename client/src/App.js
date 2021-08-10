@@ -42,17 +42,17 @@ const client = new ApolloClient({
 
 // Routes
 function App() {
-	return (
+	return (		
 		<ApolloProvider client={client}>
 			<Router>
 				<div>
-					<Navbar />
+					{/* <Navbar /> */}
 					<div>
 						<Container maxWidth="xl" disableGutters={true}>
 							<div>
 								<Switch>
-									<Route exact path="/" component={Homepage} />
-									<Route exact path="/login" component={Login} />
+									<Route exact path="/homepage" component={Homepage} />
+									<Route exact path="/" component={Login} />
 									<Route exact path="/signup" component={SignUp} />
 									<Route exact path="/dualFinder" component={DualFinder} />
 									<Route exact path="/dashboard" component={Dashboard} />
