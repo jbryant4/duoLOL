@@ -1,13 +1,11 @@
 // React imports
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
-// import { Link } from "react-router-dom";
 // Utility imports
 import { LOGIN } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 
 import Container from '@material-ui/core/Container';
-// import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
@@ -42,22 +40,6 @@ function LoginForm(props) {
 
 	return (
 		<div>
-			{/* <video
-				autoPlay loop muted
-				style={{
-					position: "absolute",
-					width: "100%",
-					left: "50%",
-					top: "50%",
-					height: "100%",
-					objectFit: "cover",
-					transform: "translate(-50%, -50%)",
-					zIndex: "-1"
-				}}
-			>
-				<source src={loginVideo} type="video/mp4" />
-			</video> */}
-
 			<Container
 				className="loginSignupForm">
 				<h1 className="loginFont">Login</h1>
