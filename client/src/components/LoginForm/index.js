@@ -1,6 +1,8 @@
 // React imports
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
+import { Link } from "react-router-dom";
+
 // Utility imports
 import { LOGIN } from "../../utils/mutations";
 import Auth from "../../utils/auth";
@@ -112,10 +114,12 @@ function LoginForm(props) {
 						>
 							Login
 						</Button>
-
+						<Link to="/SignUp" className="loginFont">
+							{" "}
 						<h3 className="bottomDiv">
 							Doesn't have an account? Create one right now!
 						</h3>
+						</Link>
 					</Box>
 				</form>
 			</Container>

@@ -44,11 +44,6 @@ function SignUpForm(props) {
 	return (
 		<div>
 			<Container className="loginSignupForm">
-				<Link to="/" className="loginFont">
-					{" "}
-					←Return to Login
-				</Link>
-
 				<h1 className="loginFont">Sign Up</h1>
 				<form className="loginForm" id="SignUpForm" onSubmit={handleFormSubmit}>
 					<Box>
@@ -119,6 +114,12 @@ function SignUpForm(props) {
 							Sign Up
 						</Button>
 					</Box>
+					<Link to="/" className="loginFont">
+						{" "}
+						<h3 className="bottomDiv">
+							← Return to Login
+						</h3>
+					</Link>
 				</form>
 			</Container>
 		</div>
