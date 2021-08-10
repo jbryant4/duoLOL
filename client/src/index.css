@@ -7,7 +7,7 @@ body {
 
 .loginSignupForm {
   background-color: white;
-  width: 23%;
+  width: 23% !important;
   height: 55%;
   padding: 20px;
   position: absolute;
@@ -15,11 +15,26 @@ body {
   top: 18%;
   border-radius: 10px;
   box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.205);
-  text-align: center;  
+  text-align: center;
 }
 
 .loginForm {
- 
+  align-items: center;
+}
+
+.loginBtn {
+  background-color: #3cc295!important;  
+}
+
+.bottomDiv {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 20px;
+}
+
+input:first-child {
+  /* line-height: 5; */
 }
 
 input:focus::placeholder {
@@ -29,6 +44,10 @@ input:focus::placeholder {
 .loginFont {
   color: black;
   font-family: 'Roboto Slab', serif;
+}
+
+.error-text {
+  color: red;
 }
 
 code {

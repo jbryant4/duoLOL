@@ -6,10 +6,13 @@ import { useMutation } from "@apollo/client";
 import { LOGIN } from "../utils/mutations";
 import Auth from "../utils/auth";
 
+import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 import loginVideo from "../assets/videos/1.mp4"
+import { Box } from "@material-ui/core";
 
 
 
@@ -40,7 +43,7 @@ function Login(props) {
 	};
 
 	return (
-		<div className="container my-1" >
+		<div>
 			<video
 				autoPlay loop muted
 				style={{
@@ -56,42 +59,81 @@ function Login(props) {
 			>
 				<source src={loginVideo} type="video/mp4" />
 			</video>
-			<main className="loginSignupForm">
+
+			<Container
+				className="loginSignupForm">
 				<h1 className="loginFont">Login</h1>
-				<form onSubmit={handleFormSubmit}>
-					<div className="flex-row space-between my-2">
-						<label htmlFor="email"></label>
-						<TextField id="outlined-basic" label="Email" variant="outlined"
-							placeholder="email"
-							name="email"
-							type="email"
-							id="email"
-							onChange={handleChange}
-						/>
-					</div>
-					<div className="flex-row space-between my-2">
-						<label htmlFor="pwd"></label>
-						<TextField id="outlined-basic" label="Password" variant="outlined"
-							placeholder="password"
-							name="password"
-							type="password"
-							id="pwd"
-							onChange={handleChange}
-						/>
-					</div>
-					{error ? (
-						<div>
-							<p className="error-text">The provided credentials are incorrect</p>
-						</div>
-					) : null}
-					<div className="flex-row flex-end">
-						<button type="submit">Login</button>
-					</div>
+				<form className="loginForm" id="loginForm" onSubmit={handleFormSubmit}>
+					<Box>
+						<Box m={2}>
+							<label htmlFor="email"></label>
+							{error ? (
+								<TextField
+									fullWidth
+									error
+									id="outlined-error"
+									// label="Incorrect entry."
+									defaultValue="Hello World"
+									variant="outlined"
+								/>
+							) :
+								<TextField
+									fullWidth
+									id="outlined-basic" label="Email" variant="outlined"
+									placeholder="email"
+									name="email"
+									type="email"
+									id="email"
+									onChange={handleChange}
+								/>
+							}
+						</Box>
+						<Box m={2}>
+							<label htmlFor="pwd"></label>
+							{error ? (
+								<TextField
+									fullWidth
+									error
+									id="outlined-error-helper-text"
+									// label="Incorrect entry."
+									type="password"
+									defaultValue="Hello World"
+									variant="outlined"
+								/>
+							) : <TextField
+								fullWidth
+								id="outlined-basic" label="Password" variant="outlined"
+								placeholder="password"
+								name="password"
+								type="password"
+								id="pwd"
+								onChange={handleChange}
+							/>
+							}
+						</Box>
+						{error ? (
+							<div>
+								<p className="error-text">The provided credentials are incorrect.</p>
+							</div>
+						) : null}
+						<Button
+							className="loginBtn"
+							variant="contained"
+							color="primary" size="medium"
+							type="submit" form="loginForm"						   >
+							Login
+						</Button>
+
+						<h3 className="bottomDiv">Doesn't have an account? Create one right now!</h3>
+
+					</Box>
 				</form>
-			</main>
+
+
+			</Container>
 		</div>
 
-	);					
+	);
 }
 
 //export Login
