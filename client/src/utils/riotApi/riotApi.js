@@ -4,7 +4,7 @@ const axios = require('axios');
 
 //riot api key 
 //! will be saved to an .env when we go to production 
-const key = 'RGAPI-4484f33c-a678-4941-98ec-d012e7ee28a7';
+const key = '';
 //set key for all axios calls 
 axios.defaults.headers.common["X-Riot-Token"] = key;
 
