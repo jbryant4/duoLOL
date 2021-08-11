@@ -5,7 +5,6 @@ import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
@@ -20,9 +19,8 @@ import EmojiEventsIcon from "@material-ui/icons/EmojiEvents";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import GroupAddIcon from "@material-ui/icons/GroupAdd";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import { typeFromAST } from "graphql";
 
-const drawerWidth = 240;
+const drawerWidth = 220;
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -56,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	drawerOpen: {
 		width: drawerWidth,
+		background: "goldenrod",
 		transition: theme.transitions.create("width", {
 			easing: theme.transitions.easing.sharp,
 			duration: theme.transitions.duration.enteringScreen,
@@ -67,6 +66,7 @@ const useStyles = makeStyles((theme) => ({
 			duration: theme.transitions.duration.leavingScreen,
 		}),
 		overflowX: "hidden",
+		background: "goldenrod",
 		width: theme.spacing(7) + 1,
 		[theme.breakpoints.up("sm")]: {
 			width: theme.spacing(9) + 1,
