@@ -7,18 +7,20 @@ import { Container, Box } from "@material-ui/core";
 //Components
 import SimpleSelect from "../components/SimpleSelect";
 import ComponentList from "../components/ComponentList";
+import Header from "../components/Header";
 
 // AboutChampion
 function AboutChampion(props) {
 	return (
 		<section>
-			<Container maxWidth="sm">
+			<Container maxWidth="md">
+			<Header />
 				<h1>Champions</h1>
 				<h2>Select a Champion to Learn More</h2>
 				<SimpleSelect />
 				<ComponentList />
 				<Box color="text.primary" clone>
-					<h1>Content goes here</h1>
+					<h1>Description goes here</h1>
 				</Box>
 			</Container>
 		</section>
