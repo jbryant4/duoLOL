@@ -1,14 +1,9 @@
 import React from "react";
-import { withRouter } from "react-router";
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
 import List from "@material-ui/core/List";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
@@ -16,15 +11,16 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
+import { Typography } from "@material-ui/core";
+import { Link } from "react-router-dom";
+
 //icons
 import HomeIcon from "@material-ui/icons/Home";
 import EmojiEventsIcon from "@material-ui/icons/EmojiEvents";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import GroupAddIcon from "@material-ui/icons/GroupAdd";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-
-//pages
-import Homepage from "../../pages/Homepage";
+import { typeFromAST } from "graphql";
 
 const drawerWidth = 240;
 
@@ -90,15 +86,15 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default  withRouter(function  MiniDrawer(props) {
+export default function MiniDrawer() {
 	const classes = useStyles();
 	const theme = useTheme();
 	const [open, setOpen] = React.useState(false);
-	const {history} = props;
+
+	// drawer open and close
 	const handleDrawerOpen = () => {
 		setOpen(true);
 	};
-
 	const handleDrawerClose = () => {
 		setOpen(false);
 	};
@@ -107,56 +103,33 @@ export default  withRouter(function  MiniDrawer(props) {
 		{
 			text: "Home",
 			icon: <HomeIcon />,
-			onClick: () => history.push("/Homepage"),
+			destination: "/homepage",
 		},
 		{
 			text: "About Champion",
 			icon: <EmojiEventsIcon />,
-			onClick: () => history.push("/AboutChampion"),
+			destination: "/AboutChampion",
 		},
 		{
 			text: "Dashboard",
 			icon: <DashboardIcon />,
-			onClick: () => history.push("/Dashboard"),
+			destination: "/Dashboard",
 		},
 		{
 			text: "Dual Finder",
 			icon: <GroupAddIcon />,
-			onClick: () => history.push("/DualFinder"),
+			destination: "/DualFinder",
 		},
 		{
 			text: "Login/SignUp",
 			icon: <AccountCircleIcon />,
-			onClick: () => history.push("/"),
+			destination: "/",
 		},
 	];
 
 	return (
 		<div className={classes.root}>
 			<CssBaseline />
-			<AppBar
-				position="fixed"
-				className={clsx(classes.appBar, {
-					[classes.appBarShift]: open,
-				})}
-			>
-				<Toolbar>
-					<IconButton
-						color="inherit"
-						aria-label="open drawer"
-						onClick={handleDrawerOpen}
-						edge="start"
-						className={clsx(classes.menuButton, {
-							[classes.hide]: open,
-						})}
-					>
-						<MenuIcon />
-					</IconButton>
-					<Typography variant="h5" noWrap>
-						Duo League of Legends
-					</Typography>
-				</Toolbar>
-			</AppBar>
 			<Drawer
 				variant="permanent"
 				className={clsx(classes.drawer, {
@@ -170,32 +143,34 @@ export default  withRouter(function  MiniDrawer(props) {
 					}),
 				}}
 			>
+				<Typography>
+					<h1>Title</h1>
+				</Typography>
 				<div className={classes.toolbar}>
-					<IconButton onClick={handleDrawerClose}>
-						{theme.direction === "rtl" ? (
+					{!open ? (
+						<IconButton onClick={handleDrawerOpen}>
 							<ChevronRightIcon />
-						) : (
+						</IconButton>
+					) : (
+						<IconButton onClick={handleDrawerClose}>
 							<ChevronLeftIcon />
-						)}
-					</IconButton>
+						</IconButton>
+					)}
 				</div>
 				<List>
 					{menuList.map((item) => {
-						const { text, icon, onClick } = item;
+						const { text, icon, destination } = item;
 						return (
-							<ListItem button key={text} onClick={onClick}>
-								{icon && <ListItemIcon>{icon}</ListItemIcon>}
-								<ListItemText primary={text} />
-							</ListItem>
+							<Link to={destination} className="loginFont">
+								<ListItem button key={text}>
+									{icon && <ListItemIcon>{icon}</ListItemIcon>}
+									<ListItemText primary={text} />
+								</ListItem>
+							</Link>
 						);
 					})}
 				</List>
 			</Drawer>
-			<main className={classes.content}>
-				<div>
-					<Homepage />
-				</div>
-			</main>
 		</div>
 	);
-})
+}

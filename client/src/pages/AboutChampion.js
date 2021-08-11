@@ -10,7 +10,6 @@ function AboutChampion(props) {
 	return (
 		<section>
 			<Drawer />
-			
 		</section>
 	);
 }
