@@ -1,13 +1,13 @@
 // React
 import React from "react";
 
-import MiniDrawer from "../components/Drawer";
+import Drawer from "../components/Drawer";
 
 // Homepage
 function Homepage() {
 	return (
 		<section>
-			<MiniDrawer />
+			<Drawer />
 			<h1> Homepage Sample Text </h1>
 		</section>
 	);

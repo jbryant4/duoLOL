@@ -1,15 +1,16 @@
 // React
+import Drawer from "../components/Drawer";
 import React from "react";
 
 // Components
-import Drawer from "../components/Drawer"
+<Drawer />;
 
 
 // AboutChampion
 function AboutChampion(props) {
 	return (
 		<section>
-			<Drawer />
+			<Drawer />;
 		</section>
 	);
 }
