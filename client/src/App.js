@@ -19,11 +19,6 @@ import SignUp from "./pages/SignUp";
 //material UI
 import Container from "@material-ui/core/Container";
 
-// Components
-import Navbar from "./components/layout/Navbar.js";
-
-
-
 const httpLink = createHttpLink({
 	uri: "/graphql",
 });
@@ -43,7 +38,6 @@ const client = new ApolloClient({
 	cache: new InMemoryCache(),
 });
 
-
 // Routes
 function App() {
 	return (
@@ -60,7 +54,11 @@ function App() {
 									<Route exact path="/signup" component={SignUp} />
 									<Route exact path="/dualFinder" component={DualFinder} />
 									<Route exact path="/dashboard" component={Dashboard} />
-									<Route exact path="/AboutChampion" component={AboutChampion} />
+									<Route
+										exact
+										path="/AboutChampion"
+										component={AboutChampion}
+									/>
 
 									<Route component={Homepage} />
 								</Switch>
