@@ -37,3 +37,12 @@ export const subscribeToMessages = (cb) => {
 		return cb(null, msg);
 	});
 }
+
+export const sendMessage = ({ message, roomName }, cb) => {
+	if (socket) socket.emit('message', { message, roomName }, cb);
+}
+
+export const joinRoom = (roomName) => {
+	socket.emit("join", roomName);
+
+};
