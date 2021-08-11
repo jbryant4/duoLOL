@@ -16,7 +16,8 @@ import AboutChampion from "./pages/AboutChampion";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 
-import Drawer from "./components/Drawer";
+// import Drawer from "./components/Drawer";
+import SideBar from "./components/SideBar";
 
 //material UI
 import Container from "@material-ui/core/Container";
@@ -45,18 +46,19 @@ function App() {
 	return (
 		<ApolloProvider client={client}>
 			<Router>
-				<Container maxWidth="xl" disableGutters={true}>
-				<Drawer />
-					<Switch>
-						<Route exact path="/homepage" component={Homepage} />
-						<Route exact path="/" component={Login} />
-						<Route exact path="/signup" component={SignUp} />
-						<Route exact path="/dualFinder" component={DualFinder} />
-						<Route exact path="/dashboard" component={Dashboard} />
-						<Route exact path="/AboutChampion" component={AboutChampion} />
-						<Route component={Homepage} />
-					</Switch>
-				</Container>
+				<SideBar>
+					<Container maxWidth="xl" disableGutters={true}>
+						<Switch>
+							<Route exact path="/homepage" component={Homepage} />
+							<Route exact path="/" component={Login} />
+							<Route exact path="/signup" component={SignUp} />
+							<Route exact path="/dualFinder" component={DualFinder} />
+							<Route exact path="/dashboard" component={Dashboard} />
+							<Route exact path="/AboutChampion" component={AboutChampion} />
+							<Route component={Homepage} />
+						</Switch>
+					</Container>
+				</SideBar>
 			</Router>
 		</ApolloProvider>
 	);
