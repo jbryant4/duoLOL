@@ -28,3 +28,12 @@ export const subscribeToChat = (cb) => {
 		return cb(null, msg);
 	});
 }
+
+// Handle message receive event
+export const subscribeToMessages = (cb) => {
+	if (!socket) return (true);
+	socket.on('message', msg => {
+		console.log('Room event received!');
+		return cb(null, msg);
+	});
+}
