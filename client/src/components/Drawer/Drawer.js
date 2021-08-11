@@ -15,8 +15,13 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
+//icons
+import DoubleArrowIcon from "@material-ui/icons/DoubleArrow";
+import HomeIcon from "@material-ui/icons/Home";
+import EmojiEventsIcon from "@material-ui/icons/EmojiEvents";
+import DashboardIcon from "@material-ui/icons/Dashboard";
+import GroupAddIcon from "@material-ui/icons/GroupAdd";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 const drawerWidth = 240;
 
@@ -95,6 +100,29 @@ export default function MiniDrawer() {
 		setOpen(false);
 	};
 
+	const menuList = [
+		{
+			text: "Home",
+			icon: <HomeIcon />,
+		},
+		{
+			text: "About Champion",
+			icon: <EmojiEventsIcon />,
+		},
+		{
+			text: "Dashboard",
+			icon: <DashboardIcon/>,
+		},
+		{
+			text: "Dual Finder",
+			icon: <GroupAddIcon />,
+		},
+		{
+			text: "Login/SignUp",
+			icon: <AccountCircleIcon />,
+		},
+	];
+
 	return (
 		<div className={classes.root}>
 			<CssBaseline />
@@ -116,8 +144,8 @@ export default function MiniDrawer() {
 					>
 						<MenuIcon />
 					</IconButton>
-					<Typography variant="h6" noWrap>
-						Mini variant drawer
+					<Typography variant="h5" noWrap>
+						Duo League of Legends
 					</Typography>
 				</Toolbar>
 			</AppBar>
@@ -145,14 +173,15 @@ export default function MiniDrawer() {
 				</div>
 				<Divider />
 				<List>
-					{["Home", "About Champion", "Dashboard", "Dual Finder", "Login/SignUp"].map((text, index) => (
-						<ListItem button key={text}>
-							<ListItemIcon>
-								{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-							</ListItemIcon>
-							<ListItemText primary={text} />
-						</ListItem>
-					))}
+					{menuList.map((item, index) => {
+						const { text, icon } = item;
+						return (
+							<ListItem button key={text}>
+								{icon && <ListItemIcon>{icon}</ListItemIcon>}
+								<ListItemText primary={text} />
+							</ListItem>
+						);
+					})}
 				</List>
 				<Divider />
 			</Drawer>
@@ -173,7 +202,6 @@ export default function MiniDrawer() {
 					lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa sapien
 					faucibus et molestie ac.
 				</Typography>
-
 			</main>
 		</div>
 	);
