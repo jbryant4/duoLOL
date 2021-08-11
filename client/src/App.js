@@ -12,6 +12,7 @@ import { setContext } from "@apollo/client/link/context";
 import Homepage from "./pages/Homepage";
 import DualFinder from "./pages/DualFinder";
 import Dashboard from "./pages/Dashboard";
+import AboutChampion from "./pages/AboutChampion";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 
@@ -59,7 +60,7 @@ function App() {
 									<Route exact path="/signup" component={SignUp} />
 									<Route exact path="/dualFinder" component={DualFinder} />
 									<Route exact path="/dashboard" component={Dashboard} />
-									
+									<Route exact path="/AboutChampion" component={AboutChampion} />
 
 									<Route component={Homepage} />
 								</Switch>

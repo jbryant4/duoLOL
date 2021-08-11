@@ -1,5 +1,4 @@
 // React imports
-import React, { useState } from "react";
 import SignUpForm from "../components/SignUpForm";
 
 import loginVideo from "../assets/videos/1.mp4";
