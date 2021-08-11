@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router";
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -16,12 +17,14 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 //icons
-import DoubleArrowIcon from "@material-ui/icons/DoubleArrow";
 import HomeIcon from "@material-ui/icons/Home";
 import EmojiEventsIcon from "@material-ui/icons/EmojiEvents";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import GroupAddIcon from "@material-ui/icons/GroupAdd";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+
+//pages
+import Homepage from "../../pages/Homepage";
 
 const drawerWidth = 240;
 
@@ -87,11 +90,11 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function MiniDrawer() {
+export default  withRouter(function  MiniDrawer(props) {
 	const classes = useStyles();
 	const theme = useTheme();
 	const [open, setOpen] = React.useState(false);
-
+	const {history} = props;
 	const handleDrawerOpen = () => {
 		setOpen(true);
 	};
@@ -104,22 +107,27 @@ export default function MiniDrawer() {
 		{
 			text: "Home",
 			icon: <HomeIcon />,
+			onClick: () => history.push("/Homepage"),
 		},
 		{
 			text: "About Champion",
 			icon: <EmojiEventsIcon />,
+			onClick: () => history.push("/AboutChampion"),
 		},
 		{
 			text: "Dashboard",
-			icon: <DashboardIcon/>,
+			icon: <DashboardIcon />,
+			onClick: () => history.push("/Dashboard"),
 		},
 		{
 			text: "Dual Finder",
 			icon: <GroupAddIcon />,
+			onClick: () => history.push("/DualFinder"),
 		},
 		{
 			text: "Login/SignUp",
 			icon: <AccountCircleIcon />,
+			onClick: () => history.push("/"),
 		},
 	];
 
@@ -171,38 +179,23 @@ export default function MiniDrawer() {
 						)}
 					</IconButton>
 				</div>
-				<Divider />
 				<List>
-					{menuList.map((item, index) => {
-						const { text, icon } = item;
+					{menuList.map((item) => {
+						const { text, icon, onClick } = item;
 						return (
-							<ListItem button key={text}>
+							<ListItem button key={text} onClick={onClick}>
 								{icon && <ListItemIcon>{icon}</ListItemIcon>}
 								<ListItemText primary={text} />
 							</ListItem>
 						);
 					})}
 				</List>
-				<Divider />
 			</Drawer>
 			<main className={classes.content}>
-				<div className={classes.toolbar} />
-				<Typography paragraph>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-					eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
-					dolor purus non enim praesent elementum facilisis leo vel. Risus at
-					ultrices mi tempus imperdiet. Semper risus in hendrerit gravida rutrum
-					quisque non tellus. Convallis convallis tellus id interdum velit
-					laoreet id donec ultrices. Odio morbi quis commodo odio aenean sed
-					adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies
-					integer quis. Cursus euismod quis viverra nibh cras. Metus vulputate
-					eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo
-					quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat
-					vivamus at augue. At augue eget arcu dictum varius duis at consectetur
-					lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa sapien
-					faucibus et molestie ac.
-				</Typography>
+				<div>
+					<Homepage />
+				</div>
 			</main>
 		</div>
 	);
-}
+})
