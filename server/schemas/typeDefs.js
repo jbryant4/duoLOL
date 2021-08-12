@@ -8,6 +8,7 @@ const typeDefs = gql`
         email: String
         password: String
         rank: String
+        tier: String
         sumName: String
         primRole: String
         sideRole: String
@@ -39,6 +40,7 @@ const typeDefs = gql`
     type Mutation {
         login(email: String!, password: String!): Auth
         addUser(content: userInfo!): Auth
+        updateUser(content: userInfo!): User
         addBuild(content: buildInfo!): Build
         addFriend(friendId: ID!): User
     }
@@ -58,6 +60,7 @@ const typeDefs = gql`
         email: String
         password: String
         rank: String
+        tier: String
         sumName: String
         primRole: String
         sideRole: String

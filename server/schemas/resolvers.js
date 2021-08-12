@@ -52,6 +52,20 @@ const resolvers = {
             const token = signToken(user)
             return { user, token };
         },
+        updateUser: async(parent, {content}, context) =>{
+            if (context.user) {
+
+                await User.findByIdAndUpdate(
+                    { _id: context.user._id },
+                    content,
+                    { new: true }
+                );
+
+                return build;
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
+        },
         addBuild: async (parent, {content}, context) => {
             
             if (context.user) {
