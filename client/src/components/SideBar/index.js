@@ -144,6 +144,7 @@ export default function MiniDrawer(props) {
 						)}
 					</IconButton>
 				</div>
+				<h4>Duo LOL</h4>
 				<Divider />
 				<List>
 					{menuList.map((item) => {
@@ -158,6 +159,7 @@ export default function MiniDrawer(props) {
 						);
 					})}
 				</List>
+				<Divider />
 			</Drawer>
 			<main className={classes.content}>
 				<div className={classes.toolbar} />
