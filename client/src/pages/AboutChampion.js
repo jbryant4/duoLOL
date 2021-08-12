@@ -9,6 +9,7 @@ import SimpleSelect from "../components/SimpleSelect";
 import ComponentList from "../components/ComponentList";
 import Header from "../components/Header";
 import ImageAvatars from "../components/ImageAvatars";
+import Footer from "../components/Footer";
 
 // AboutChampion
 function AboutChampion(props) {
@@ -24,6 +25,7 @@ function AboutChampion(props) {
 					<h1>Description goes here</h1>
 				</Box>
 					<ImageAvatars />
+			<Footer />
 			</Container>
 		</section>
 	);
