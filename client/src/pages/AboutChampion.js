@@ -4,9 +4,7 @@ import React from "react";
 // Material UI
 import { Container, Box } from "@material-ui/core";
 
-//Components
-import SimpleSelect from "../components/SimpleSelect";
-import ComponentList from "../components/ComponentList";
+//Component
 import Header from "../components/Header";
 import ChampionCard from "../components/ChampionCard";
 
@@ -16,14 +14,13 @@ function AboutChampion(props) {
 		<section>
 			<Container maxWidth="md">
 				<Header />
-				<h1>Champions</h1>
-				<h2>Select a Champion to Learn More</h2>
-				<SimpleSelect />
-				<ComponentList />
+				<Box className="championBox">
+					<h2>Select a Champion to Learn More</h2>
+					<ChampionCard />
+				</Box>
 				<Box color="text.primary" clone>
 					<h1>Description goes here</h1>
 				</Box>
-				<ChampionCard />
 			</Container>
 		</section>
 	);
