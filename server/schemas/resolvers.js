@@ -21,8 +21,8 @@ const resolvers = {
             return Build.findOne({ _id });
         },
         // get a user by username
-        user: async (parent, { username }) => {
-            return User.findOne({ username })
+        user: async (parent, { email }) => {
+            return User.findOne({ email })
                 .select('-__v -password')
                 .populate('builds')
         }
@@ -55,7 +55,7 @@ const resolvers = {
         addBuild: async (parent, {content}, context) => {
             
             if (context.user) {
-                const build = await Build.create({ ...content, username: context.user.username });
+                const build = await Build.create({ ...content, username: context.user.sumName });
 
                 await User.findByIdAndUpdate(
                     { _id: context.user._id },

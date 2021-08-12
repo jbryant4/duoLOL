@@ -5,12 +5,14 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
     type User {
         _id: ID 
-        username: String
         email: String
         password: String
-        region: String
-        rank:String
+        rank: String
         sumName: String
+        primRole: String
+        sideRole: String
+        riotId: String
+        puuid: String
         friendCount: Int
         builds:[Build]
         friends: [User]
@@ -30,7 +32,7 @@ const typeDefs = gql`
 
     type Query {
         me: User
-        user(username: String!): User
+        user(email: String!): User
         build(_id: ID!): Build
     }
 
@@ -53,12 +55,14 @@ const typeDefs = gql`
     }
 
     input userInfo {
-        username: String
         email: String
-        password:String
-        region:String
-        sumName:String
-        rank:String
+        password: String
+        rank: String
+        sumName: String
+        primRole: String
+        sideRole: String
+        riotId: String
+        puuid: String
     }
 
     type Auth {

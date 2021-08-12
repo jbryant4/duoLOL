@@ -3,12 +3,6 @@ const bcrypt = require('bcrypt');
 
 const userSchema = new Schema(
     {
-        username: {
-            type: String,
-            required: true,
-            unique: true,
-            trim: true
-        },
         email: {
             type: String,
             required: true,
@@ -20,7 +14,19 @@ const userSchema = new Schema(
             required: true,
             minlength: 5
         },
-        region: {
+        primRole: {
+            type: String,
+            required: true,
+        },
+        sideRole: {
+            type: String,
+            required: true,
+        },
+        riotId: {
+            type: String,
+            required: true,
+        },
+        puuid: {
             type: String,
             required: true,
         },
