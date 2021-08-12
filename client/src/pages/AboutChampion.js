@@ -8,7 +8,7 @@ import { Container, Box } from "@material-ui/core";
 import SimpleSelect from "../components/SimpleSelect";
 import ComponentList from "../components/ComponentList";
 import Header from "../components/Header";
-import ImageAvatars from "../components/ImageAvatars";
+import ChampionCard from "../components/ChampionCard";
 
 // AboutChampion
 function AboutChampion(props) {
@@ -23,7 +23,7 @@ function AboutChampion(props) {
 				<Box color="text.primary" clone>
 					<h1>Description goes here</h1>
 				</Box>
-					<ImageAvatars />
+				<ChampionCard />
 			</Container>
 		</section>
 	);
