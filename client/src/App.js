@@ -18,6 +18,7 @@ import SignUp from "./pages/SignUp";
 
 // import Drawer from "./components/Drawer";
 import SideBar from "./components/SideBar";
+import Footer from "./components/Footer";
 
 //material UI
 import Container from "@material-ui/core/Container";
@@ -59,6 +60,7 @@ function App() {
 						</Switch>
 					</Container>
 				</SideBar>
+				<Footer />
 			</Router>
 		</ApolloProvider>
 	);
