@@ -16,18 +16,11 @@ import AboutChampion from "./pages/AboutChampion";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 
-<<<<<<< HEAD
-// Components
-import Navbar from "./components/layout/Navbar.js";
-import {Container} from '@material-ui/core';
-
-=======
 // import Drawer from "./components/Drawer";
 import SideBar from "./components/SideBar";
 
 //material UI
 import Container from "@material-ui/core/Container";
->>>>>>> 05151584cab5be14ab0fb50e2ec403998fa96b09
 
 const httpLink = createHttpLink({
 	uri: "/graphql",

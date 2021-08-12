@@ -171,7 +171,5 @@ async function aboutChamp(champName) {
 
 }
 
-//?specific champions
-//http://ddragon.leagueoflegends.com/cdn/11.15.1/data/en_US/champion/Aatrox.json
 //? so much more
 //https://developer.riotgames.com/docs/lol
