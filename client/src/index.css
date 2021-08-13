@@ -8,14 +8,13 @@ body {
 .loginSignupForm {
   background-color: white;
   width: 23% !important;
-  height: 55%;
-  padding: 20px;
+  height: 55%; 
   position: absolute;
   left: 10%;
   top: 18%;
   border-radius: 10px;
   box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.205);
-  text-align: center;
+  text-align: center!important;
 }
 
 .loginForm {
@@ -26,11 +25,20 @@ body {
   background-color: #3cc295!important;  
 }
 
-.bottomDiv {
+.loginWrapper {
+  position: relative;
+  height: 100%;
+}
+
+.switchFormBtn {
+  font-weight: bolder!important;
+}
+
+.bottomDiv {    
+  padding: 15px;
   position: absolute;
-  bottom: 0;
-  left: 0;
-  padding: 20px;
+  bottom: 10px;
+  
 }
 
 input:focus::placeholder {

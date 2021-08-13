@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import LoginForm from "../components/LoginForm";
 import SignUpForm from "../components/SignUpForm";
 import loginVideo from "../assets/videos/1.mp4"
-import { Container } from "@material-ui/core";
+import { Box, Container } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 
 
@@ -32,16 +32,19 @@ function Login(props) {
 				<source src={loginVideo} type="video/mp4" />
 			</video>
 			<Container className="loginSignupForm">
-				{isLogin ? <LoginForm /> : <SignUpForm />}
+				<Box className="loginWrapper">
+					{isLogin ? <LoginForm /> : <SignUpForm />}
 
-				<Button onClick={() => setIsLogin(!isLogin)}>{isLogin ? signUpSwitch : loginSwitch}</Button>
-
-				{/* <Link to="/SignUp" className="loginFont">
+					<Box className="bottomDiv">
+						<Button className="switchFormBtn" onClick={() => setIsLogin(!isLogin)}>{isLogin ? signUpSwitch : loginSwitch}</Button>
+					</Box>
+					{/* <Link to="/SignUp" className="loginFont">
 					{" "}
 					<h3 className="bottomDiv">
 						Doesn't have an account? Click here and create one right now!
 					</h3>
 				</Link> */}
+				</Box>
 			</Container>
 		</div>
 
