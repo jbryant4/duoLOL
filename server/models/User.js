@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
+const riotApi = require('../utils/riotApi/riotApi')
 
 const userSchema = new Schema(
     {
@@ -14,25 +15,30 @@ const userSchema = new Schema(
             required: true,
             minlength: 5
         },
+        wins: {
+            type: String,
+        },
+        losses: {
+            type: String,
+        },
+        // require roles later
         primRole: {
             type: String,
-            required: true,
         },
         sideRole: {
             type: String,
-            required: true,
         },
         riotId: {
             type: String,
-            required: true,
         },
         puuid: {
-            type: String,
-            required: true,
+            type: String
         },
         rank: {
             type: String,
-            required: true,
+        },
+        tier: {
+            type: String,
         },
         sumName: {
             type: String,
@@ -64,7 +70,9 @@ userSchema.pre('save', async function (next) {
         const saltRounds = 10;
         this.password = await bcrypt.hash(this.password, saltRounds);
     }
-
+    const data = await riotApi.riotDataSignUp(this.sumName);
+    this.puuid = data.puuid;
+    this.riotId = data.riotId;
     next();
 });
 

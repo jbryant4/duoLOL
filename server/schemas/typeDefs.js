@@ -9,6 +9,8 @@ const typeDefs = gql`
         password: String
         rank: String
         tier: String
+        wins: String
+        losses: String
         sumName: String
         primRole: String
         sideRole: String
@@ -30,17 +32,46 @@ const typeDefs = gql`
         item5: String
         item6: String
     }
-
+    type ChampionSummary {
+        name: String
+        icon: Image
+        blurb: String
+    }
+    type Image {
+        url: String
+    }
+    type Spell {
+        name: String
+        description: String
+        icon: Image
+    }
+    type Passive {
+        name: String
+        description: String
+        icon: Image
+    }
+    type Champion {
+        name: String!
+        title: String
+        images:[Image]
+        lore: String
+        tags: [String]
+        spells: [Spell]
+        passive: Passive
+        allytips: [String]
+        enemytips: [String]
+    }
     type Query {
         me: User
         user(email: String!): User
         build(_id: ID!): Build
+        champions(patch: String): [ChampionSummary]
+        champion(name: String!): Champion
     }
 
     type Mutation {
         login(email: String!, password: String!): Auth
         addUser(content: userInfo!): Auth
-        updateUser(content: userInfo!): User
         addBuild(content: buildInfo!): Build
         addFriend(friendId: ID!): User
     }

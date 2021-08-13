@@ -1,6 +1,7 @@
 const { User, Build } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
+const  riotApi = require('../utils/riotApi/riotApi');
 
 const resolvers = {
     Query: {
@@ -25,15 +26,35 @@ const resolvers = {
             return User.findOne({ email })
                 .select('-__v -password')
                 .populate('builds')
+        },
+        champions: async(parent,{patch}) => {
+            const champions = await riotApi.getChampions();
+            return champions
+        },
+        champion: async(parent, {name}) => {
+            const champion = await riotApi.getChampionByName(name);
+            return champion
         }
     },
     Mutation: {
         addUser: async (parent, args) => {
             // console.log(args);
             const user = await User.create(args.content);
-            const token = signToken(user);
 
-            return { user, token }
+            const lolData = await riotApi.getUser(user.riotId, 'na1')
+
+            const updatedUser = await User.findByIdAndUpdate(user._id, 
+                {
+                    rank: lolData.rank,
+                    tier: lolData.tier,
+                    wins: lolData.wins,
+                    losses: lolData.losses
+                },
+                {new: true}
+            )
+
+            const token = signToken(updatedUser)
+            return { user: updatedUser, token };
         },
         login: async (parent, {email, password}) => {
             // console.log(email , password)
@@ -48,23 +69,21 @@ const resolvers = {
             if (!correctPw) {
                 throw new AuthenticationError('Incorrect credentials');
             }
+            //call 
+            const lolData = await riotApi.getUser(user.riotId, 'na1')
 
-            const token = signToken(user)
-            return { user, token };
-        },
-        updateUser: async(parent, {content}, context) =>{
-            if (context.user) {
+            const updatedUser = await User.findByIdAndUpdate(user._id, 
+                {
+                    rank: lolData.rank,
+                    tier: lolData.tier,
+                    wins: lolData.wins,
+                    losses: lolData.losses
+                },
+                {new: true}
+            )
 
-                await User.findByIdAndUpdate(
-                    { _id: context.user._id },
-                    content,
-                    { new: true }
-                );
-
-                return build;
-            }
-
-            throw new AuthenticationError('You need to be logged in!');
+            const token = signToken(updatedUser)
+            return { user: updatedUser, token };
         },
         addBuild: async (parent, {content}, context) => {
             
