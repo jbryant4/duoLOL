@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     },
     expandOpen: {
         transform: 'rotate(180deg)',
-    },    
+    },
 
     // new card 
     content: {
@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         zIndex: 1,
         padding: '1.5rem 1.5rem 1rem',
-    },    
+    },
     title: {
         fontFamily: "'Sen', sans-serif",
         fontSize: '2rem',
@@ -65,8 +65,8 @@ const useStyles = makeStyles((theme) => ({
             bottom: 0,
             display: 'block',
             width: '100%',
-            height: '100%',
-            background: 'linear-gradient(to top, #014a7d, rgba(0,0,0,0))',
+            height: '45%',
+            background: 'linear-gradient(to top, rgba(255, 255, 255, 0.24), rgba(0,0,0,0))',
         },
     },
 }));
@@ -86,7 +86,7 @@ export default function MatchingCard() {
                     className={classes.media}
                     image="https://images-ext-1.discordapp.net/external/KKjfwJamf75_hTOB0hwApPZoj8mGhxBe_Tm5qpc8IZs/http/ddragon.leagueoflegends.com/cdn/img/champion/loading/Aatrox_0.jpg"
                 // title="Kha Zix"
-                />               
+                />
 
                 <div className={classes.content}>
                     <Typography variant={'h2'} className={classes.title}>
@@ -123,21 +123,7 @@ export default function MatchingCard() {
                         Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
                         minutes.
                     </Typography>
-                    <Typography paragraph>
-                        Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
-                        heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly
-                        browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving chicken
-                        and chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes, onion, salt and
-                        pepper, and cook, stirring often until thickened and fragrant, about 10 minutes. Add
-                        saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
-                    </Typography>
-                    <Typography paragraph>
-                        Add rice and stir very gently to distribute. Top with artichokes and peppers, and cook
-                        without stirring, until most of the liquid is absorbed, 15 to 18 minutes. Reduce heat to
-                        medium-low, add reserved shrimp and mussels, tucking them down into the rice, and cook
-                        again without stirring, until mussels have opened and rice is just tender, 5 to 7
-                        minutes more. (Discard any mussels that don’t open.)
-                    </Typography>
+
                     <Typography>
                         Set aside off of the heat to let rest for 10 minutes, and then serve.
                     </Typography>
