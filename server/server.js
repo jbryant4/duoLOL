@@ -1,6 +1,6 @@
 const express = require('express');
 //! PRODUCTION
-// const path = require('path');
+const path = require('path');
 
 // import ApolloServer
 const { ApolloServer } = require('apollo-server-express');
