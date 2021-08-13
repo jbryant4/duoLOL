@@ -1,12 +1,19 @@
 // React imports
 import React, { useState } from "react";
 import LoginForm from "../components/LoginForm";
-
+import SignUpForm from "../components/SignUpForm";
 import loginVideo from "../assets/videos/1.mp4"
+import { Container } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
+
 
 
 // Login Function
 function Login(props) {
+	const [isLogin, setIsLogin] = useState(true)
+	const loginSwitch = "Or login instead"
+	const signUpSwitch = "Doesn't have an account? Click here and create one right now!"
+
 	return (
 		<div>
 			<video
@@ -24,9 +31,18 @@ function Login(props) {
 			>
 				<source src={loginVideo} type="video/mp4" />
 			</video>
+			<Container className="loginSignupForm">
+				{isLogin ? <LoginForm /> : <SignUpForm />}
 
-			<LoginForm />
+				<Button onClick={() => setIsLogin(!isLogin)}>{isLogin ? signUpSwitch : loginSwitch}</Button>
 
+				{/* <Link to="/SignUp" className="loginFont">
+					{" "}
+					<h3 className="bottomDiv">
+						Doesn't have an account? Click here and create one right now!
+					</h3>
+				</Link> */}
+			</Container>
 		</div>
 
 	);

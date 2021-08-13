@@ -41,10 +41,9 @@ function LoginForm(props) {
 	};
 
 	return (
-		<div>
-			<Container className="loginSignupForm">
-				<h1 className="loginFont">Login</h1>
+		<div>					
 				<form className="loginForm" id="loginForm" onSubmit={handleFormSubmit}>
+					<h1 className="loginFont">Login</h1>
 					<Box>
 						<Box m={2}>
 							<label htmlFor="email"></label>
@@ -62,8 +61,7 @@ function LoginForm(props) {
 									fullWidth
 									id="outlined-basic"
 									label="Email"
-									variant="outlined"
-									placeholder="email"
+									variant="outlined"									
 									name="email"
 									type="email"
 									id="email"
@@ -88,8 +86,7 @@ function LoginForm(props) {
 									fullWidth
 									id="outlined-basic"
 									label="Password"
-									variant="outlined"
-									placeholder="password"
+									variant="outlined"									
 									name="password"
 									type="password"
 									id="pwd"
@@ -105,7 +102,7 @@ function LoginForm(props) {
 							</div>
 						) : null}
 						<Button
-							className="loginBtn"
+							className="loginSignBtn"
 							variant="contained"
 							color="primary"
 							size="medium"
@@ -114,15 +111,9 @@ function LoginForm(props) {
 						>
 							Login
 						</Button>
-						<Link to="/SignUp" className="loginFont">
-							{" "}
-						<h3 className="bottomDiv">
-							Doesn't have an account? Create one right now!
-						</h3>
-						</Link>
+						
 					</Box>
-				</form>
-			</Container>
+				</form>			
 		</div>
 	);
 }

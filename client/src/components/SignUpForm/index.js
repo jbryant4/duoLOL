@@ -43,11 +43,10 @@ function SignUpForm(props) {
 
 	return (
 		<div>
-			<Container className="loginSignupForm">
+			<form className="loginForm" id="SignUpForm" onSubmit={handleFormSubmit}>
 				<h1 className="loginFont">Sign Up</h1>
-				<form className="loginForm" id="SignUpForm" onSubmit={handleFormSubmit}>
-					<Box>
-						<Box m={2}>
+				<Box>
+					{/* <Box m={2}>
 							<label htmlFor="userName"></label>
 							<TextField
 								fullWidth
@@ -60,68 +59,62 @@ function SignUpForm(props) {
 								id="UserName"
 								onChange={handleChange}
 							/>
-						</Box>
-						<Box m={2}>
-							<label htmlFor="SummonerName"></label>
-							<TextField
-								fullWidth
-								id="outlined-basic"
-								label="Summoner Name"
-								variant="outlined"
-								placeholder="summonerName"
-								name="summonerName"
-								type="summonerName"
-								id="summonerName"
-								onChange={handleChange}
-							/>
-						</Box>
-						<Box m={2}>
-							<label htmlFor="email"></label>
-							<TextField
-								fullWidth
-								id="outlined-basic"
-								label="Email"
-								variant="outlined"
-								placeholder="email"
-								name="email"
-								type="email"
-								id="email"
-								onChange={handleChange}
-							/>
-						</Box>
-						<Box m={2}>
-							<label htmlFor="password"></label>
-							<TextField
-								fullWidth
-								id="outlined-basic"
-								label="Password"
-								variant="outlined"
-								placeholder="********"
-								name="password"
-								type="password"
-								id="pwd"
-								onChange={handleChange}
-							/>
-						</Box>
-						<Button
-							className="SignUpBtn"
-							variant="contained"
-							color="primary"
-							size="medium"
-							type="submit"
-							form="SignUpForm"
-						>
-							Sign Up
-						</Button>
+						</Box> */}
+					<Box m={2}>
+						<label htmlFor="email"></label>
+						<TextField
+							required
+							fullWidth
+							id="outlined-basic"
+							label="Email"
+							variant="outlined"
+							placeholder="email"
+							name="email"
+							type="email"
+							id="email"
+							onChange={handleChange}
+						/>
 					</Box>
-					<Link to="/" className="loginFont">
-						{" "}
-						<h3 className="bottomDiv">
-							← Return to Login
-						</h3>
-					</Link>
-				</form>
-			</Container>
+					<Box m={2}>
+						<label htmlFor="SummonerName"></label>
+						<TextField
+							required
+							fullWidth
+							id="outlined-basic"
+							label="Summoner Name"
+							variant="outlined"
+							name="summonerName"
+							type="summonerName"
+							id="summonerName"
+							onChange={handleChange}
+						/>
+					</Box>
+					<Box m={2}>
+						<label htmlFor="password"></label>
+						<TextField
+							required
+							fullWidth
+							id="outlined-basic"
+							label="Password"
+							variant="outlined"
+							name="password"
+							type="password"
+							id="pwd"
+							onChange={handleChange}
+						/>
+					</Box>
+					<Button
+						className="loginSignBtn"
+						variant="contained"
+						color="primary"
+						size="medium"
+						type="submit"
+						form="SignUpForm"
+					>
+						Sign Up
+					</Button>
+				</Box>				
+			</form>
 		</div>
 	);
 }

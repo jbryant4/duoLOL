@@ -13,7 +13,6 @@ import Homepage from "./pages/Homepage";
 import DualFinder from "./pages/DualFinder";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
-import SignUp from "./pages/SignUp";
 
 //material UI
 import Container from "@material-ui/core/Container";
@@ -55,8 +54,7 @@ function App() {
 							<div>
 								<Switch>
 									<Route exact path="/homepage" component={Homepage} />
-									<Route exact path="/" component={Login} />
-									<Route exact path="/signup" component={SignUp} />
+									<Route exact path="/" component={Login} />									
 									<Route exact path="/dualFinder" component={DualFinder} />
 									<Route exact path="/dashboard" component={Dashboard} />
 									
