@@ -12,15 +12,15 @@ import { setContext } from "@apollo/client/link/context";
 import Homepage from "./pages/Homepage";
 import DualFinder from "./pages/DualFinder";
 import Dashboard from "./pages/Dashboard";
+import AboutChampion from "./pages/AboutChampion";
 import Login from "./pages/Login";
+
+// import Drawer from "./components/Drawer";
+import SideBar from "./components/SideBar";
+import Footer from "./components/Footer";
 
 //material UI
 import Container from "@material-ui/core/Container";
-
-// Components
-import Navbar from "./components/layout/Navbar.js";
-
-
 
 const httpLink = createHttpLink({
 	uri: "/graphql",
@@ -41,30 +41,25 @@ const client = new ApolloClient({
 	cache: new InMemoryCache(),
 });
 
-
 // Routes
 function App() {
 	return (
 		<ApolloProvider client={client}>
 			<Router>
-				<div>
-					{/* <Navbar /> */}
-					<div>
-						<Container maxWidth="xl" disableGutters={true}>
-							<div>
-								<Switch>
-									<Route exact path="/homepage" component={Homepage} />
-									<Route exact path="/" component={Login} />									
-									<Route exact path="/dualFinder" component={DualFinder} />
-									<Route exact path="/dashboard" component={Dashboard} />
-									
-
-									<Route component={Homepage} />
-								</Switch>
-							</div>
-						</Container>
-					</div>
-				</div>
+				<SideBar>
+					<Container maxWidth="xl" disableGutters={true}>
+						<Switch>
+							<Route exact path="/homepage" component={Homepage} />
+							<Route exact path="/" component={Login} />
+							<Route exact path="/signup" component={SignUp} />
+							<Route exact path="/dualFinder" component={DualFinder} />
+							<Route exact path="/dashboard" component={Dashboard} />
+							<Route exact path="/AboutChampion" component={AboutChampion} />
+							<Route component={Homepage} />
+						</Switch>
+					</Container>
+				</SideBar>
+				<Footer />
 			</Router>
 		</ApolloProvider>
 	);
