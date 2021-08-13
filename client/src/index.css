@@ -28,17 +28,16 @@ body {
 .loginWrapper { 
   position: relative;
   height: 100%;
-  text-align: center;
+  
 }
 
 .switchFormBtn {
   font-weight: bolder!important;
 }
 
-.bottomDiv {   
-  padding: 15px; 
+.bottomDiv {      
   position: absolute;
-  bottom: 10px;
+  bottom: 25px; 
   width: 100%;
 }
 

@@ -109,9 +109,9 @@ export default function MiniDrawer(props) {
 			destination: "/Dashboard",
 		},
 		{
-			text: "Dual Finder",
+			text: "Duo Finder",
 			icon: <GroupAddIcon />,
-			destination: "/DualFinder",
+			destination: "/DuoFinder",
 		},
 		{
 			text: "Login/SignUp",

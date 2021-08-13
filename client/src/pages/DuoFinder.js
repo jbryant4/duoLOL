@@ -4,8 +4,8 @@ import React from "react";
 import MatchingCard from "../components/MatchingCard";
 
 
-// DualFinder
-function DualFinder() {
+// DuoFinder
+function DuoFinder() {
 	return (
 		<Container>
 			<MatchingCard />
@@ -14,5 +14,5 @@ function DualFinder() {
 	);
 }
 
-// export DualFinder
-export default DualFinder;
+// export DuoFinder
+export default DuoFinder;

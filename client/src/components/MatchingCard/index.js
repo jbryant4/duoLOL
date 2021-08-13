@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
+// import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
@@ -15,6 +15,9 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+// import { ImageBackground, Text, View } from "react-native";
+
+const khaTest = { uri: "https://www.pockettactics.com/wp-content/uploads/2021/05/league-of-legends-wild-rift-kha-zix.jpg"}
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -22,7 +25,8 @@ const useStyles = makeStyles((theme) => ({
     },
     media: {
         height: 0,
-        paddingTop: '56.25%', // 16:9
+        paddingTop: '96.25%', // 16:9
+        paddingRight: '40.25%'
     },
     expand: {
         transform: 'rotate(0deg)',
@@ -49,38 +53,27 @@ export default function MatchingCard() {
 
     return (
         <Card className={classes.root}>
-            <CardHeader
-                avatar={
-                    <Avatar aria-label="recipe" className={classes.avatar}>
-                        R
-                    </Avatar>
-                }
-                action={
-                    <IconButton aria-label="settings">
-                        <MoreVertIcon />
-                    </IconButton>
-                }
-                title="Shrimp and Chorizo Paella"
-                subheader="September 14, 2016"
-            />
             <CardMedia
                 className={classes.media}
-                image="/static/images/cards/paella.jpg"
-                title="Paella dish"
+                image="https://www.pockettactics.com/wp-content/uploads/2021/05/league-of-legends-wild-rift-kha-zix.jpg"
+                // title="Kha Zix"
             />
+            {/* <View className={classes.container}>
+                <ImageBackground source={khaTest} resizeMode="cover" className={classes.image}>
+                    <Text className={classes.text}>Inside</Text>
+                </ImageBackground>
+            </View> */}
+
             <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">
-                    This impressive paella is a perfect party dish and a fun meal to cook together with your
-                    guests. Add 1 cup of frozen peas along with the mussels, if you like.
+                    I love to feed playing jungle with my teammates, always aiming to lose before 15min!!!
                 </Typography>
             </CardContent>
             <CardActions disableSpacing>
                 <IconButton aria-label="add to favorites">
                     <FavoriteIcon />
                 </IconButton>
-                <IconButton aria-label="share">
-                    <ShareIcon />
-                </IconButton>
+
                 <IconButton
                     className={clsx(classes.expand, {
                         [classes.expandOpen]: expanded,

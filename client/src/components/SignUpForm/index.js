@@ -5,6 +5,9 @@ import { useMutation } from "@apollo/client";
 // Utility imports
 import { ADD_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
+// import iconsPool from "../../assets/images/RoleIcons/roleIconsPool";
+
+import midIcon from "../../assets/images/RoleIcons/top.png"
 
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -12,10 +15,19 @@ import Button from "@material-ui/core/Button";
 // import SignUpVideo from "../assets/videos/1.mp4"
 import { Box } from "@material-ui/core";
 
+const iconsPool = [
+	"../../assets/images/RoleIcons/top.png",	
+	// { src: "../../assets/images/RoleIcons/jng.png"},
+	// { src: "../../assets/images/RoleIcons/mid.png"},
+	// { src: "../../assets/images/RoleIcons/adc.png"},
+	// { src: "../../assets/images/RoleIcons/top.png"}
+]
+
 // Sign up function
 function SignUpForm(props) {
 	const [formState, setFormState] = useState({ email: "", password: "" });
 	const [addUser] = useMutation(ADD_USER);
+
 
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
@@ -38,6 +50,8 @@ function SignUpForm(props) {
 			[name]: value,
 		});
 	};
+
+
 
 	return (
 		<div>
@@ -101,6 +115,14 @@ function SignUpForm(props) {
 							onChange={handleChange}
 						/>
 					</Box>
+
+					<Box className="roleIcons"><h3>Choose your main and secondary role! Don't worry, you can change it later!</h3></Box>
+					<img src={midIcon} ></img>
+					
+					{iconsPool.map((src, index) => (<img src={src} key={index} />))}
+					
+					
+
 					<Button
 						className="loginSignBtn"
 						variant="contained"
@@ -111,7 +133,7 @@ function SignUpForm(props) {
 					>
 						Sign Up
 					</Button>
-				</Box>				
+				</Box>
 			</form>
 		</div>
 	);
