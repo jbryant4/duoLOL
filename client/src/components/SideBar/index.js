@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -21,6 +21,7 @@ import GroupAddIcon from "@material-ui/icons/GroupAdd";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 const drawerWidth = 240;
+
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -84,6 +85,13 @@ const useStyles = makeStyles((theme) => ({
 		flexGrow: 1,
 		padding: theme.spacing(3),
 	},
+	contentShift: {
+		transition: theme.transitions.create('margin', {
+			easing: theme.transitions.easing.easeOut,
+			duration: theme.transitions.duration.enteringScreen,
+		}),
+		marginLeft: 0,
+	},
 }));
 
 export default function MiniDrawer(props) {
@@ -108,9 +116,9 @@ export default function MiniDrawer(props) {
 			destination: "/Dashboard",
 		},
 		{
-			text: "Dual Finder",
+			text: "Duo Finder",
 			icon: <GroupAddIcon />,
-			destination: "/DualFinder",
+			destination: "/DuoFinder",
 		},
 		{
 			text: "Login/SignUp",
@@ -120,6 +128,7 @@ export default function MiniDrawer(props) {
 	];
 
 	return (
+
 		<div className={classes.root}>
 			<CssBaseline />
 			<Drawer
