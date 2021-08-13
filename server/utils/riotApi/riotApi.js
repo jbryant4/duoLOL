@@ -120,23 +120,23 @@ async function getChampionByName(champName, _patch) {
 
     champInfo.images = [];
     //store all images in obj with titles
-    champ.skins.map(skin =>
+    champInfo.skins.map(skin =>
         champInfo.images.push({
             name: skin.name,
             img: `http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${champName}_${skin.num}.jpg`
         }));
 
     champInfo.passive = {
-        name: champ.passive.name,
-        description: champ.passive.description,
+        name: champInfo.passive.name,
+        description: champInfo.passive.description,
         icon: {
-            url: `http://ddragon.leagueoflegends.com/cdn/${patch}/img/passive/${champ.passive.image.full}.png`
+            url: `http://ddragon.leagueoflegends.com/cdn/${patch}/img/passive/${champInfo.passive.image.full}.png`
         }
     };
 
     champInfo.spells = [];
     //store all skins in obj with titles/img/descriptions
-    champ.spells.map(spell =>
+    champInfo.spells.map(spell =>
         champInfo.spells.push({
             name: spell.name,
             description: spell.description,
