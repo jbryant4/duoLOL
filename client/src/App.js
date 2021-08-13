@@ -50,8 +50,7 @@ function App() {
 					<Container maxWidth="xl" disableGutters={true}>
 						<Switch>
 							<Route exact path="/homepage" component={Homepage} />
-							<Route exact path="/" component={Login} />
-							<Route exact path="/signup" component={SignUp} />
+							<Route exact path="/" component={Login} />							
 							<Route exact path="/dualFinder" component={DualFinder} />
 							<Route exact path="/dashboard" component={Dashboard} />
 							<Route exact path="/AboutChampion" component={AboutChampion} />

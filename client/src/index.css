@@ -25,20 +25,21 @@ body {
   background-color: #3cc295!important;  
 }
 
-.loginWrapper {
+.loginWrapper { 
   position: relative;
   height: 100%;
+  text-align: center;
 }
 
 .switchFormBtn {
   font-weight: bolder!important;
 }
 
-.bottomDiv {    
-  padding: 15px;
+.bottomDiv {   
+  padding: 15px; 
   position: absolute;
   bottom: 10px;
-  
+  width: 100%;
 }
 
 input:focus::placeholder {
