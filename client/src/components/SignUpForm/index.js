@@ -7,7 +7,11 @@ import { ADD_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 // import iconsPool from "../../assets/images/RoleIcons/roleIconsPool";
 
-import midIcon from "../../assets/images/RoleIcons/top.png"
+import topIcon from "../../assets/images/RoleIcons/top.png"
+import jngIcon from "../../assets/images/RoleIcons/jng.png"
+import midIcon from "../../assets/images/RoleIcons/mid.png"
+import adcIcon from "../../assets/images/RoleIcons/adc.png"
+import supIcon from "../../assets/images/RoleIcons/sup.png"
 
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -15,13 +19,7 @@ import Button from "@material-ui/core/Button";
 // import SignUpVideo from "../assets/videos/1.mp4"
 import { Box } from "@material-ui/core";
 
-const iconsPool = [
-	"../../assets/images/RoleIcons/top.png",	
-	// { src: "../../assets/images/RoleIcons/jng.png"},
-	// { src: "../../assets/images/RoleIcons/mid.png"},
-	// { src: "../../assets/images/RoleIcons/adc.png"},
-	// { src: "../../assets/images/RoleIcons/top.png"}
-]
+const iconsPool = [topIcon, jngIcon, midIcon, adcIcon, supIcon]
 
 // Sign up function
 function SignUpForm(props) {
@@ -117,11 +115,11 @@ function SignUpForm(props) {
 					</Box>
 
 					<Box className="roleIcons"><h3>Choose your main and secondary role! Don't worry, you can change it later!</h3></Box>
-					<img src={midIcon} ></img>
-					
+					{/* <img src={midIcon} ></img> */}
+
 					{iconsPool.map((src, index) => (<img src={src} key={index} />))}
-					
-					
+
+
 
 					<Button
 						className="loginSignBtn"

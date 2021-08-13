@@ -85,6 +85,13 @@ const useStyles = makeStyles((theme) => ({
 		flexGrow: 1,
 		padding: theme.spacing(3),
 	},
+	contentShift: {
+		transition: theme.transitions.create('margin', {
+			easing: theme.transitions.easing.easeOut,
+			duration: theme.transitions.duration.enteringScreen,
+		}),
+		marginLeft: 0,
+	},
 }));
 
 export default function MiniDrawer(props) {
@@ -121,7 +128,7 @@ export default function MiniDrawer(props) {
 	];
 
 	return (
-		
+
 		<div className={classes.root}>
 			<CssBaseline />
 			<Drawer

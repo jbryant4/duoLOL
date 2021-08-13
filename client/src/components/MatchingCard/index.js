@@ -7,26 +7,26 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-// import { ImageBackground, Text, View } from "react-native";
+import Box from '@material-ui/core/Box';
 
-const khaTest = { uri: "https://www.pockettactics.com/wp-content/uploads/2021/05/league-of-legends-wild-rift-kha-zix.jpg"}
+
+const khaTest = { uri: "https://www.pockettactics.com/wp-content/uploads/2021/05/league-of-legends-wild-rift-kha-zix.jpg" }
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        maxWidth: 345,
+        maxWidth: 350,
+        marginLeft: '35%'
+
     },
     media: {
         height: 0,
-        paddingTop: '96.25%', // 16:9
-        paddingRight: '40.25%'
+        paddingTop: '100%', // 16:9
+        width: 350,
+        height: 525
     },
     expand: {
         transform: 'rotate(0deg)',
@@ -34,12 +34,40 @@ const useStyles = makeStyles((theme) => ({
         transition: theme.transitions.create('transform', {
             duration: theme.transitions.duration.shortest,
         }),
+        order: -1
     },
     expandOpen: {
         transform: 'rotate(180deg)',
+    },    
+
+    // new card 
+    content: {
+        position: 'absolute',
+        bottom: 0,
+        width: '100%',
+        zIndex: 1,
+        padding: '1.5rem 1.5rem 1rem',
+    },    
+    title: {
+        fontFamily: "'Sen', sans-serif",
+        fontSize: '2rem',
+        fontWeight: 800,
+        color: '#fff',
     },
-    avatar: {
-        backgroundColor: red[500],
+    main: {
+        overflow: 'hidden',
+        borderTopLeftRadius: '1.5rem',
+        borderTopRightRadius: '1.5rem',
+        zIndex: 1,
+        '&:after': {
+            content: '""',
+            position: 'absolute',
+            bottom: 0,
+            display: 'block',
+            width: '100%',
+            height: '100%',
+            background: 'linear-gradient(to top, #014a7d, rgba(0,0,0,0))',
+        },
     },
 }));
 
@@ -53,19 +81,22 @@ export default function MatchingCard() {
 
     return (
         <Card className={classes.root}>
-            <CardMedia
-                className={classes.media}
-                image="https://www.pockettactics.com/wp-content/uploads/2021/05/league-of-legends-wild-rift-kha-zix.jpg"
+            <Box className={classes.main} minHeight={300} position={'relative'}>
+                <CardMedia
+                    className={classes.media}
+                    image="https://images-ext-1.discordapp.net/external/KKjfwJamf75_hTOB0hwApPZoj8mGhxBe_Tm5qpc8IZs/http/ddragon.leagueoflegends.com/cdn/img/champion/loading/Aatrox_0.jpg"
                 // title="Kha Zix"
-            />
-            {/* <View className={classes.container}>
-                <ImageBackground source={khaTest} resizeMode="cover" className={classes.image}>
-                    <Text className={classes.text}>Inside</Text>
-                </ImageBackground>
-            </View> */}
+                />               
+
+                <div className={classes.content}>
+                    <Typography variant={'h2'} className={classes.title}>
+                        PacSmack
+                    </Typography>
+                </div>
+            </Box>
 
             <CardContent>
-                <Typography variant="body2" color="textSecondary" component="p">
+                <Typography variant="body1" color="textPrimary" component="p">
                     I love to feed playing jungle with my teammates, always aiming to lose before 15min!!!
                 </Typography>
             </CardContent>
@@ -85,7 +116,7 @@ export default function MatchingCard() {
                     <ExpandMoreIcon />
                 </IconButton>
             </CardActions>
-            <Collapse in={expanded} timeout="auto" unmountOnExit>
+            <Collapse in={expanded} timeout="auto" unmountOnExit >
                 <CardContent>
                     <Typography paragraph>Method:</Typography>
                     <Typography paragraph>
@@ -112,6 +143,6 @@ export default function MatchingCard() {
                     </Typography>
                 </CardContent>
             </Collapse>
-        </Card>
+        </Card >
     );
 }
