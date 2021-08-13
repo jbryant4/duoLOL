@@ -8,7 +8,7 @@ body {
 .loginSignupForm {
   background-color: white;
   width: 23% !important;
-  height: 55%; 
+  height: 55%;
   position: absolute;
   left: 10%;
   top: 18%;
@@ -22,23 +22,32 @@ body {
 }
 
 .loginSignBtn {
-  background-color: #3cc295!important;  
+  background-color: #3cc295!important;
 }
 
-.loginWrapper { 
+.loginWrapper {
   position: relative;
   height: 100%;
-  
 }
 
 .switchFormBtn {
   font-weight: bolder!important;
 }
 
-.bottomDiv {      
+.bottomDiv {
   position: absolute;
-  bottom: 25px; 
+  bottom: 25px;
   width: 100%;
+}
+
+.closeBtn {
+  color: rgb(255, 120, 84);
+  color: linear-gradient(301deg, rgba(255, 120, 84, 1) 0%, rgba(0, 0, 0, 1) 100%);
+}
+
+.heartBtn {
+  color: rgb(1, 223, 138);
+  color: linear-gradient(225deg, rgba(1, 223, 138, 1) 50%, rgba(124, 244, 245, 1) 52%);
 }
 
 input:focus::placeholder {

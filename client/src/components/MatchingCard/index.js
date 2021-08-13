@@ -9,12 +9,20 @@ import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Box from '@material-ui/core/Box';
 
 
-const khaTest = { uri: "https://www.pockettactics.com/wp-content/uploads/2021/05/league-of-legends-wild-rift-kha-zix.jpg" }
+//icons not from materialUi
+import { HeartFill } from "@styled-icons/bootstrap/HeartFill"
+import { Close } from "@styled-icons/material-rounded/Close"
+
+// framer for animating
+import { Frame, useMotionValue, useTransform, useAnimation } from 'framer';
+
+import { CicleButton } from "./circle-button";
+
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -56,6 +64,7 @@ const useStyles = makeStyles((theme) => ({
     },
     main: {
         overflow: 'hidden',
+        backgroundColor: 'black',
         borderTopLeftRadius: '1.5rem',
         borderTopRightRadius: '1.5rem',
         zIndex: 1,
@@ -69,9 +78,14 @@ const useStyles = makeStyles((theme) => ({
             background: 'linear-gradient(to top, rgba(255, 255, 255, 0.24), rgba(0,0,0,0))',
         },
     },
+    actionBarWrapper: {
+        placeContent: "space-evenly"
+    },
 }));
 
-export default function MatchingCard() {
+export default function MatchingCard({ }) {
+
+
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
 
@@ -79,8 +93,11 @@ export default function MatchingCard() {
         setExpanded(!expanded);
     };
 
+
+
+
     return (
-        <Card className={classes.root}>
+        <Card className={classes.root} elevation={3}>
             <Box className={classes.main} minHeight={300} position={'relative'}>
                 <CardMedia
                     className={classes.media}
@@ -100,10 +117,11 @@ export default function MatchingCard() {
                     I love to feed playing jungle with my teammates, always aiming to lose before 15min!!!
                 </Typography>
             </CardContent>
-            <CardActions disableSpacing>
-                <IconButton aria-label="add to favorites">
-                    <FavoriteIcon />
-                </IconButton>
+            <CardActions className={classes.actionBarWrapper}>
+
+                <CicleButton>
+                    <Close className="closeBtn" />
+                </CicleButton>
 
                 <IconButton
                     className={clsx(classes.expand, {
@@ -111,24 +129,31 @@ export default function MatchingCard() {
                     })}
                     onClick={handleExpandClick}
                     aria-expanded={expanded}
-                    aria-label="show more"
-                >
+                    aria-label="show more">
                     <ExpandMoreIcon />
                 </IconButton>
-            </CardActions>
-            <Collapse in={expanded} timeout="auto" unmountOnExit >
-                <CardContent>
-                    <Typography paragraph>Method:</Typography>
-                    <Typography paragraph>
-                        Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
-                        minutes.
-                    </Typography>
 
-                    <Typography>
-                        Set aside off of the heat to let rest for 10 minutes, and then serve.
-                    </Typography>
-                </CardContent>
-            </Collapse>
+                <CicleButton>
+                    <HeartFill className="heartBtn" />
+                </CicleButton>
+
+            </CardActions>
+
+            <Box sx={{ width: "300" }}>
+                <Collapse orientation="horizontal" in={expanded} timeout="auto" unmountOnExit >
+                    <CardContent>
+                        <Typography paragraph>Method:</Typography>
+                        <Typography paragraph>
+                            Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
+                            minutes.
+                        </Typography>
+
+                        <Typography>
+                            Set aside off of the heat to let rest for 10 minutes, and then serve.
+                        </Typography>
+                    </CardContent>
+                </Collapse>
+            </Box>
         </Card >
     );
 }
