@@ -5,6 +5,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* login/signup css */
+
 .loginSignupForm {
   background-color: white;
   width: 23% !important;
@@ -34,11 +36,27 @@ body {
   font-weight: bolder!important;
 }
 
+.imagesContainer {
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-bottom: 5px;
+}
+
 .bottomDiv {
   position: absolute;
-  bottom: 25px;
+  bottom: 20px;
   width: 100%;
 }
+
+.signupIcons {
+  max-width: 20%;
+}
+
+.signupIcons:hover {
+  transform: scale(1.1);
+}
+
+/* card matching */
 
 .closeBtn {
   color: rgb(255, 120, 84);

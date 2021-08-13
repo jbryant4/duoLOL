@@ -1,6 +1,7 @@
 // React imports
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
+import Grid from '@material-ui/core/Grid';
 
 // Utility imports
 import { ADD_USER } from "../../utils/mutations";
@@ -15,9 +16,11 @@ import supIcon from "../../assets/images/RoleIcons/sup.png"
 
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import IconButton from '@material-ui/core/IconButton';
 
 // import SignUpVideo from "../assets/videos/1.mp4"
 import { Box } from "@material-ui/core";
+import { width } from "@material-ui/system";
 
 const iconsPool = [topIcon, jngIcon, midIcon, adcIcon, supIcon]
 
@@ -51,76 +54,77 @@ function SignUpForm(props) {
 
 
 
-	return (
-		<div>
-			<form className="loginForm" id="SignUpForm" onSubmit={handleFormSubmit}>
+	return (		
+			<Box component="form"
+				sx={{
+					'& > :not(style)': { m: 1 },
+				}}
+				autoComplete="off"
+				className="loginForm" id="SignUpForm" onSubmit={handleFormSubmit}
+				display="block"
+				overflow="hidden"
+			>
+
+
 				<h1 className="loginFont">Sign Up</h1>
+
+				<Box m={2}>
+					<label htmlFor="email"></label>
+					<TextField
+						required
+						fullWidth
+						id="outlined-basic"
+						label="Email"
+						variant="outlined"
+						placeholder="email"
+						name="email"
+						type="email"
+						id="email"
+						onChange={handleChange}
+					/>
+				</Box>
+				<Box m={2}>
+					<label htmlFor="SummonerName"></label>
+					<TextField
+						required
+						fullWidth
+						id="outlined-basic"
+						label="Summoner Name"
+						variant="outlined"
+						name="summonerName"
+						type="summonerName"
+						id="summonerName"
+						onChange={handleChange}
+					/>
+				</Box>
+				<Box m={2}>
+					<label htmlFor="password"></label>
+					<TextField
+						required
+						fullWidth
+						id="outlined-basic"
+						label="Password"
+						variant="outlined"
+						name="password"
+						type="password"
+						id="pwd"
+						onChange={handleChange}
+					/>
+				</Box>
+				<Box
+					className="roleIcons"><h4>Choose your main and secondary role!</h4>
+				</Box>
+
+
+				<Box display="flex" className="imagesContainer">
+					{iconsPool.map((src, index) => (
+						<img className="signupIcons" src={src} key={index} />
+					))}
+				</Box>
+
+
+
 				<Box>
-					{/* <Box m={2}>
-							<label htmlFor="userName"></label>
-							<TextField
-								fullWidth
-								id="outlined-basic"
-								label="User Name"
-								variant="outlined"
-								placeholder="User Name"
-								name="UserName"
-								type="UserName"
-								id="UserName"
-								onChange={handleChange}
-							/>
-						</Box> */}
-					<Box m={2}>
-						<label htmlFor="email"></label>
-						<TextField
-							required
-							fullWidth
-							id="outlined-basic"
-							label="Email"
-							variant="outlined"
-							placeholder="email"
-							name="email"
-							type="email"
-							id="email"
-							onChange={handleChange}
-						/>
-					</Box>
-					<Box m={2}>
-						<label htmlFor="SummonerName"></label>
-						<TextField
-							required
-							fullWidth
-							id="outlined-basic"
-							label="Summoner Name"
-							variant="outlined"
-							name="summonerName"
-							type="summonerName"
-							id="summonerName"
-							onChange={handleChange}
-						/>
-					</Box>
-					<Box m={2}>
-						<label htmlFor="password"></label>
-						<TextField
-							required
-							fullWidth
-							id="outlined-basic"
-							label="Password"
-							variant="outlined"
-							name="password"
-							type="password"
-							id="pwd"
-							onChange={handleChange}
-						/>
-					</Box>
-
-					<Box className="roleIcons"><h3>Choose your main and secondary role! Don't worry, you can change it later!</h3></Box>
-					{/* <img src={midIcon} ></img> */}
-
-					{iconsPool.map((src, index) => (<img src={src} key={index} />))}
-
-
-
 					<Button
 						className="loginSignBtn"
 						variant="contained"
@@ -132,8 +136,8 @@ function SignUpForm(props) {
 						Sign Up
 					</Button>
 				</Box>
-			</form>
-		</div>
+			</Box>	
+
 	);
 }
 
