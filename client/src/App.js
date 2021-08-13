@@ -43,22 +43,24 @@ const client = new ApolloClient({
 
 // Routes
 function App() {
+	const currentPath = window.location.pathname
+
 	return (
 		<ApolloProvider client={client}>
 			<Router>
-				<SideBar>
-					<Container maxWidth="xl" disableGutters={true}>
-						<Switch>
-							<Route exact path="/homepage" component={Homepage} />
-							<Route exact path="/" component={Login} />							
-							<Route exact path="/dualFinder" component={DualFinder} />
-							<Route exact path="/dashboard" component={Dashboard} />
-							<Route exact path="/AboutChampion" component={AboutChampion} />
-							<Route component={Homepage} />
-						</Switch>
-					</Container>
-				</SideBar>
-				<Footer />
+				{currentPath.includes('login') ? null : <SideBar/>}
+				<Container maxWidth="xl" disableGutters={true}>
+					<Switch>
+						<Route exact path="/homepage" component={Homepage} />
+						<Route exact path="/login" component={Login} />
+						<Route exact path="/dualFinder" component={DualFinder} />
+						<Route exact path="/dashboard" component={Dashboard} />
+						<Route exact path="/AboutChampion" component={AboutChampion} />
+						<Route component={Homepage} />
+					</Switch>
+				</Container>
+
+				{/* <Footer /> */}
 			</Router>
 		</ApolloProvider>
 	);

@@ -121,6 +121,7 @@ export default function MiniDrawer(props) {
 	];
 
 	return (
+		
 		<div className={classes.root}>
 			<CssBaseline />
 			<Drawer

@@ -6,12 +6,12 @@ import loginVideo from "../assets/videos/1.mp4"
 import { Box, Container } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 
+
 // Login Function
 function Login(props) {
 	const [isLogin, setIsLogin] = useState(true)
 	const loginSwitch = "Or login instead"
-	const signUpSwitch = "Doesn't have an account? Click here and create one right now!"
-
+	const signUpSwitch = "Doesn't have an account? Click here and create one right now!"	
 
 	return (
 		<div>

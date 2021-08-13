@@ -1,14 +1,16 @@
 // React
+import { Container } from "@material-ui/core";
 import React from "react";
+import MatchingCard from "../components/MatchingCard";
 
 
 // DualFinder
 function DualFinder() {
 	return (
-		<section>
+		<Container>
+			<MatchingCard />
 
-			<h1> DualFinder Sample Text </h1>
-		</section>
+		</Container>
 	);
 }
 
