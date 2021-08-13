@@ -1,9 +1,9 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
+import { Box } from "@material-ui/core";
 import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
+
 import Typography from "@material-ui/core/Typography";
 
 import ImageAvatars from "../ImageAvatars";
@@ -16,7 +16,7 @@ const useStyles = makeStyles({
 		alignItems: "center",
 		width: "fit-content",
 		backgroundColor: "whitesmoke",
-		margin: 0
+		margin: 2
 	},
 	bullet: {
 		display: "inline-block",
@@ -29,26 +29,44 @@ const useStyles = makeStyles({
 	pos: {
 		marginBottom: 0,
 	},
+	cardContainer: {
+		display: 'flex',
+		flexWrap: 'wrap',
+		maxHeight: 420,
+		overflow: 'scroll',
+		alignItems: 'center',
+		justifyContent: 'center'
+	},
+	
 });
 
-export default function OutlinedCard() {
+export default function OutlinedCard({ champions, setChamp }) {
 	const classes = useStyles();
 
+	function handleChampChange(e) {
+		if(e.target.innerText) {
+			setChamp(e.target.innerText)
+		} else {
+			setChamp(e.target.alt)
+		}
+	}
 	return (
-		<Card className={classes.root} variant="outlined">
-			<CardContent>
-				<Typography
-					className={classes.title}
-					color="textSecondary"
-					gutterBottom
-				>
-					KARTHUS
-				</Typography>
-			</CardContent>
-			<ImageAvatars />
-			<CardActions>
-				<Button size="small">Learn More</Button>
-			</CardActions>
-		</Card>
+		<div className={classes.cardContainer}>
+			{champions &&
+				champions.map(champion => (
+					<Card onClick={handleChampChange} key={champion.name} className={classes.root} variant="outlined">
+							<CardContent>
+								<Typography
+									className={classes.title}
+									color="textSecondary"
+									gutterBottom
+								>
+									{champion.name}
+								</Typography>
+							</CardContent>
+							<ImageAvatars  link={champion.icon.url} name={champion.name} />
+					</Card>
+				))}
+		</div>
 	);
 }

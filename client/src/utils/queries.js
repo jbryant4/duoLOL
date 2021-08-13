@@ -10,3 +10,14 @@ export const QUERY__ALL_SOMETHING = gql`
 	}
 `;
 
+export const QUERY_CHAMPIONS = gql`
+	query champions {
+		champions{
+    		name
+    		icon {
+      			url
+    		}
+  		}
+	}
+`;
+
