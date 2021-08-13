@@ -1,5 +1,5 @@
 // React
-import React from "react";
+import React, { useEffect } from "react";
 
 // Material UI
 import { Container, Box } from "@material-ui/core";
@@ -8,8 +8,14 @@ import { Container, Box } from "@material-ui/core";
 import Header from "../components/Header";
 import ChampionCard from "../components/ChampionCard";
 
+//import lol data
+import { getChampList, aboutChamp } from '../utils/riotApi/riotApi'
+
+
 // AboutChampion
 function AboutChampion(props) {
+	const champList = getChampList();
+	console.log(champList)
 	return (
 		<section>
 			<Container maxWidth="md">

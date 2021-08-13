@@ -4,10 +4,11 @@ const axios = require('axios');
 
 //riot api key 
 //! will be saved to an .env when we go to production 
-const key = '';
+const key = 'RGAPI-99887666-34cd-4910-be17-6ed723022508';
 //set key for all axios calls 
-axios.defaults.headers.common["X-Riot-Token"] = key;
 
+axios.defaults.headers.common["X-Riot-Token"] = key;
+axios.defaults.headers.common["Origin"] = 'localhost:3000';
 //set api key for riot api wrapper
 let api = TeemoJS(key)
 
@@ -27,7 +28,7 @@ const userPuuId = 'aCY9__fgp6sfVzmlSpnPqwVLJeD56lySAEyuRihEgzhGB_u-6aYHGmAZfhXdG
 //automatically check the patch version to be passed to the other axios functions 
 async function setPatch() {
     const link = 'http://ddragon.leagueoflegends.com/api/versions.json';
-    const version = await axios(link)
+    const version = await axios.get(link)
         .then(data => { return data.data[0] })
         .catch(e => console.log(e));
 
@@ -100,12 +101,13 @@ async function matchData(region, matchId) {
 //Data for champlist component  of current champions
 async function getChampList() {
     //check current patch
-    const patch = await setPatch();
+    // const patch = await setPatch();
+    const patch = '11.16.1';
     //set array to be filled 
     let champList = []
-
+    
     //grab list of all champs and put in array of object with name and square img 
-    const link = `http://ddragon.leagueoflegends.com/cdn/${patch}/data/en_US/champion.json`
+    const link = `https://cors-anywhere.herokuapp.com/http://ddragon.leagueoflegends.com/cdn/${patch}/data/en_US/champion.json`
     await axios.get(link)
         .then(function (data) {
             for (const [key, value] of Object.entries(data.data.data)) {
@@ -117,7 +119,7 @@ async function getChampList() {
         })
         .catch(e => console.log(e))
 
-    // console.log(champList)
+    console.log(champList)
     return champList
 }
 
@@ -173,3 +175,5 @@ async function aboutChamp(champName) {
 
 //? so much more
 //https://developer.riotgames.com/docs/lol
+// getChampList()
+export {getChampList, aboutChamp}
