@@ -1,6 +1,7 @@
+require('dotenv').config()
 const express = require('express');
 //! PRODUCTION
-// const path = require('path');
+const path = require('path');
 
 // import ApolloServer
 const { ApolloServer } = require('apollo-server-express');
@@ -26,13 +27,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 //! FOR PRODUCTION Serve up static assets
-// if (process.env.NODE_ENV === 'production') {
-//     app.use(express.static(path.join(__dirname, '../client/build')));
-// }
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '../client/build')));
+}
 
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../client/build/index.html'));
-// });
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build/index.html'));
+});
 
 
 db.once('open', () => {
