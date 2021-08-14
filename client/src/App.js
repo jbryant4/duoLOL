@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 
 import {
 	ApolloProvider,
@@ -46,25 +46,26 @@ const client = new ApolloClient({
 // Routes
 function App() {
 	const currentPath = window.location.pathname
-	
-
 	return (
 		<ApolloProvider client={client}>
 			<Router>
-				{currentPath.includes('login') ? null : <SideBar/>}				
 				<Container maxWidth="xl" disableGutters={true}>
+					{currentPath.includes('/login') ? null : <SideBar />}
 					<Switch>
-						<Route exact path="/homepage" component={Homepage} />
 						<Route exact path="/login" component={Login} />
+						<Redirect exact path="/" to="/login" />						
+						<Route exact path="/homepage" component={Homepage} />
 						<Route exact path="/duoFinder" component={duoFinder} />
 						<Route exact path="/dashboard" component={Dashboard} />
 						<Route exact path="/AboutChampion" component={AboutChampion} />
 						<Route component={Homepage} />
 					</Switch>
 				</Container>
-
-				{/* <Footer /> */}
 			</Router>
+
+
+			{/* <Footer /> */}
+
 		</ApolloProvider>
 	);
 }
