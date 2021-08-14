@@ -1,7 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import { Box } from "@material-ui/core";
 import CardContent from "@material-ui/core/CardContent";
 
 import Typography from "@material-ui/core/Typography";
@@ -40,10 +39,12 @@ const useStyles = makeStyles({
 	
 });
 
-export default function OutlinedCard({ champions, setChamp }) {
+export default function OutlinedCard({ champions, setChamp, champ }) {
 	const classes = useStyles();
 
 	function handleChampChange(e) {
+		e.preventDefault();
+		console.log('called')
 		if(e.target.innerText) {
 			setChamp(e.target.innerText)
 		} else {

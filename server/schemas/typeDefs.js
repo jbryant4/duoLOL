@@ -38,6 +38,7 @@ const typeDefs = gql`
         blurb: String
     }
     type Image {
+        name: String
         url: String
     }
     type Spell {
@@ -56,7 +57,7 @@ const typeDefs = gql`
         images:[Image]
         lore: String
         tags: [String]
-        spells: [Spell]
+        abilities: [Spell]
         passive: Passive
         allytips: [String]
         enemytips: [String]
