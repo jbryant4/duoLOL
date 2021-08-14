@@ -46,12 +46,12 @@ const client = new ApolloClient({
 // Routes
 function App() {
 	const currentPath = window.location.pathname
-	
+
 
 	return (
 		<ApolloProvider client={client}>
 			<Router>
-				{currentPath.includes('login') ? null : <SideBar/>}				
+				{currentPath.includes('login') ? null : <SideBar/>}
 				<Container maxWidth="xl" disableGutters={true}>
 					<Switch>
 						<Route exact path="/homepage" component={Homepage} />
