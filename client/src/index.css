@@ -5,36 +5,67 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* login/signup css */
+
 .loginSignupForm {
   background-color: white;
   width: 23% !important;
   height: 55%;
-  padding: 20px;
   position: absolute;
   left: 10%;
   top: 18%;
   border-radius: 10px;
   box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.205);
-  text-align: center;
+  text-align: center!important;
 }
 
 .loginForm {
   align-items: center;
 }
 
-.loginBtn {
-  background-color: #3cc295!important;  
+.loginSignBtn {
+  background-color: #3cc295!important;
+}
+
+.loginWrapper {
+  position: relative;
+  height: 100%;
+}
+
+.switchFormBtn {
+  font-weight: bolder!important;
+}
+
+.imagesContainer {
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-bottom: 5px;
 }
 
 .bottomDiv {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  padding: 20px;
+  bottom: 20px;
+  width: 100%;
 }
 
-input:first-child {
-  /* line-height: 5; */
+.signupIcons {
+  max-width: 20%;
+}
+
+.signupIcons:hover {
+  transform: scale(1.1);
+}
+
+/* card matching */
+
+.closeBtn {
+  color: rgb(255, 120, 84);
+  color: linear-gradient(301deg, rgba(255, 120, 84, 1) 0%, rgba(0, 0, 0, 1) 100%);
+}
+
+.heartBtn {
+  color: rgb(1, 223, 138);
+  color: linear-gradient(225deg, rgba(1, 223, 138, 1) 50%, rgba(124, 244, 245, 1) 52%);
 }
 
 input:focus::placeholder {

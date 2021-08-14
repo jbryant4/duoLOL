@@ -1,23 +1,34 @@
 // React imports
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { Link } from "react-router-dom";
+import Grid from '@material-ui/core/Grid';
 
 // Utility imports
 import { ADD_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
+// import iconsPool from "../../assets/images/RoleIcons/roleIconsPool";
 
-import Container from "@material-ui/core/Container";
+import topIcon from "../../assets/images/RoleIcons/top.png"
+import jngIcon from "../../assets/images/RoleIcons/jng.png"
+import midIcon from "../../assets/images/RoleIcons/mid.png"
+import adcIcon from "../../assets/images/RoleIcons/adc.png"
+import supIcon from "../../assets/images/RoleIcons/sup.png"
+
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import IconButton from '@material-ui/core/IconButton';
 
 // import SignUpVideo from "../assets/videos/1.mp4"
 import { Box } from "@material-ui/core";
+import { width } from "@material-ui/system";
+
+const iconsPool = [topIcon, jngIcon, midIcon, adcIcon, supIcon]
 
 // Sign up function
 function SignUpForm(props) {
 	const [formState, setFormState] = useState({ email: "", password: "" });
 	const [addUser] = useMutation(ADD_USER);
+
 
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
@@ -41,88 +52,92 @@ function SignUpForm(props) {
 		});
 	};
 
-	return (
-		<div>
-			<Container className="loginSignupForm">
+
+
+	return (		
+			<Box component="form"
+				sx={{
+					'& > :not(style)': { m: 1 },
+				}}
+				autoComplete="off"
+				className="loginForm" id="SignUpForm" onSubmit={handleFormSubmit}
+				display="block"
+				overflow="hidden"
+			>
+
+
 				<h1 className="loginFont">Sign Up</h1>
-				<form className="loginForm" id="SignUpForm" onSubmit={handleFormSubmit}>
-					<Box>
-						<Box m={2}>
-							<label htmlFor="userName"></label>
-							<TextField
-								fullWidth
-								id="outlined-basic"
-								label="User Name"
-								variant="outlined"
-								placeholder="User Name"
-								name="UserName"
-								type="UserName"
-								id="UserName"
-								onChange={handleChange}
-							/>
-						</Box>
-						<Box m={2}>
-							<label htmlFor="SummonerName"></label>
-							<TextField
-								fullWidth
-								id="outlined-basic"
-								label="Summoner Name"
-								variant="outlined"
-								placeholder="summonerName"
-								name="summonerName"
-								type="summonerName"
-								id="summonerName"
-								onChange={handleChange}
-							/>
-						</Box>
-						<Box m={2}>
-							<label htmlFor="email"></label>
-							<TextField
-								fullWidth
-								id="outlined-basic"
-								label="Email"
-								variant="outlined"
-								placeholder="email"
-								name="email"
-								type="email"
-								id="email"
-								onChange={handleChange}
-							/>
-						</Box>
-						<Box m={2}>
-							<label htmlFor="password"></label>
-							<TextField
-								fullWidth
-								id="outlined-basic"
-								label="Password"
-								variant="outlined"
-								placeholder="********"
-								name="password"
-								type="password"
-								id="pwd"
-								onChange={handleChange}
-							/>
-						</Box>
-						<Button
-							className="SignUpBtn"
-							variant="contained"
-							color="primary"
-							size="medium"
-							type="submit"
-							form="SignUpForm"
-						>
-							Sign Up
-						</Button>
-					</Box>
-					<Link to="/" className="loginFont">
-						{" "}
-						<h3 className="bottomDiv">
-							← Return to Login
-						</h3>
-					</Link>
-				</form>
-			</Container>
-		</div>
+
+				<Box m={2}>
+					<label htmlFor="email"></label>
+					<TextField
+						required
+						fullWidth
+						id="outlined-basic"
+						label="Email"
+						variant="outlined"
+						placeholder="email"
+						name="email"
+						type="email"
+						id="email"
+						onChange={handleChange}
+					/>
+				</Box>
+				<Box m={2}>
+					<label htmlFor="SummonerName"></label>
+					<TextField
+						required
+						fullWidth
+						id="outlined-basic"
+						label="Summoner Name"
+						variant="outlined"
+						name="summonerName"
+						type="summonerName"
+						id="summonerName"
+						onChange={handleChange}
+					/>
+				</Box>
+				<Box m={2}>
+					<label htmlFor="password"></label>
+					<TextField
+						required
+						fullWidth
+						id="outlined-basic"
+						label="Password"
+						variant="outlined"
+						name="password"
+						type="password"
+						id="pwd"
+						onChange={handleChange}
+					/>
+				</Box>
+				<Box
+					className="roleIcons"><h4>Choose your main and secondary role!</h4>
+				</Box>
+
+
+				<Box display="flex" className="imagesContainer">
+					{iconsPool.map((src, index) => (
+						<img className="signupIcons" src={src} key={index} />
+					))}
+				</Box>
+
+
+
+				<Box>
+					<Button
+						className="loginSignBtn"
+						variant="contained"
+						color="primary"
+						size="medium"
+						type="submit"
+						form="SignUpForm"
+					>
+						Sign Up
+					</Button>
+				</Box>
+			</Box>	
+
 	);
 }
 

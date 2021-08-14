@@ -1,5 +1,6 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
+
 import {
 	ApolloProvider,
 	ApolloClient,
@@ -8,13 +9,13 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 
+
 // Pages
 import Homepage from "./pages/Homepage";
-import DualFinder from "./pages/DualFinder";
+import duoFinder from "./pages/DuoFinder";
 import Dashboard from "./pages/Dashboard";
 import AboutChampion from "./pages/AboutChampion";
 import Login from "./pages/Login";
-import SignUp from "./pages/SignUp";
 
 // import Drawer from "./components/Drawer";
 import SideBar from "./components/SideBar";
@@ -44,23 +45,25 @@ const client = new ApolloClient({
 
 // Routes
 function App() {
+	const currentPath = window.location.pathname
+	
+
 	return (
 		<ApolloProvider client={client}>
 			<Router>
-				<SideBar>
-					<Container maxWidth="xl" disableGutters={true}>
-						<Switch>
-							<Route exact path="/homepage" component={Homepage} />
-							<Route exact path="/" component={Login} />
-							<Route exact path="/signup" component={SignUp} />
-							<Route exact path="/dualFinder" component={DualFinder} />
-							<Route exact path="/dashboard" component={Dashboard} />
-							<Route exact path="/AboutChampion" component={AboutChampion} />
-							<Route component={Homepage} />
-						</Switch>
-					</Container>
-				</SideBar>
-				<Footer />
+				{currentPath.includes('login') ? null : <SideBar/>}				
+				<Container maxWidth="xl" disableGutters={true}>
+					<Switch>
+						<Route exact path="/homepage" component={Homepage} />
+						<Route exact path="/login" component={Login} />
+						<Route exact path="/duoFinder" component={duoFinder} />
+						<Route exact path="/dashboard" component={Dashboard} />
+						<Route exact path="/AboutChampion" component={AboutChampion} />
+						<Route component={Homepage} />
+					</Switch>
+				</Container>
+
+				{/* <Footer /> */}
 			</Router>
 		</ApolloProvider>
 	);
