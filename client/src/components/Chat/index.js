@@ -5,7 +5,7 @@ import {
     disconnectSocket,
     sendMessage,
     joinRoom,
-} from "./socketio.service";
+} from "./socketIo.service";
 
 
 function Chat() {

@@ -1,7 +1,7 @@
 // React
 import React, { useEffect, useState } from "react";
 // Material UI
-import { Container, Box } from "@material-ui/core";
+import { Container, Box } from "@material-ui/core"
 
 //Component
 import Header from "../components/Header";
