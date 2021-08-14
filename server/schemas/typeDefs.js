@@ -62,12 +62,18 @@ const typeDefs = gql`
         allytips: [String]
         enemytips: [String]
     }
+    type Match {
+        id: String
+        players:[Champion]
+    }
     type Query {
         me: User
         user(email: String!): User
         build(_id: ID!): Build
         champions(patch: String): [ChampionSummary]
         champion(name: String!): Champion
+        mastery(region: String!, riotId: String! ): [ChampionSummary]
+        matches(region: String!,type: String!, puuid: String!): [Match]
     }
 
     type Mutation {

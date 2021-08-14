@@ -23,14 +23,60 @@ const useStyles = makeStyles((theme) => ({
 		color: theme.palette.text.secondary,
 	},
 	imageStyle: {
-		height: "30rem",
-		width: "47rem",
+
+		width: "100%",
+		margin: "0px -100px"
+
 	},
 	buttonClass: {
 		backgroundColor: "goldenrod",
 		variant: "outlined",
 		color: "primary",
 	},
+	imgDiv: {
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+		flexWrap: 'no-wrap',
+		marginTop: 5
+
+	},
+	infoDiv: {
+		display: 'flex',
+		flexWrap: 'wrap',
+		alignItems: 'center',
+		justifyContent: 'space-evenly',
+		width: "41.7rem",
+
+	},
+	infoTitle: {
+		width: "50%"
+	},
+	infoP: {
+		width: "50%",
+		textAlign: 'end'
+	},
+	innerFlex: {
+		display: 'flex',
+		flexDirection: 'column',
+		alignItems: 'center',
+		margin: 0,
+		justifyContent: 'space-evenly'
+	},
+	tipDiv: {
+		display: 'flex',
+		alignItems: 'flex-start',
+		margin: 0,
+		justifyContent: 'space-evenly'
+	},
+	tipDivInner: {
+		width: "45%",
+		display: 'flex',
+		flexDirection: 'column',
+		alignItems: 'center',
+		margin: 0,
+		justifyContent: 'space-evenly'
+	}
 }));
 
 export default function ChampInfo({ champ }) {
@@ -71,28 +117,20 @@ export default function ChampInfo({ champ }) {
 	}
 	return (
 		<div className={classes.root}>
-			<Grid
-				container
-				spacing={2}
-				justifyContent="space-between"
-				alignItems="center"
-			>
-				<Grid item xs={1}>
+			<Grid container alignContent="center">
+
+				<Grid container spacing={2} className={classes.imgDiv} >
 					<Button
 						className={classes.buttonClass}
 						onClick={() => handleBtnClick("prev", champion.images.length)}
 					>
 						PREV
 					</Button>
-				</Grid>
-				<Grid item xs={10}>
 					<img
 						className={classes.imageStyle}
 						alt={champion.name}
 						src={champion.images[imgIndex].url}
 					/>
-				</Grid>
-				<Grid item xs={1}>
 					<Button
 						className={classes.buttonClass}
 						onClick={() => handleBtnClick("next", champion.images.length)}
@@ -100,42 +138,54 @@ export default function ChampInfo({ champ }) {
 						NEXT
 					</Button>
 				</Grid>
-			</Grid>
-			<Grid container spacing={1} alignItems="center">
-				<h2>
-					{champion.name}:<span>{champion.title}</span>
-				</h2>
-				<h3>{champion.tags}</h3>
-				<p>{champion.lore}</p>
 
-				<div>
-					<h3>Champion Abilities</h3>
+				<Grid container spacing={1} className={classes.infoDiv}>
+					<h2 className={classes.infoTitle}>
+						{champion.name}:<span>{champion.title}</span>
+					</h2>
+					<p className={classes.infoP}>{champion.tags[0]}   {champion.tags[1] && champion.tags[1]}</p>
+					<p>{champion.lore}</p>
+				</Grid>
+
+				<Grid>
 					<div>
-						<h4>{champion.passive.name}</h4>
-						<img alt={champion.passive.name} src={champion.passive.icon.url} />
-
-						{champion.abilities &&
-							champion.abilities.map((spell) => {
-								return (
-									<>
-										<p>{spell.name}</p>
-										<img alt={spell.name} src={spell.icon.url} />
-									</>
-								);
-							})}
+						<h3>Champion Abilities</h3>
+						<Grid container className={classes.infoDiv}>
+							<div className={classes.innerFlex}>
+								<h4>{champion.passive.name}</h4>
+								<img alt={champion.passive.name} src={champion.passive.icon.url} />
+							</div>
+							{champion.abilities &&
+								champion.abilities.map((spell) => {
+									return (
+										<div className={classes.innerFlex}>
+											<h4>{spell.name}</h4>
+											<img alt={spell.name} src={spell.icon.url} />
+										</div>
+									);
+								})}
+						</Grid>
 					</div>
-				</div>
-				<div>
-					<h3>Tips</h3>
-					{champion.allytips &&
-						champion.allytips.map((tip) => {
-							return <p>{tip}</p>;
-						})}
-					{champion.enemytips &&
-						champion.enemytips.map((tip) => {
-							return <p>{tip}</p>;
-						})}
-				</div>
+					<div>
+						<h3>Tips</h3>
+						<Grid container className={classes.tipDiv}>
+							<div className={classes.tipDivInner}>
+								<h4>For Allies</h4>
+								{champion.allytips &&
+									champion.allytips.map((tip) => {
+										return <p>{tip}</p>;
+									})}
+							</div>
+							<div className={classes.tipDivInner}>
+								<h4>For Enemies</h4>
+								{champion.enemytips &&
+									champion.enemytips.map((tip) => {
+										return <p>{tip}</p>;
+									})}
+							</div>
+						</Grid>
+					</div>
+				</Grid>
 			</Grid>
 		</div>
 	);

@@ -170,10 +170,6 @@ export default function MiniDrawer(props) {
 				</List>
 				<Divider />
 			</Drawer>
-			<main className={classes.content}>
-				<div className={classes.toolbar} />
-				{props.children}
-			</main>
 		</div>
 	);
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import {
 	ApolloProvider,
@@ -51,8 +51,9 @@ function App() {
 	return (
 		<ApolloProvider client={client}>
 			<Router>
-				{currentPath.includes('login') ? null : <SideBar/>}
+				{/* {currentPath.includes('login') ? null : <SideBar/>} */}
 				<Container maxWidth="xl" disableGutters={true}>
+			<SideBar />
 					<Switch>
 						<Route exact path="/homepage" component={Homepage} />
 						<Route exact path="/" component={Login} />

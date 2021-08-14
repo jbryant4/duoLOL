@@ -42,31 +42,28 @@ async function getUser(riotId, region) {
 //!get mastery for all champs for a user 
 async function champMasteryData(region, riotId) {
     //return user top 20 champion (most played) 
-    const championMastery = await api.get(region, 'championMastery.getAllChampionMasteries', riotId)
-        .then(data => { return data.slice(0, 20) })
-        .catch(e => console.log(e))
-
+    const userChampionsMastery = await api.get(region, 'championMastery.getAllChampionMasteries', riotId)
+    
     //return top 
-    console.log(championMastery);
+    return userChampionsMastery;
 }
 
 //! get all match info for the last 20 matches 
 //? (regions: americas asia or europe)(puuid)(ranked or normal)
-async function matchHistoryIds(region, type, puuid) {
+async function matchHistoryData(region, type = 'rank', puuid) {
     const link = `https://${region}.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?type=${type}&start=0&count=20`
     const matchIds = await axios.get(link)
-        .then(data => { return data.data })
-        .catch(e => console.log(e))
-    //map over the ids and send each one to the matchData function
-}
-async function matchData(region, matchId) {
-    const link = `https://${region}.api.riotgames.com/lol/match/v5/matches/${matchId}`
-    const matchData = await axios.get(link)
-        .then(data => { return data.data })
-        .catch(e => console.log(e))
 
-    console.log(matchData)
-    //alot of data in here we just have to figure out what data we want
+    let matchHistoryData = []
+
+    matchIds.map( async function(match) {
+        const link = `https://${region}.api.riotgames.com/lol/match/v5/matches/${match}`
+        const matchData = await axios.get(link)
+        
+        matchHistoryData.push(matchData)
+    });
+    
+    return matchHistoryData
 }
 
 
@@ -152,4 +149,4 @@ async function getChampionByName(champName, _patch) {
 
 
 
-module.exports = { getChampions, getChampionByName, getUser, getCurrentPatch, riotDataSignUp }
+module.exports = { getChampions, getChampionByName, getUser, getCurrentPatch, riotDataSignUp, matchHistoryData, champMasteryData }
