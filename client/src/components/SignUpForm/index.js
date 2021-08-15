@@ -51,24 +51,36 @@ const iconsPool = [
 
 // Sign up function
 function SignUpForm(props) {
-	const [formState, setFormState] = useState({ email: "", password: "" });
+	const [formState, setFormState] = useState({ email: "", password: "", sumName: "" });
 	const [addUser] = useMutation(ADD_USER);
 
-
-
-
+	console.log(formState)
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
-		const mutationResponse = await addUser({
-			variables: {
-				email: formState.email,
-				password: formState.password,
-				firstName: formState.firstName,
-				lastName: formState.lastName,
-			},
+		// check if form has everything (as per react-bootstrap docs)
+		const form = event.currentTarget;
+		if (form.checkValidity() === false) {
+			event.preventDefault();
+			event.stopPropagation();
+		}
+
+		try {
+			const { data } = await addUser({
+				variables: formState
+			});
+			console.log()
+			const token = data.addUser.token;
+			Auth.login(token);
+		} catch (err) {
+			console.error(err);
+		}
+
+		setFormState({
+			username: '',
+			email: '',
+			password: '',
 		});
-		const token = mutationResponse.data.addUser.token;
-		Auth.login(token);
+		console.log('signup')
 	};
 
 	const handleChange = (event) => {
@@ -118,7 +130,7 @@ function SignUpForm(props) {
 					id="outlined-basic"
 					label="Summoner Name"
 					variant="outlined"
-					name="summonerName"
+					name="sumName"
 					type="summonerName"
 					id="summonerName"
 					onChange={handleChange}
@@ -150,10 +162,9 @@ function SignUpForm(props) {
 						<label for={iconsPool.id}>
 							<img className="signupIcons" src={iconsPool[index].src} key={index} />
 						</label>
-						{console.log(iconsPool)}	
-					</Box>				
+					</Box>
 				))}
-				
+
 			</Box>
 
 
