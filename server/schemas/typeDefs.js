@@ -5,12 +5,17 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
     type User {
         _id: ID 
-        username: String
         email: String
         password: String
-        region: String
-        rank:String
+        rank: String
+        tier: String
+        wins: String
+        losses: String
         sumName: String
+        primRole: String
+        sideRole: String
+        riotId: String
+        puuid: String
         friendCount: Int
         builds:[Build]
         friends: [User]
@@ -27,11 +32,48 @@ const typeDefs = gql`
         item5: String
         item6: String
     }
-
+    type ChampionSummary {
+        name: String
+        icon: Image
+        blurb: String
+    }
+    type Image {
+        name: String
+        url: String
+    }
+    type Spell {
+        name: String
+        description: String
+        icon: Image
+    }
+    type Passive {
+        name: String
+        description: String
+        icon: Image
+    }
+    type Champion {
+        name: String!
+        title: String
+        images:[Image]
+        lore: String
+        tags: [String]
+        abilities: [Spell]
+        passive: Passive
+        allytips: [String]
+        enemytips: [String]
+    }
+    type Match {
+        id: String
+        players:[Champion]
+    }
     type Query {
         me: User
-        user(username: String!): User
+        user(email: String!): User
         build(_id: ID!): Build
+        champions(patch: String): [ChampionSummary]
+        champion(name: String!): Champion
+        mastery(region: String!, riotId: String! ): [ChampionSummary]
+        matches(region: String!,type: String!, puuid: String!): [Match]
     }
 
     type Mutation {
@@ -53,12 +95,15 @@ const typeDefs = gql`
     }
 
     input userInfo {
-        username: String
         email: String
-        password:String
-        region:String
-        sumName:String
-        rank:String
+        password: String
+        rank: String
+        tier: String
+        sumName: String
+        primRole: String
+        sideRole: String
+        riotId: String
+        puuid: String
     }
 
     type Auth {
