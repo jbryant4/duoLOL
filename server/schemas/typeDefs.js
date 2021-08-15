@@ -12,8 +12,7 @@ const typeDefs = gql`
         wins: String
         losses: String
         sumName: String
-        primRole: String
-        sideRole: String
+        primRoles: [String]
         riotId: String
         puuid: String
         friendCount: Int
