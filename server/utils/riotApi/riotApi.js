@@ -27,6 +27,7 @@ async function riotDataSignUp(sumName, region = 'na1') {
     // will take the puuid and the riot id
 
     const userData = await api.get(region, 'summoner.getBySummonerName', sumName)
+    // console.log(userData);
     const riotId = userData.id;
     const puuid = userData.puuid
     const lolData = await riotDataUpdata(riotId, region)
