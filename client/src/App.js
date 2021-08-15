@@ -1,5 +1,7 @@
 import React from "react";
+
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
+
 
 import {
 	ApolloProvider,
@@ -23,9 +25,9 @@ import Footer from "./components/Footer";
 
 //material UI
 import Container from "@material-ui/core/Container";
-
+//!change back to /graphql when we go live
 const httpLink = createHttpLink({
-	uri: "/graphql",
+	uri: "http://localhost:3001/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -46,15 +48,16 @@ const client = new ApolloClient({
 // Routes
 function App() {
 	const currentPath = window.location.pathname
+
 	return (
 		<ApolloProvider client={client}>
 			<Router>
+				{/* {currentPath.includes('login') ? null : <SideBar/>} */}
 				<Container maxWidth="xl" disableGutters={true}>
-					{currentPath.includes('/login') ? null : <SideBar />}
+			<SideBar />
 					<Switch>
-						<Route exact path="/login" component={Login} />
-						<Redirect exact path="/" to="/login" />						
 						<Route exact path="/homepage" component={Homepage} />
+						<Route exact path="/" component={Login} />
 						<Route exact path="/duoFinder" component={duoFinder} />
 						<Route exact path="/dashboard" component={Dashboard} />
 						<Route exact path="/AboutChampion" component={AboutChampion} />

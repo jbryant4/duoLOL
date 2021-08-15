@@ -6,6 +6,7 @@ const JWT_SECRET = 'myRandomHash';
 const io = require("socket.io")(http, {
     cors: {
         origins: [
+            "http://localhost:3000",
             "http://localhost:3001",
             "http://localhost:4200",
             "http://localhost:8080"
@@ -80,5 +81,5 @@ io.on('connection', (socket) => {
 });
 
 http.listen(3000, () => {
-    console.log('listening on *:3000');
+    console.log('listening on *:3005');
 });

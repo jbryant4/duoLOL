@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 
-import karthusIcon from "../../assets/images/karthus.png";
+
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -17,13 +17,13 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function ImageAvatars() {
+export default function ImageAvatars({link, name}) {
 	const classes = useStyles();
 	const test = "Test Text";
 
 	return (
 		<div className={classes.root}>
-			<Avatar alt="Remy Sharp" src={karthusIcon} className={classes.large} />
+			<Avatar  alt={name} src={link} className={classes.large} />
 		</div>
 	);
 }
