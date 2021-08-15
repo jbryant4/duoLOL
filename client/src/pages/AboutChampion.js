@@ -15,6 +15,8 @@ import { QUERY_CHAMPIONS } from "../utils/queries"
 // AboutChampion
 const AboutChampion = () => {
 	const [champ, setChamp] = useState(null)
+	const [imgIndex, setImgIndex] = useState(0);
+
 
 	const { loading, data, error } = useQuery(QUERY_CHAMPIONS);
 	if (error) { console.log(error) }
@@ -34,14 +36,17 @@ const AboutChampion = () => {
 							<ChampionCard
 								champions={champions}
 								setChamp={setChamp}
-								champ={champ} />
+								champ={champ}
+								imgIndex={imgIndex}
+								setImgIndex={setImgIndex} />
 						</Box>
 					</Grid>
 					<Grid item xs={12} sm={9} md={9} lg={9}>
 						{champ &&
 							<Champ
 								champ={champ}
-
+								imgIndex={imgIndex}
+								setImgIndex={setImgIndex}
 							/>
 						}
 					</Grid>
