@@ -1,7 +1,7 @@
 const { User, Build } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
-const  riotApi = require('../utils/riotApi/riotApi');
+const riotApi = require('../utils/riotApi/riotApi');
 
 const resolvers = {
     Query: {
@@ -27,13 +27,21 @@ const resolvers = {
                 .select('-__v -password')
                 .populate('builds')
         },
-        champions: async(parent,{patch}) => {
+        champions: async (parent, { patch }) => {
             const champions = await riotApi.getChampions();
             return champions
         },
-        champion: async(parent, {name}) => {
+        champion: async (parent, { name }) => {
             const champion = await riotApi.getChampionByName(name);
             return champion
+        },
+        mastery: async (parent, { region, riotId }) => {
+            const masteries = await riotApi.champMasteryData(region, riotId);
+            return masteries
+        },
+        matches: async (parent, { region, type, puuid }) => {
+            const matches = await riotApi.matchHistoryData(region, type, puuid);
+            return matches
         }
     },
     Mutation: {
@@ -43,20 +51,20 @@ const resolvers = {
 
             const lolData = await riotApi.getUser(user.riotId, 'na1')
 
-            const updatedUser = await User.findByIdAndUpdate(user._id, 
+            const updatedUser = await User.findByIdAndUpdate(user._id,
                 {
                     rank: lolData.rank,
                     tier: lolData.tier,
                     wins: lolData.wins,
                     losses: lolData.losses
                 },
-                {new: true}
+                { new: true }
             )
 
             const token = signToken(updatedUser)
             return { user: updatedUser, token };
         },
-        login: async (parent, {email, password}) => {
+        login: async (parent, { email, password }) => {
             // console.log(email , password)
             const user = await User.findOne({ email });
 
@@ -72,21 +80,21 @@ const resolvers = {
             //call 
             const lolData = await riotApi.getUser(user.riotId, 'na1')
 
-            const updatedUser = await User.findByIdAndUpdate(user._id, 
+            const updatedUser = await User.findByIdAndUpdate(user._id,
                 {
                     rank: lolData.rank,
                     tier: lolData.tier,
                     wins: lolData.wins,
                     losses: lolData.losses
                 },
-                {new: true}
+                { new: true }
             )
 
             const token = signToken(updatedUser)
             return { user: updatedUser, token };
         },
-        addBuild: async (parent, {content}, context) => {
-            
+        addBuild: async (parent, { content }, context) => {
+
             if (context.user) {
                 const build = await Build.create({ ...content, username: context.user.sumName });
 

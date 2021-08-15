@@ -13,7 +13,7 @@ const useStyles = makeStyles({
 		flexDirection: "column",
 		flexWrap: "wrap",
 		alignItems: "center",
-		width: "fit-content",
+		width: "100px",
 		backgroundColor: "whitesmoke",
 		margin: 2
 	},
@@ -23,7 +23,11 @@ const useStyles = makeStyles({
 		transform: "scale(0.8)",
 	},
 	title: {
-		fontSize: 18,
+		fontSize: 15,
+		maxWidth: "100%",
+		margin: 0,
+		padding:0,
+		fontWeight: 'bold'
 	},
 	pos: {
 		marginBottom: 0,
@@ -31,11 +35,14 @@ const useStyles = makeStyles({
 	cardContainer: {
 		display: 'flex',
 		flexWrap: 'wrap',
-		maxHeight: 420,
+		maxHeight: 870,
 		overflow: 'scroll',
 		alignItems: 'center',
 		justifyContent: 'center'
 	},
+	titleWrap: {
+		padding:0
+	}
 	
 });
 
@@ -56,7 +63,7 @@ export default function OutlinedCard({ champions, setChamp, champ }) {
 			{champions &&
 				champions.map(champion => (
 					<Card onClick={handleChampChange} key={champion.name} className={classes.root} variant="outlined">
-							<CardContent>
+							<CardContent className={classes.titleWrap}>
 								<Typography
 									className={classes.title}
 									color="textSecondary"
