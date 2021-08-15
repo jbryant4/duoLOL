@@ -50,48 +50,33 @@ const iconsPool = [
 
 
 // Sign up function
-function SignUpForm(props) {
-	const [formState, setFormState] = useState({ email: "", password: "", sumName: "" });
+const SignUpForm = () => {
+	const [formState, setFormState] = useState({ email: '', sumName: '', password: '' });
 	const [addUser] = useMutation(ADD_USER);
 
-	console.log(formState)
-	const handleFormSubmit = async (event) => {
-		event.preventDefault();
-		// check if form has everything (as per react-bootstrap docs)
-		const form = event.currentTarget;
-		if (form.checkValidity() === false) {
-			event.preventDefault();
-			event.stopPropagation();
-		}
-
-		try {
-			const { data } = await addUser({
-				variables: formState
-			});
-			console.log()
-			const token = data.addUser.token;
-			Auth.login(token);
-		} catch (err) {
-			console.error(err);
-		}
-
-		setFormState({
-			username: '',
-			email: '',
-			password: '',
-		});
-		console.log('signup')
-	};
-
+	// update state based on form input changes
 	const handleChange = (event) => {
 		const { name, value } = event.target;
+
 		setFormState({
 			...formState,
 			[name]: value,
 		});
 	};
 
+	// submit form
+	const handleFormSubmit = async (event) => {
+		event.preventDefault();
 
+		try {
+			const { data } = await addUser({
+				variables: formState
+			});
+			Auth.login(data.addUser.token);
+		} catch (e) {
+			console.log(e)
+		}
+	};
 
 	return (
 		<Box component="form"

@@ -22,11 +22,10 @@ function LoginForm(props) {
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
 		try {
-			const mutationResponse = await login({
+			const {data} = await login({
 				variables: { email: formState.email, password: formState.password },
 			});
-			const token = mutationResponse.data.login.token;
-			Auth.login(token);
+			Auth.login(data.login.token);
 		} catch (e) {
 			console.log(e);
 		}
@@ -41,79 +40,79 @@ function LoginForm(props) {
 	};
 
 	return (
-		<div>					
-				<form className="loginForm" id="loginForm" onSubmit={handleFormSubmit}>
-					<h1 className="loginFont">Login</h1>
-					<Box>
-						<Box m={2}>
-							<label htmlFor="email"></label>
-							{error ? (
-								<TextField
-									fullWidth
-									error
-									id="outlined-error"
-									// label="Incorrect entry."
-									defaultValue="Hello World"
-									variant="outlined"
-								/>
-							) : (
-								<TextField
-									fullWidth
-									id="outlined-basic"
-									label="Email"
-									variant="outlined"									
-									name="email"
-									type="email"
-									id="email"
-									onChange={handleChange}
-								/>
-							)}
-						</Box>
-						<Box m={2}>
-							<label htmlFor="pwd"></label>
-							{error ? (
-								<TextField
-									fullWidth
-									error
-									id="outlined-error-helper-text"
-									// label="Incorrect entry."
-									type="password"
-									defaultValue="Hello World"
-									variant="outlined"
-								/>
-							) : (
-								<TextField
-									fullWidth
-									id="outlined-basic"
-									label="Password"
-									variant="outlined"									
-									name="password"
-									type="password"
-									id="pwd"
-									onChange={handleChange}
-								/>
-							)}
-						</Box>
+		<div>
+			<form className="loginForm" id="loginForm" onSubmit={handleFormSubmit}>
+				<h1 className="loginFont">Login</h1>
+				<Box>
+					<Box m={2}>
+						<label htmlFor="email"></label>
 						{error ? (
-							<div>
-								<p className="error-text">
-									The provided credentials are incorrect.
-								</p>
-							</div>
-						) : null}
-						<Button
-							className="loginSignBtn"
-							variant="contained"
-							color="primary"
-							size="medium"
-							type="submit"
-							form="loginForm"
-						>
-							Login
-						</Button>
-						
+							<TextField
+								fullWidth
+								error
+								id="outlined-error"
+								// label="Incorrect entry."
+								defaultValue="Hello World"
+								variant="outlined"
+							/>
+						) : (
+							<TextField
+								fullWidth
+								id="outlined-basic"
+								label="Email"
+								variant="outlined"
+								name="email"
+								type="email"
+								id="email"
+								onChange={handleChange}
+							/>
+						)}
 					</Box>
-				</form>			
+					<Box m={2}>
+						<label htmlFor="pwd"></label>
+						{error ? (
+							<TextField
+								fullWidth
+								error
+								id="outlined-error-helper-text"
+								// label="Incorrect entry."
+								type="password"
+								defaultValue="Hello World"
+								variant="outlined"
+							/>
+						) : (
+							<TextField
+								fullWidth
+								id="outlined-basic"
+								label="Password"
+								variant="outlined"
+								name="password"
+								type="password"
+								id="pwd"
+								onChange={handleChange}
+							/>
+						)}
+					</Box>
+					{error ? (
+						<div>
+							<p className="error-text">
+								The provided credentials are incorrect.
+							</p>
+						</div>
+					) : null}
+					<Button
+						className="loginSignBtn"
+						variant="contained"
+						color="primary"
+						size="medium"
+						type="submit"
+						form="loginForm"
+					>
+						Login
+					</Button>
+
+				</Box>
+			</form>
 		</div>
 	);
 }
