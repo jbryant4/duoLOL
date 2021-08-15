@@ -93,15 +93,41 @@ function Homepage() {
 			</Box>
 			<Box className={classes.boxContainer}>
 				<Box className={classes.friendList}>
-					<h1>Friends List</h1>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vivamus at augue eget arcu dictum varius duis at consectetur. Maecenas accumsan lacus vel facilisis volutpat est velit egestas. Nec sagittis aliquam malesuada bibendum arcu vitae elementum curabitur. Varius sit amet mattis vulputate enim nulla aliquet porttitor lacus. Vitae congue eu consequat ac felis donec et. Aliquam id diam maecenas ultricies. Sed odio morbi quis commodo odio aenean. Lacus sed viverra tellus in hac habitasse platea dictumst vestibulum. Ornare suspendisse sed nisi lacus sed viverra. Risus viverra adipiscing at in. Lectus vestibulum mattis ullamcorper velit sed ullamcorper morbi. Tincidunt ornare massa eget egestas purus viverra accumsan. Nullam ac tortor vitae purus faucibus ornare suspendisse. Blandit volutpat maecenas volutpat blandit aliquam. Aliquet sagittis id consectetur purus ut faucibus pulvinar elementum. At lectus urna duis convallis convallis tellus id. Sit amet consectetur adipiscing elit duis tristique sollicitudin nibh sit. In dictum non consectetur a erat. Ut consequat semper viverra nam.
+					<Box>
 
-					</p>
+						<h1>Friends List</h1>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vivamus at augue eget arcu dictum varius duis at consectetur. Maecenas accumsan lacus vel facilisis volutpat est velit egestas. Nec sagittis aliquam malesuada bibendum arcu vitae elementum curabitur. Varius sit amet mattis vulputate enim nulla aliquet porttitor lacus. Vitae congue eu consequat ac felis donec et. Aliquam id diam maecenas ultricies. Sed odio morbi quis commodo odio aenean. Lacus sed viverra tellus in hac habitasse platea dictumst vestibulum. Ornare suspendisse sed nisi lacus sed viverra. Risus viverra adipiscing at in. Lectus vestibulum mattis ullamcorper velit sed ullamcorper morbi. Tincidunt ornare massa eget egestas purus viverra accumsan. Nullam ac tortor vitae purus faucibus ornare suspendisse. Blandit volutpat maecenas volutpat blandit aliquam. Aliquet sagittis id consectetur purus ut faucibus pulvinar elementum. At lectus urna duis convallis convallis tellus id. Sit amet consectetur adipiscing elit duis tristique sollicitudin nibh sit. In dictum non consectetur a erat. Ut consequat semper viverra nam.
+
+						</p>
+					</Box>
+					<Box>
+
+						<h1>Friends List</h1>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vivamus at augue eget arcu dictum varius duis at consectetur. Maecenas accumsan lacus vel facilisis volutpat est velit egestas. Nec sagittis aliquam malesuada bibendum arcu vitae elementum curabitur. Varius sit amet mattis vulputate enim nulla aliquet porttitor lacus. Vitae congue eu consequat ac felis donec et. Aliquam id diam maecenas ultricies. Sed odio morbi quis commodo odio aenean. Lacus sed viverra tellus in hac habitasse platea dictumst vestibulum. Ornare suspendisse sed nisi lacus sed viverra. Risus viverra adipiscing at in. Lectus vestibulum mattis ullamcorper velit sed ullamcorper morbi. Tincidunt ornare massa eget egestas purus viverra accumsan. Nullam ac tortor vitae purus faucibus ornare suspendisse. Blandit volutpat maecenas volutpat blandit aliquam. Aliquet sagittis id consectetur purus ut faucibus pulvinar elementum. At lectus urna duis convallis convallis tellus id. Sit amet consectetur adipiscing elit duis tristique sollicitudin nibh sit. In dictum non consectetur a erat. Ut consequat semper viverra nam.
+
+						</p>
+					</Box>
+					<Box>
+
+						<h1>Friends List</h1>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vivamus at augue eget arcu dictum varius duis at consectetur. Maecenas accumsan lacus vel facilisis volutpat est velit egestas. Nec sagittis aliquam malesuada bibendum arcu vitae elementum curabitur. Varius sit amet mattis vulputate enim nulla aliquet porttitor lacus. Vitae congue eu consequat ac felis donec et. Aliquam id diam maecenas ultricies. Sed odio morbi quis commodo odio aenean. Lacus sed viverra tellus in hac habitasse platea dictumst vestibulum. Ornare suspendisse sed nisi lacus sed viverra. Risus viverra adipiscing at in. Lectus vestibulum mattis ullamcorper velit sed ullamcorper morbi. Tincidunt ornare massa eget egestas purus viverra accumsan. Nullam ac tortor vitae purus faucibus ornare suspendisse. Blandit volutpat maecenas volutpat blandit aliquam. Aliquet sagittis id consectetur purus ut faucibus pulvinar elementum. At lectus urna duis convallis convallis tellus id. Sit amet consectetur adipiscing elit duis tristique sollicitudin nibh sit. In dictum non consectetur a erat. Ut consequat semper viverra nam.
+
+						</p>
+					</Box>
+					<Box>
+
+						<h1>Friends List</h1>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vivamus at augue eget arcu dictum varius duis at consectetur. Maecenas accumsan lacus vel facilisis volutpat est velit egestas. Nec sagittis aliquam malesuada bibendum arcu vitae elementum curabitur. Varius sit amet mattis vulputate enim nulla aliquet porttitor lacus. Vitae congue eu consequat ac felis donec et. Aliquam id diam maecenas ultricies. Sed odio morbi quis commodo odio aenean. Lacus sed viverra tellus in hac habitasse platea dictumst vestibulum. Ornare suspendisse sed nisi lacus sed viverra. Risus viverra adipiscing at in. Lectus vestibulum mattis ullamcorper velit sed ullamcorper morbi. Tincidunt ornare massa eget egestas purus viverra accumsan. Nullam ac tortor vitae purus faucibus ornare suspendisse. Blandit volutpat maecenas volutpat blandit aliquam. Aliquet sagittis id consectetur purus ut faucibus pulvinar elementum. At lectus urna duis convallis convallis tellus id. Sit amet consectetur adipiscing elit duis tristique sollicitudin nibh sit. In dictum non consectetur a erat. Ut consequat semper viverra nam.
+
+						</p>
+					</Box>
 				</Box>
 				<Box className={classes.matchHistory}>
 					<Box className={classes.match}>
-						<h1>Match History</h1>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vivamus at augue eget arcu dictum varius duis at i</p>
+						<Box>
+							<h1>Match History</h1>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vivamus at augue eget arcu dictum varius duis at i</p>
+						</Box>
 					</Box>
 					<Box className={classes.match}>
 						<h1>Match</h1>
