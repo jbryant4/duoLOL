@@ -9,8 +9,8 @@ body {
 
 .loginSignupForm {
   background-color: white;
-  width: 23% !important;
-  height: 55%;
+  max-width: 25% !important;
+  min-height: 55%;
   position: absolute;
   left: 10%;
   top: 18%;
@@ -28,7 +28,6 @@ body {
 }
 
 .loginWrapper {
-  position: relative;
   height: 100%;
 }
 
@@ -45,6 +44,7 @@ body {
 .bottomDiv {
   position: absolute;
   bottom: 20px;
+  left: 0;
   width: 100%;
 }
 
@@ -56,6 +56,18 @@ body {
   transform: scale(1.1);
 }
 
+.signupIcons:active {
+  transform: scale(1.1);
+}
+
+.iconsCheckbox {
+  display: none;
+}
+
+.test {
+  width: 33%;  
+  
+}
 /* card matching */
 
 .closeBtn {

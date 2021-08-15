@@ -22,12 +22,39 @@ import IconButton from '@material-ui/core/IconButton';
 import { Box } from "@material-ui/core";
 import { width } from "@material-ui/system";
 
-const iconsPool = [topIcon, jngIcon, midIcon, adcIcon, supIcon]
+const iconsPool = [
+	{
+		id: "top",
+		src: topIcon
+	},
+	{
+		id: "jng",
+		src: jngIcon,
+	},
+	{
+		id: "mid",
+		src: midIcon
+	},
+	{
+		id: "adc",
+		src: adcIcon
+	},
+	{
+		id: "sup",
+		src: supIcon
+	}
+]
+
+
+
+
 
 // Sign up function
 function SignUpForm(props) {
 	const [formState, setFormState] = useState({ email: "", password: "" });
 	const [addUser] = useMutation(ADD_USER);
+
+
 
 
 	const handleFormSubmit = async (event) => {
@@ -54,89 +81,96 @@ function SignUpForm(props) {
 
 
 
-	return (		
-			<Box component="form"
-				sx={{
-					'& > :not(style)': { m: 1 },
-				}}
-				autoComplete="off"
-				className="loginForm" id="SignUpForm" onSubmit={handleFormSubmit}
-				display="block"
-				overflow="hidden"
-			>
+	return (
+		<Box component="form"
+			sx={{
+				'& > :not(style)': { m: 1 },
+			}}
+			autoComplete="off"
+			className="loginForm" id="SignUpForm" onSubmit={handleFormSubmit}
+			display="block"
+			overflow="hidden"
+		>
 
 
-				<h1 className="loginFont">Sign Up</h1>
+			<h1 className="loginFont">Sign Up</h1>
 
-				<Box m={2}>
-					<label htmlFor="email"></label>
-					<TextField
-						required
-						fullWidth
-						id="outlined-basic"
-						label="Email"
-						variant="outlined"
-						placeholder="email"
-						name="email"
-						type="email"
-						id="email"
-						onChange={handleChange}
-					/>
-				</Box>
-				<Box m={2}>
-					<label htmlFor="SummonerName"></label>
-					<TextField
-						required
-						fullWidth
-						id="outlined-basic"
-						label="Summoner Name"
-						variant="outlined"
-						name="summonerName"
-						type="summonerName"
-						id="summonerName"
-						onChange={handleChange}
-					/>
-				</Box>
-				<Box m={2}>
-					<label htmlFor="password"></label>
-					<TextField
-						required
-						fullWidth
-						id="outlined-basic"
-						label="Password"
-						variant="outlined"
-						name="password"
-						type="password"
-						id="pwd"
-						onChange={handleChange}
-					/>
-				</Box>
-				<Box
-					className="roleIcons"><h4>Choose your main and secondary role!</h4>
-				</Box>
-
-
-				<Box display="flex" className="imagesContainer">
-					{iconsPool.map((src, index) => (
-						<img className="signupIcons" src={src} key={index} />
-					))}
-				</Box>
+			<Box m={2}>
+				<label htmlFor="email"></label>
+				<TextField
+					required
+					fullWidth
+					id="outlined-basic"
+					label="Email"
+					variant="outlined"
+					placeholder="email"
+					name="email"
+					type="email"
+					id="email"
+					onChange={handleChange}
+				/>
+			</Box>
+			<Box m={2}>
+				<label htmlFor="SummonerName"></label>
+				<TextField
+					required
+					fullWidth
+					id="outlined-basic"
+					label="Summoner Name"
+					variant="outlined"
+					name="summonerName"
+					type="summonerName"
+					id="summonerName"
+					onChange={handleChange}
+				/>
+			</Box>
+			<Box m={2}>
+				<label htmlFor="password"></label>
+				<TextField
+					required
+					fullWidth
+					id="outlined-basic"
+					label="Password"
+					variant="outlined"
+					name="password"
+					type="password"
+					id="pwd"
+					onChange={handleChange}
+				/>
+			</Box>
+			<Box
+				className="roleIcons"><h4>Choose your main and secondary role!</h4>
+			</Box>
 
 
+			<Box display="flex" className="imagesContainer">
+				{iconsPool.map((src, index) => (
+					<Box className="test">
+						<input type="checkbox" className="iconsCheckbox" id={iconsPool.id} />
+						<label for={iconsPool.id}>
+							<img className="signupIcons" src={iconsPool[index].src} key={index} />
+						</label>
+						{console.log(iconsPool)}	
+					</Box>				
+				))}
+				
+			</Box>
 
-				<Box>
-					<Button
-						className="loginSignBtn"
-						variant="contained"
-						color="primary"
-						size="medium"
-						type="submit"
-						form="SignUpForm"
-					>
-						Sign Up
-					</Button>
-				</Box>
-			</Box>	
+
+
+			<Box>
+				<Button
+					className="loginSignBtn"
+					variant="contained"
+					color="primary"
+					size="medium"
+					type="submit"
+					form="SignUpForm"
+				>
+					Sign Up
+				</Button>
+			</Box>
+		</Box>
 
 	);
 }
