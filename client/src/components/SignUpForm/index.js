@@ -152,8 +152,7 @@ function SignUpForm(props) {
 						</label>
 						{console.log(iconsPool)}	
 					</Box>				
-				))}
-				
+				))}				
 			</Box>
 
 

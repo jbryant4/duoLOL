@@ -49,7 +49,7 @@ body {
 }
 
 .signupIcons {
-  max-width: 20%;
+  max-width: 100%
 }
 
 .signupIcons:hover {
@@ -65,7 +65,7 @@ body {
 }
 
 .test {
-  width: 33%;  
+  width: 26%;  
   
 }
 /* card matching */
