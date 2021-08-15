@@ -1,5 +1,7 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
+
 
 import {
 	ApolloProvider,
@@ -47,7 +49,6 @@ const client = new ApolloClient({
 function App() {
 	const currentPath = window.location.pathname
 
-
 	return (
 		<ApolloProvider client={client}>
 			<Router>
@@ -63,9 +64,11 @@ function App() {
 						<Route component={Homepage} />
 					</Switch>
 				</Container>
-
-				{/* <Footer /> */}
 			</Router>
+
+
+			{/* <Footer /> */}
+
 		</ApolloProvider>
 	);
 }
