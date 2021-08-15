@@ -79,11 +79,9 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
-export default function ChampInfo({ champ }) {
+export default function ChampInfo({ champ, imgIndex, setImgIndex }) {
 	// use Material styles
 	const classes = useStyles();
-
-	const [imgIndex, setImgIndex] = useState(0);
 
 	//champion query
 	const { loading, data, error } = useQuery(QUERY_CHAMPION, {
@@ -97,7 +95,6 @@ export default function ChampInfo({ champ }) {
 	}
 
 	const champion = data?.champion || [];
-	console.log(champion);
 
 	//btn handle function
 	function handleBtnClick(direction, length) {
@@ -115,6 +112,12 @@ export default function ChampInfo({ champ }) {
 			}
 		}
 	}
+
+	function handleNullImage() {
+		console.log('null image')
+		return setImgIndex(0)
+	}
+
 	return (
 		<div className={classes.root}>
 			<Grid container alignContent="center">

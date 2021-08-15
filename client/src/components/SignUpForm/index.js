@@ -50,36 +50,33 @@ const iconsPool = [
 
 
 // Sign up function
-function SignUpForm(props) {
-	const [formState, setFormState] = useState({ email: "", password: "" });
+const SignUpForm = () => {
+	const [formState, setFormState] = useState({ email: '', sumName: '', password: '' });
 	const [addUser] = useMutation(ADD_USER);
 
-
-
-
-	const handleFormSubmit = async (event) => {
-		event.preventDefault();
-		const mutationResponse = await addUser({
-			variables: {
-				email: formState.email,
-				password: formState.password,
-				firstName: formState.firstName,
-				lastName: formState.lastName,
-			},
-		});
-		const token = mutationResponse.data.addUser.token;
-		Auth.login(token);
-	};
-
+	// update state based on form input changes
 	const handleChange = (event) => {
 		const { name, value } = event.target;
+
 		setFormState({
 			...formState,
 			[name]: value,
 		});
 	};
 
+	// submit form
+	const handleFormSubmit = async (event) => {
+		event.preventDefault();
 
+		try {
+			const { data } = await addUser({
+				variables: formState
+			});
+			Auth.login(data.addUser.token);
+		} catch (e) {
+			console.log(e)
+		}
+	};
 
 	return (
 		<Box component="form"
@@ -118,7 +115,7 @@ function SignUpForm(props) {
 					id="outlined-basic"
 					label="Summoner Name"
 					variant="outlined"
-					name="summonerName"
+					name="sumName"
 					type="summonerName"
 					id="summonerName"
 					onChange={handleChange}
@@ -150,10 +147,9 @@ function SignUpForm(props) {
 						<label for={iconsPool.id}>
 							<img className="signupIcons" src={iconsPool[index].src} key={index} />
 						</label>
-						{console.log(iconsPool)}	
-					</Box>				
+					</Box>
 				))}
-				
+
 			</Box>
 
 

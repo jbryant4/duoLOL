@@ -17,7 +17,7 @@ let api = TeemoJS(key)
 async function getCurrentPatch() {
 
     const url = 'http://ddragon.leagueoflegends.com/api/versions.json';
-    const {data} = await axios.get(url)
+    const { data } = await axios.get(url)
     const currentPatch = data[0]
     return currentPatch;
 }
@@ -25,25 +25,26 @@ async function getCurrentPatch() {
 //gather riot info on sign up
 async function riotDataSignUp(sumName, region = 'na1') {
     // will take the puuid and the riot id
-    const api = TeemoJS('');
+
     const userData = await api.get(region, 'summoner.getBySummonerName', sumName)
     const riotId = userData.id;
-    const lolData = await getUser(riotId,region)
-    
-    return {...userData, ...lolData, riotId}
+    const puuid = userData.puuid
+    const lolData = await riotDataUpdata(riotId, region)
+
+    return { ...userData, ...lolData, riotId, puuid }
 }
 //update riot info on login
-async function getUser(riotId, region) {
+async function riotDataUpdata(riotId, region = 'na1') {
     //solo que data
     const lolData = await api.get(region, 'league.getLeagueEntriesForSummoner', riotId)
-
-    return lolData
+    //return first slot in array because that is solo que data
+    return lolData[0]
 }
 //!get mastery for all champs for a user 
 async function champMasteryData(region, riotId) {
     //return user top 20 champion (most played) 
     const userChampionsMastery = await api.get(region, 'championMastery.getAllChampionMasteries', riotId)
-    
+
     //return top 
     return userChampionsMastery;
 }
@@ -56,20 +57,20 @@ async function matchHistoryData(region, type = 'rank', puuid) {
 
     let matchHistoryData = []
 
-    matchIds.map( async function(match) {
+    matchIds.map(async function (match) {
         const link = `https://${region}.api.riotgames.com/lol/match/v5/matches/${match}`
         const matchData = await axios.get(link)
-        
+
         matchHistoryData.push(matchData)
     });
-    
+
     return matchHistoryData
 }
 
 
 //Data for champlist component  of current champions
 async function getChampions(_patch) {
-    let patch = _patch? _patch: await getCurrentPatch()
+    let patch = _patch ? _patch : await getCurrentPatch()
     let champList = []
 
     //grab list of all champs and put in array of object with name and square img 
@@ -101,7 +102,7 @@ async function getChampions(_patch) {
  */
 async function getChampionByName(champName, _patch) {
     //check current patch
-    let patch = _patch? _patch: await getCurrentPatch()
+    let patch = _patch ? _patch : await getCurrentPatch()
     // const patch = await setPatch();
 
 
@@ -149,4 +150,4 @@ async function getChampionByName(champName, _patch) {
 
 
 
-module.exports = { getChampions, getChampionByName, getUser, getCurrentPatch, riotDataSignUp, matchHistoryData, champMasteryData }
+module.exports = { getChampions, getChampionByName, riotDataUpdata, getCurrentPatch, riotDataSignUp, matchHistoryData, champMasteryData }

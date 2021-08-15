@@ -45,12 +45,12 @@ const resolvers = {
         }
     },
     Mutation: {
-        addUser: async (parent, args) => {
+        addUser: async (parent, args ) => {
             // console.log(args);
-            const user = await User.create(args.content);
+            const user = await User.create(args);
 
-            const lolData = await riotApi.getUser(user.riotId, 'na1')
-
+            const lolData = await riotApi.riotDataSignUp(user.sumName, 'na1')
+            
             const updatedUser = await User.findByIdAndUpdate(user._id,
                 {
                     rank: lolData.rank,
@@ -78,7 +78,7 @@ const resolvers = {
                 throw new AuthenticationError('Incorrect credentials');
             }
             //call 
-            const lolData = await riotApi.getUser(user.riotId, 'na1')
+            const lolData = await riotApi.riotDataUpdata(user.riotId, 'na1')
 
             const updatedUser = await User.findByIdAndUpdate(user._id,
                 {

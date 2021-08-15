@@ -46,7 +46,7 @@ const useStyles = makeStyles({
 	
 });
 
-export default function OutlinedCard({ champions, setChamp, champ }) {
+export default function OutlinedCard({ champions, setChamp, champ, imgIndex,setImgIndex }) {
 	const classes = useStyles();
 
 	function handleChampChange(e) {
@@ -54,8 +54,10 @@ export default function OutlinedCard({ champions, setChamp, champ }) {
 		console.log('called')
 		if(e.target.innerText) {
 			setChamp(e.target.innerText)
+			setImgIndex(0)
 		} else {
 			setChamp(e.target.alt)
+			setImgIndex(0)
 		}
 	}
 	return (
