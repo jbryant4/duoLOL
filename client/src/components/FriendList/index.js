@@ -9,9 +9,12 @@ const useStyles = makeStyles({
 	buttonClass: {
 		backgroundColor: "purple",
 		variant: "outlined",
+		width: "10rem",
 		color: "white",
 		padding: "5px",
 		margin: "10px",
+		display: "flex",
+		justifyContent: "space-around",
 	},
 	friend: {
 		margin: "10px",
