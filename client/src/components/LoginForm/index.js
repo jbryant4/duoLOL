@@ -29,6 +29,10 @@ function LoginForm(props) {
 		} catch (e) {
 			console.log(e);
 		}
+
+		setFormState({
+			email: '', password: ''
+		});
 	};
 
 	const handleChange = (event) => {
