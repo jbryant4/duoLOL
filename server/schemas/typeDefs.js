@@ -77,7 +77,7 @@ const typeDefs = gql`
 
     type Mutation {
         login(email: String!, password: String!): Auth
-        addUser(content: userInfo!): Auth
+        addUser(email: String!, password: String!,sumName:String!): Auth
         addBuild(content: buildInfo!): Build
         addFriend(friendId: ID!): User
     }
@@ -91,18 +91,6 @@ const typeDefs = gql`
         item4: String
         item5: String
         item6: String
-    }
-
-    input userInfo {
-        email: String
-        password: String
-        rank: String
-        tier: String
-        sumName: String
-        primRole: String
-        sideRole: String
-        riotId: String
-        puuid: String
     }
 
     type Auth {

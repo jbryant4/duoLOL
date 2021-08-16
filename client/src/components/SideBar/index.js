@@ -16,7 +16,6 @@ import { Link } from "react-router-dom";
 //icons
 import HomeIcon from "@material-ui/icons/Home";
 import EmojiEventsIcon from "@material-ui/icons/EmojiEvents";
-import DashboardIcon from "@material-ui/icons/Dashboard";
 import GroupAddIcon from "@material-ui/icons/GroupAdd";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
@@ -109,11 +108,6 @@ export default function MiniDrawer(props) {
 			text: "About Champion",
 			icon: <EmojiEventsIcon />,
 			destination: "/AboutChampion",
-		},
-		{
-			text: "Dashboard",
-			icon: <DashboardIcon />,
-			destination: "/Dashboard",
 		},
 		{
 			text: "Duo Finder",

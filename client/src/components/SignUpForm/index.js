@@ -50,10 +50,11 @@ const iconsPool = [
 
 
 // Sign up function
-function SignUpForm(props) {
-	const [formState, setFormState] = useState({ email: "", password: "", sumName: "" });
+const SignUpForm = () => {
+	const [formState, setFormState] = useState({ email: '', sumName: '', password: '' });
 	const [addUser] = useMutation(ADD_USER);
 
+<<<<<<< HEAD
 	// reducer to handle checkboxes
 	const reducer = (state, action) => {
 		if (state.checkedIds.includes(action.id)) {
@@ -108,15 +109,31 @@ function SignUpForm(props) {
 		console.log('signup')
 	};
 
+=======
+	// update state based on form input changes
+>>>>>>> b0779ba5ca7d1f0bd50d05c1c085cc5a57dd4c50
 	const handleChange = (event) => {
 		const { name, value } = event.target;
+
 		setFormState({
 			...formState,
 			[name]: value,
 		});
 	};
 
+	// submit form
+	const handleFormSubmit = async (event) => {
+		event.preventDefault();
 
+		try {
+			const { data } = await addUser({
+				variables: formState
+			});
+			Auth.login(data.addUser.token);
+		} catch (e) {
+			console.log(e)
+		}
+	};
 
 	return (
 		<Box component="form"
