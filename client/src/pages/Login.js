@@ -13,7 +13,7 @@ import Button from "@material-ui/core/Button";
 function Login(props) {
 	const [isLogin, setIsLogin] = useState(true)
 	const loginSwitch = "Or login instead"
-	const signUpSwitch = "Doesn't have an account? Click here and create one right now!"	
+	const signUpSwitch = "Doesn't have an account? Click here and create one right now!"
 
 	return (
 		<div>
@@ -36,16 +36,12 @@ function Login(props) {
 				<Box className="loginWrapper">
 					{isLogin ? <LoginForm /> : <SignUpForm />}
 
-					<Box className="bottomDiv">
-						<Button className="switchFormBtn" onClick={() => setIsLogin(!isLogin)}>{isLogin ? signUpSwitch : loginSwitch}</Button>
-					</Box>
-					{/* <Link to="/SignUp" className="loginFont">
-					{" "}
-					<h3 className="bottomDiv">
-						Doesn't have an account? Click here and create one right now!
-					</h3>
-				</Link> */}
+
+					<Button className="switchFormBtn" onClick={() => setIsLogin(!isLogin)}>{isLogin ? signUpSwitch : loginSwitch}</Button>
+
+
 				</Box>
+
 			</Container>
 		</div>
 

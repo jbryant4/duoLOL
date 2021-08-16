@@ -1,5 +1,5 @@
 // React imports
-import React, { useState, useReducer } from "react";
+import React, { useState, useEffect } from "react";
 import { useMutation } from "@apollo/client";
 import Grid from '@material-ui/core/Grid';
 
@@ -19,7 +19,7 @@ import Button from "@material-ui/core/Button";
 import IconButton from '@material-ui/core/IconButton';
 
 // import SignUpVideo from "../assets/videos/1.mp4"
-import { Box } from "@material-ui/core";
+import { Box, Checkbox, FormControl } from "@material-ui/core";
 import { width } from "@material-ui/system";
 
 const iconsPool = [
@@ -47,36 +47,10 @@ const iconsPool = [
 
 
 
-
-
 // Sign up function
 const SignUpForm = () => {
-	const [formState, setFormState] = useState({ email: '', sumName: '', password: '' });
+	const [formState, setFormState] = useState({ email: '', sumName: '', password: '', roles: [] });
 	const [addUser] = useMutation(ADD_USER);
-
-<<<<<<< HEAD
-	// reducer to handle checkboxes
-	const reducer = (state, action) => {
-		if (state.checkedIds.includes(action.id)) {
-			return {
-				...state,
-				checkedIds: state.checkedIds.filter(id => id !== action.id)
-			}
-		}
-
-		if (state.checkedIds.length >= 2) {
-			console.log('Max 2 extras allowed')
-			return state;
-		}
-
-		return {
-			...state,
-			checkedIds: [
-				...state.checkedIds,
-				action.id
-			]
-		}
-	}
 
 
 
@@ -102,41 +76,42 @@ const SignUpForm = () => {
 		}
 
 		setFormState({
-			username: '',
 			email: '',
+			sumName: '',
 			password: '',
+			roles: ''
 		});
-		console.log('signup')
+
+		return formState
 	};
 
-=======
-	// update state based on form input changes
->>>>>>> b0779ba5ca7d1f0bd50d05c1c085cc5a57dd4c50
 	const handleChange = (event) => {
-		const { name, value } = event.target;
+		const { name, value } = event.target;	
+		
+		
 
 		setFormState({
 			...formState,
-			[name]: value,
+			[name]: value,			
 		});
 	};
 
 	// submit form
-	const handleFormSubmit = async (event) => {
-		event.preventDefault();
+	// const handleFormSubmit = async (event) => {
+	// 	event.preventDefault();
 
-		try {
-			const { data } = await addUser({
-				variables: formState
-			});
-			Auth.login(data.addUser.token);
-		} catch (e) {
-			console.log(e)
-		}
-	};
+	// 	try {
+	// 		const { data } = await addUser({
+	// 			variables: formState
+	// 		});
+	// 		Auth.login(data.addUser.token);
+	// 	} catch (e) {
+	// 		console.log(e)
+	// 	}
+	// };
 
 	return (
-		<Box component="form"
+		<Box component="div"
 			sx={{
 				'& > :not(style)': { m: 1 },
 			}}
@@ -199,12 +174,11 @@ const SignUpForm = () => {
 
 			<Box display="flex" className="imagesContainer">
 				{iconsPool.map((src, index) => (
-					<Box className="test">
-						<input type="checkbox" className="iconsCheckbox" id={iconsPool.id} />
-						<label for={iconsPool.id}>
-							<img className="signupIcons" src={iconsPool[index].src} key={index} />
+					<Box className="checkboxContainer">
+						<label for={iconsPool.id} class="checker">
+							<input type="checkbox" name="roles" className="iconsCheckbox" onChange={handleChange.bind(this)} value={iconsPool.id} id={iconsPool.id} />
+							<img for={iconsPool.id} className="signupIcons" src={iconsPool[index].src} key={index} />
 						</label>
-						{console.log(iconsPool)}
 					</Box>
 				))}
 			</Box>
@@ -223,7 +197,7 @@ const SignUpForm = () => {
 					Sign Up
 				</Button>
 			</Box>
-		</Box>
+		</Box >
 
 	);
 }

@@ -40,7 +40,7 @@ function LoginForm(props) {
 	};
 
 	return (
-		<div>
+		<Box>
 			<form className="loginForm" id="loginForm" onSubmit={handleFormSubmit}>
 				<h1 className="loginFont">Login</h1>
 				<Box>
@@ -113,7 +113,7 @@ function LoginForm(props) {
 
 				</Box>
 			</form>
-		</div>
+		</Box>
 	);
 }
 
