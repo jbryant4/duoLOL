@@ -1,7 +1,7 @@
 const app = require('express')();
 const http = require('http').createServer(app);
-// jwt secret
-const JWT_SECRET = 'myRandomHash';
+const socketioJwt = require( "socketio-jwt" );
+
 
 const io = require("socket.io")(http, {
     cors: {

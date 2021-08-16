@@ -20,6 +20,7 @@ import AboutChampion from "./pages/AboutChampion";
 import Login from "./pages/Login";
 
 // Components
+import Chat from './components/Chat'
 import SideBar from "./components/SideBar";
 // import Footer from "./components/Footer";
 
