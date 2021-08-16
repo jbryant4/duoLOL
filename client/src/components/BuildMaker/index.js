@@ -33,9 +33,10 @@ export default function Build({ }) {
         console.log(error);
     }
 
-    const boots = data?.buildItems.boots
-    const mythics = data?.buildItems.mythics
-    const legendaries = data?.buildItems.legendaries
+    const boots = data?.buildItems.boots;
+    const mythics = data?.buildItems.mythics;
+    const legendaries = data?.buildItems.legendaries;
+
     return (
         <div>
             <div className={classes.itemBox}>

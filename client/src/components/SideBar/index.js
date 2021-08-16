@@ -18,6 +18,7 @@ import HomeIcon from "@material-ui/icons/Home";
 import EmojiEventsIcon from "@material-ui/icons/EmojiEvents";
 import GroupAddIcon from "@material-ui/icons/GroupAdd";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import BuildIcon from '@material-ui/icons/Build';
 
 const drawerWidth = 240;
 
@@ -119,6 +120,11 @@ export default function MiniDrawer(props) {
 			icon: <AccountCircleIcon />,
 			destination: "/",
 		},
+		{
+			text: "Build a Build",
+			icon: <BuildIcon/>,
+			destination:"/BuildABuild"
+		}
 	];
 
 	return (

@@ -24,5 +24,13 @@ export const LOGIN = gql`
 	}
 `;
 
-
+// Add a Build
+export const ADD_BUILD = gql`
+	mutation addBuild($content:buildInfo!) {
+		addBuild(content: $content) {
+			_id
+			builtBy
+		}
+	}
+`;
 
