@@ -1,6 +1,8 @@
 const app = require('express')();
-const http = require('http').createServer(app);
-const socketioJwt = require( "socketio-jwt" );
+const http = require('http').createServer(app)
+require('dotenv').config()
+// const socketioJwt = require( "socketio-jwt" );
+const jwt = require('jsonwebtoken');
 
 
 const io = require("socket.io")(http, {
@@ -24,7 +26,8 @@ io.use(async (socket, next) => {
     const token = socket.handshake.auth.token;
     try {
         // verify jwt token and get user data
-        const user = await jwt.verify(token, JWT_SECRET);
+        //! ask about process.env secret in class
+        const user = await jwt.verify(token, 'neverchasesinged');
         console.log('user', user);
         // save the user data into socket object, to be used further
         socket.user = user;
@@ -80,6 +83,6 @@ io.on('connection', (socket) => {
     })
 });
 
-http.listen(3000, () => {
+http.listen(3005, () => {
     console.log('listening on *:3005');
 });

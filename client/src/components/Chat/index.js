@@ -6,19 +6,19 @@ import {
     sendMessage,
     joinRoom,
 } from "./socketIo.service";
+import AuthService from '../../utils/auth'
 
 
 function Chat() {
 
-
-
-    const [token, setToken] = useState("");
+    // const [tokens, setToken] = useState("");
     const [messages, setMessages] = useState([])
     const tokenInputRef = useRef("");
     const inputRef = useRef("");
     const joinRef = useRef("");
     const [join, setJoin] = useState('myRandomChatRoomId');
-
+    const token = AuthService.getToken();
+    console.log(token)
 
     // needs to be replaced with the user and its token
     const SENDER = {
@@ -40,11 +40,11 @@ function Chat() {
     }, [token]);
 
     // submits token typing it it want to auth durring log in to get rid of this function
-    const submitToken = (e) => {
-        e.preventDefault();
-        const tokenValue = tokenInputRef.current.value;
-        setToken(tokenValue);
-    };
+    // const submitToken = (e) => {
+    //     e.preventDefault();
+    //     const tokenValue = tokenInputRef.current.value;
+    //     setToken(tokenValue);
+    // };
 
     // submits message and appends it to the server and the client
     const submitMessage = (e) => {
@@ -97,7 +97,7 @@ function Chat() {
 
     return (
         <div>
-            <form onSubmit={submitToken}>
+            <form>
                 <input type="text" placeholder="Enter token" ref={tokenInputRef} />
                 <button type="submit">Submit</button>
             </form>
