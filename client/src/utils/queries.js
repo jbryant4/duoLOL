@@ -52,3 +52,30 @@ export const QUERY_CHAMPION = gql`
 }
 `;
 
+export const QUERY_BUILD_ITEMS = gql`
+	query buildItems {
+  		buildItems{
+    		boots {
+      			name
+      			icon{
+        			url
+      			}
+      			description
+    		}
+    		mythics {
+      			name
+      			icon{
+        			url
+      			}
+      			description
+    		}
+    	legendaries{
+      		name
+      		icon{
+      			url
+      		}
+      		description
+    	}
+  }
+}
+`;

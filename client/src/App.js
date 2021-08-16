@@ -18,6 +18,7 @@ import Homepage from "./pages/Homepage";
 import duoFinder from "./pages/DuoFinder";
 import AboutChampion from "./pages/AboutChampion";
 import Login from "./pages/Login";
+import BuildABuild from "./pages/BuildABuild"
 
 // Components
 import Chat from './components/Chat'
@@ -59,6 +60,7 @@ function App() {
 						<Route exact path="/" component={Login} />
 						<Route exact path="/duoFinder" component={duoFinder} />
 						<Route exact path="/AboutChampion" component={AboutChampion} />
+						<Route exact path="/BuildABuild" component={BuildABuild} />
 						<Route component={Homepage} />
 					</Switch>
 				</Container>

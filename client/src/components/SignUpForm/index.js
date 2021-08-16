@@ -76,6 +76,10 @@ const SignUpForm = () => {
 		} catch (e) {
 			console.log(e)
 		}
+
+		setFormState({
+			email: '', sumName: '', password: ''
+		});
 	};
 
 	return (

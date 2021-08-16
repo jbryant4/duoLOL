@@ -27,6 +27,7 @@ async function riotDataSignUp(sumName, region = 'na1') {
     // will take the puuid and the riot id
 
     const userData = await api.get(region, 'summoner.getBySummonerName', sumName)
+    // console.log(userData);
     const riotId = userData.id;
     const puuid = userData.puuid
     const lolData = await riotDataUpdata(riotId, region)
@@ -148,6 +149,76 @@ async function getChampionByName(champName, _patch) {
 
 }
 
+//get all items 
+async function getBuildItems(_patch) {
+    let patch = _patch ? _patch : await getCurrentPatch()
+    let itemData = []
+    let itemsList = {
+        boots: [],
+        mythics: [],
+        legendaries: []
+    }
+    //we only want items that are map 11: true
+    const link = `http://ddragon.leagueoflegends.com/cdn/${patch}/data/en_US/item.json`
+
+    try {
+        const { data } = await axios.get(link)
+
+        for (const [key, value] of Object.entries(data.data)) {
+
+            itemData.push({
+                itemNum: key,
+                name: value.name,
+                description: value.description,
+                icon: {
+                    url: `http://ddragon.leagueoflegends.com/cdn/${patch}/img/item/${key}.png`
+                },
+                rifts: value.maps,
+                depth: value.depth,
+                from: value.from,
+                into: value.into,
+            })
+        }
+    }
+    catch (err) {
+        console.error(err)
+    }
+
+    const riftData = itemData.filter(item=> item.rifts[11] === true)
+    //grab all books 
+    riftData.map(item => {
+        if (item.from) {
+            if (item.from[0] === '1001') {
+                itemsList.boots.push(item)
+            }
+        }
+    })
+    //grap all mythics
+    riftData.map(item => {
+        const mythicCheck = item.description.split('Mythic')
+        if(mythicCheck.length > 1){
+            itemsList.mythics.push(item)
+          //grab all other complete items  
+        } else if(
+            !item.into  
+            && item.depth >= 2
+            && item.from[0] !== '1001'
+            || item.itemNum === '3042'
+            || item.itemNum === '3040'
+            || item.itemNum === '3860'
+            || item.itemNum === '3857'
+            || item.itemNum === '3853'
+            || item.itemNum === '3864' 
+            //should 
+            ) {
+            itemsList.legendaries.push(item)
+        }
+    })
+    // const itemNames = itemsList.legendaries.map(item => item.name)
+    // console.log(itemNames.sort())
+    // console.log(itemsList.legendaries.length)
+    return itemsList
+}
 
 
-module.exports = { getChampions, getChampionByName, riotDataUpdata, getCurrentPatch, riotDataSignUp, matchHistoryData, champMasteryData }
+module.exports = { getChampions, getChampionByName, riotDataUpdata, getCurrentPatch, riotDataSignUp, matchHistoryData, champMasteryData, getBuildItems }
