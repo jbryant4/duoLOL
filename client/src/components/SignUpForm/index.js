@@ -1,5 +1,5 @@
 // React imports
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
 import { useMutation } from "@apollo/client";
 import Grid from '@material-ui/core/Grid';
 
@@ -53,6 +53,31 @@ const iconsPool = [
 function SignUpForm(props) {
 	const [formState, setFormState] = useState({ email: "", password: "", sumName: "" });
 	const [addUser] = useMutation(ADD_USER);
+
+	// reducer to handle checkboxes
+	const reducer = (state, action) => {
+		if (state.checkedIds.includes(action.id)) {
+			return {
+				...state,
+				checkedIds: state.checkedIds.filter(id => id !== action.id)
+			}
+		}
+
+		if (state.checkedIds.length >= 2) {
+			console.log('Max 2 extras allowed')
+			return state;
+		}
+
+		return {
+			...state,
+			checkedIds: [
+				...state.checkedIds,
+				action.id
+			]
+		}
+	}
+
+
 
 	console.log(formState)
 	const handleFormSubmit = async (event) => {
@@ -162,15 +187,9 @@ function SignUpForm(props) {
 						<label for={iconsPool.id}>
 							<img className="signupIcons" src={iconsPool[index].src} key={index} />
 						</label>
-<<<<<<< HEAD
-						{console.log(iconsPool)}	
-					</Box>				
-				))}				
-=======
+						{console.log(iconsPool)}
 					</Box>
 				))}
-
->>>>>>> 0d8ab3e81bc08a5fe03be81280eb4a9d4a942dfc
 			</Box>
 
 
