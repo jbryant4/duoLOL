@@ -23,10 +23,10 @@ const typeDefs = gql`
     type Build {
         _id: ID
         title: String
-        champion: ChampionSummary
-        boots: Item
-        mythic: Item
-        legendaries: [Item]
+        champion: String
+        boots: String
+        mythic: String
+        legendaries: String
         builtBy: String
     }
     type ChampionSummary {
@@ -103,7 +103,7 @@ const typeDefs = gql`
         champion: String
         boots: String
         mythic: String
-        legendaries: [String]
+        legendaries: String
     }
 
     type Auth {
