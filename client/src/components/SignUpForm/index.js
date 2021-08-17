@@ -1,5 +1,5 @@
 // React imports
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useMutation } from "@apollo/client";
 import Grid from '@material-ui/core/Grid';
 
@@ -19,7 +19,7 @@ import Button from "@material-ui/core/Button";
 import IconButton from '@material-ui/core/IconButton';
 
 // import SignUpVideo from "../assets/videos/1.mp4"
-import { Box } from "@material-ui/core";
+import { Box, Checkbox, FormControl } from "@material-ui/core";
 import { width } from "@material-ui/system";
 
 const iconsPool = [
@@ -47,16 +47,46 @@ const iconsPool = [
 
 
 
-
-
 // Sign up function
 const SignUpForm = () => {
-	const [formState, setFormState] = useState({ email: '', sumName: '', password: '' });
+	const [formState, setFormState] = useState({ email: '', sumName: '', password: '', roles: [] });
 	const [addUser] = useMutation(ADD_USER);
 
-	// update state based on form input changes
+	console.log(formState)
+	const handleFormSubmit = async (event) => {
+		event.preventDefault();
+		// check if form has everything (as per react-bootstrap docs)
+		const form = event.currentTarget;
+		if (form.checkValidity() === false) {
+			event.preventDefault();
+			event.stopPropagation();
+		}
+
+		try {
+			const { data } = await addUser({
+				variables: formState
+			});
+			console.log()
+			const token = data.addUser.token;
+			Auth.login(token);
+		} catch (err) {
+			console.error(err);
+		}
+
+		setFormState({
+			email: '',
+			sumName: '',
+			password: '',
+			roles: []
+		});
+
+		return formState
+	};
+
 	const handleChange = (event) => {
 		const { name, value } = event.target;
+
+		console.log(event.target.name, event.target.value)
 
 		setFormState({
 			...formState,
@@ -64,23 +94,25 @@ const SignUpForm = () => {
 		});
 	};
 
-	// submit form
-	const handleFormSubmit = async (event) => {
-		event.preventDefault();
+	const checkBox = (event) => {
+		let role = event.target.name
+		if (event.target.checked) {
+			setFormState({ ...formState, roles: [...formState.roles, role] })			
+		}
+		else {
+			let newArray = formState.roles
+			newArray.splice(newArray.indexOf(role), 1)		
+			
 
-		try {
-			const { data } = await addUser({
-				variables: formState
-			});
-			Auth.login(data.addUser.token);
-		} catch (e) {
-			console.log(e)
+			setFormState({ ...formState, roles: newArray })
 		}
 
-		setFormState({
-			email: '', sumName: '', password: ''
-		});
+	}
+
+
+		
 	};
+
 
 	return (
 		<Box component="form"
@@ -145,15 +177,14 @@ const SignUpForm = () => {
 
 
 			<Box display="flex" className="imagesContainer">
-				{iconsPool.map((src, index) => (
-					<Box className="test">
-						<input type="checkbox" className="iconsCheckbox" id={iconsPool.id} />
-						<label for={iconsPool.id}>
-							<img className="signupIcons" src={iconsPool[index].src} key={index} />
+				{iconsPool.map((iconIndex, index) => (
+					<Box className="checkboxContainer">
+						<label class="checker">
+							<input type="checkbox" onChange={checkBox} disabled={formState.roles.length >= 2 && formState.roles.indexOf(iconIndex.id) == -1} name={iconIndex.id} className="iconsCheckbox" id={iconIndex.id} />
+							<img className="signupIcons" src={iconIndex.src} key={index} />
 						</label>
 					</Box>
 				))}
-
 			</Box>
 
 
@@ -170,7 +201,7 @@ const SignUpForm = () => {
 					Sign Up
 				</Button>
 			</Box>
-		</Box>
+		</Box >
 
 	);
 }
