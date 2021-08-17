@@ -7,6 +7,7 @@ import Header from "../components/Header";
 
 // Material UI
 import { Container, Box, makeStyles } from "@material-ui/core";
+import MatchComponent from "../components/MatchComponent";
 
 const useStyles = makeStyles({
 	boxMain: {
@@ -99,30 +100,13 @@ function Homepage() {
 					<FriendList name={testFriends} />
 				</Box>
 				<Box className={classes.matchHistory}>
-					<Box className={classes.match} dangerouslySetInnerHTML={{ __html: html }} />
+					<h1>Match History</h1>
+					<Box
+						className={classes.match}
+						dangerouslySetInnerHTML={{ __html: html }}
+						/>
 					<Box className={classes.match}>
-						<h1>Match</h1>
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-							eiusmod tempor incididunt ut labore et dolore magna aliqua.
-							Vivamus at augue eget arcu dictum varius duis at i
-						</p>
-					</Box>
-					<Box className={classes.match}>
-						<h1>Match</h1>
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-							eiusmod tempor incididunt ut labore et dolore magna aliqua.
-							Vivamus at augue eget arcu dictum varius duis at i
-						</p>
-					</Box>
-					<Box className={classes.match}>
-						<h1>Match</h1>
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-							eiusmod tempor incididunt ut labore et dolore magna aliqua.
-							Vivamus at augue eget arcu dictum varius duis at i
-						</p>
+						<MatchComponent />
 					</Box>
 				</Box>
 			</Box>
