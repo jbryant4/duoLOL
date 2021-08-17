@@ -11,6 +11,8 @@ import BuildItem from "../BuildItem"
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import {  CardActions, TextField } from '@material-ui/core';
+import { useMutation } from '@apollo/client';
+import { ADD_BUILD } from '../../utils/mutations';
 
 
 
@@ -40,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Build({ }) {
     const classes = useStyles();
-
+    const [addBuild, {error}] = useMutation(ADD_BUILD)
     //state for champ
     const [champ, setChamp] = useState({ link: 'test', name: 'Select Champion' })
     //state for boot
@@ -53,11 +55,26 @@ export default function Build({ }) {
     const [content, setContent] = useState('no')
     // console.log(content);
 
+    const handleBuildSubmit = async (event) => {
+		event.preventDefault();
+		try {
+			const {data} = await login({
+				variables: { email: formState.email, password: formState.password },
+			});
+			Auth.login(data.login.token);
+		} catch (e) {
+			console.log(e);
+		}
+
+		setFormState({
+			email: '', password: ''
+		});
+	}; 
     
     return (
         <div className={classes.container}>
             <Grid>
-                <Card className={classes.root}>
+                <Card className={classes.root} onSubmit={handleBuildSubmit}>
                     <CardContent>
                         <Grid className={classes.innerFlex}>
                             <Typography gutterBottom variant="h5" component="h2">
@@ -100,7 +117,7 @@ export default function Build({ }) {
                         </Grid>
                     </CardContent>
                     <CardActions>
-                        <Button size="small" color="primary">
+                        <Button size="small" color="primary" type='submit'>
                             Create Build
                         </Button>
                     </CardActions>
