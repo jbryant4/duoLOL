@@ -52,8 +52,6 @@ const SignUpForm = () => {
 	const [formState, setFormState] = useState({ email: '', sumName: '', password: '', roles: [] });
 	const [addUser] = useMutation(ADD_USER);
 
-
-
 	console.log(formState)
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
@@ -79,39 +77,37 @@ const SignUpForm = () => {
 			email: '',
 			sumName: '',
 			password: '',
-			roles: ''
+			roles: []
 		});
 
 		return formState
 	};
 
 	const handleChange = (event) => {
-		const { name, value } = event.target;	
-		
-		
+		const { name, value } = event.target;
+
+		console.log(event.target.name, event.target.value)
 
 		setFormState({
 			...formState,
-			[name]: value,			
+			[name]: value,
 		});
 	};
 
-	// submit form
-	// const handleFormSubmit = async (event) => {
-	// 	event.preventDefault();
-
-	// 	try {
-	// 		const { data } = await addUser({
-	// 			variables: formState
-	// 		});
-	// 		Auth.login(data.addUser.token);
-	// 	} catch (e) {
-	// 		console.log(e)
-	// 	}
-	// };
+	const checkBox = (event) => {
+		let role = event.target.name
+		if (event.target.checked) {
+			setFormState({ ...formState, roles: [...formState.roles, role] })
+		}
+		else {
+			let newArray = formState.roles
+			newArray.splice(newArray.indexOf(role), 1)
+			setFormState({ ...formState, roles: newArray })
+		}
+	}
 
 	return (
-		<Box component="div"
+		<Box component="form"
 			sx={{
 				'& > :not(style)': { m: 1 },
 			}}
@@ -173,11 +169,11 @@ const SignUpForm = () => {
 
 
 			<Box display="flex" className="imagesContainer">
-				{iconsPool.map((src, index) => (
+				{iconsPool.map((iconIndex, index) => (
 					<Box className="checkboxContainer">
-						<label for={iconsPool.id} class="checker">
-							<input type="checkbox" name="roles" className="iconsCheckbox" onChange={handleChange.bind(this)} value={iconsPool.id} id={iconsPool.id} />
-							<img for={iconsPool.id} className="signupIcons" src={iconsPool[index].src} key={index} />
+						<label class="checker">
+							<input type="checkbox" onChange={checkBox} disabled={formState.roles.length >= 2 && formState.roles.indexOf(iconIndex.id) == -1} name={iconIndex.id} className="iconsCheckbox" id={iconIndex.id} />
+							<img className="signupIcons" src={iconIndex.src} key={index} />
 						</label>
 					</Box>
 				))}
