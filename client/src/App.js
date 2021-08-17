@@ -27,7 +27,6 @@ import BuildABuild from "./pages/BuildABuild";
 
 // Components
 import Chat from "./components/Chat";
-import SideBar from "./components/SideBar";
 import Navbar from "./components/Navbar";
 // import Footer from "./components/Footer";
 
@@ -58,10 +57,8 @@ function App() {
 	return (
 		<ApolloProvider client={client}>
 			<Router>
-				{/* {currentPath.includes('login') ? null : <SideBar/>} */}
 				<Container maxWidth="xl" disableGutters={true}>
 					<Navbar />
-					{/* <SideBar /> */}
 					<Switch>
 						<Route exact path="/homepage" component={Homepage} />
 						<Route exact path="/" component={Login} />
