@@ -26,8 +26,7 @@ import Login from "./pages/Login";
 import BuildABuild from "./pages/BuildABuild";
 
 // Components
-import Chat from "./components/Chat";
-import SideBar from "./components/SideBar";
+// import Chat from "./components/Chat";
 import Navbar from "./components/Navbar";
 // import Footer from "./components/Footer";
 
