@@ -61,7 +61,6 @@ function App() {
 				{/* {currentPath.includes('login') ? null : <SideBar/>} */}
 				<Container maxWidth="xl" disableGutters={true}>
 					<Navbar />
-					{/* <SideBar /> */}
 					<Switch>
 						<Route exact path="/homepage" component={Homepage} />
 						<Route exact path="/" component={Login} />

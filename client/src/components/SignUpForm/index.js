@@ -99,16 +99,26 @@ const SignUpForm = () => {
 	const checkBox = (event) => {
 		let role = event.target.name
 		if (event.target.checked) {
-			setFormState({ ...formState, roles: [...formState.roles, role] })			
+			setFormState({ ...formState, roles: [...formState.roles, role] })
 		}
 		else {
 			let newArray = formState.roles
-			newArray.splice(newArray.indexOf(role), 1)		
-			
+			newArray.splice(newArray.indexOf(role), 1)
+
 
 			setFormState({ ...formState, roles: newArray })
 		}
+<<<<<<< HEAD
 	}
+=======
+
+	}
+
+
+
+	
+
+>>>>>>> 1b6a7d14d38079d5c81932dcaa94fe29bad168a3
 
 	return (
 		<Box component="form"
