@@ -7,10 +7,12 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
-import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { ExpandMore } from '@styled-icons/material/ExpandMore';
 import Box from '@material-ui/core/Box';
+import Popper from '@material-ui/core/Popper';
+
 
 
 //icons not from materialUi
@@ -21,21 +23,31 @@ import { Close } from "@styled-icons/material-rounded/Close"
 import { Frame, useMotionValue, useTransform, useAnimation } from 'framer';
 
 import { CicleButton } from "./circle-button";
+import PositionedPopper from './popper-button';
 
 
 
 const useStyles = makeStyles((theme) => ({
     root: {
         maxWidth: 350,
-        marginLeft: '35%'
-
+        position: "fixed",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)"
     },
     media: {
         height: 0,
-        paddingTop: '100%', // 16:9
         width: 350,
-        height: 525
+        height: 525,
+        backgroundPosition: "unset"
     },
+    expandIcon: {
+        position: "absolute",
+        top: "50%",
+        right: 0,
+        backgroundColor: 'white'
+    },
+
     expand: {
         transform: 'rotate(0deg)',
         marginLeft: 'auto',
@@ -53,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
         position: 'absolute',
         bottom: 0,
         width: '100%',
-        zIndex: 1,
+        // zIndex: 1,
         padding: '1.5rem 1.5rem 1rem',
     },
     title: {
@@ -89,13 +101,6 @@ export default function MatchingCard({ }) {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
 
-    const handleExpandClick = () => {
-        setExpanded(!expanded);
-    };
-
-
-
-
     return (
         <Card className={classes.root} elevation={3}>
             <Box className={classes.main} minHeight={300} position={'relative'}>
@@ -105,33 +110,32 @@ export default function MatchingCard({ }) {
                 // title="Kha Zix"
                 />
 
-                <div className={classes.content}>
+                <Box className={classes.content}>
                     <Typography variant={'h2'} className={classes.title}>
                         PacSmack
                     </Typography>
-                </div>
+                </Box>
+
+
+                <PositionedPopper />
+
+
+
             </Box>
 
+
             <CardContent>
-                <Typography variant="body1" color="textPrimary" component="p">
+                <Typography variant="body1" color="textPrimary" component="p" className="disable-select">
                     I love to feed playing jungle with my teammates, always aiming to lose before 15min!!!
                 </Typography>
             </CardContent>
+
+
             <CardActions className={classes.actionBarWrapper}>
 
                 <CicleButton>
                     <Close className="closeBtn" />
                 </CicleButton>
-
-                <IconButton
-                    className={clsx(classes.expand, {
-                        [classes.expandOpen]: expanded,
-                    })}
-                    onClick={handleExpandClick}
-                    aria-expanded={expanded}
-                    aria-label="show more">
-                    <ExpandMoreIcon />
-                </IconButton>
 
                 <CicleButton>
                     <HeartFill className="heartBtn" />
@@ -139,21 +143,6 @@ export default function MatchingCard({ }) {
 
             </CardActions>
 
-            <Box sx={{ width: "300" }}>
-                <Collapse orientation="horizontal" in={expanded} timeout="auto" unmountOnExit >
-                    <CardContent>
-                        <Typography paragraph>Method:</Typography>
-                        <Typography paragraph>
-                            Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
-                            minutes.
-                        </Typography>
-
-                        <Typography>
-                            Set aside off of the heat to let rest for 10 minutes, and then serve.
-                        </Typography>
-                    </CardContent>
-                </Collapse>
-            </Box>
         </Card >
     );
 }
