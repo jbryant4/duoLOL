@@ -80,3 +80,6 @@ export const QUERY_BUILD_ITEMS = gql`
 }
 `;
 
+export const QUERY_ME = gql`
+	
+`;
