@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,13 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+.mainBg {
+  background-image:url(./assets//images/sumBg.jpg);
+  min-height: 100%;
+  min-width: 100%;
+  background-position:center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

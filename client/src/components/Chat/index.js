@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { makeStyles } from '@material-ui/core';
 import {
     subscribeToMessages,
     initiateSocketConnection,
@@ -12,7 +13,6 @@ import AuthService from '../../utils/auth'
 
 function Chat() {
 
-    // const [tokens, setToken] = useState("");
     const [messages, setMessages] = useState([]);
     const inputRef = useRef("");
     const joinRef = useRef("");

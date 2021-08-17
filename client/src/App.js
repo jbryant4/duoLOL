@@ -25,6 +25,9 @@ import Chat from './components/Chat'
 import SideBar from "./components/SideBar";
 // import Footer from "./components/Footer";
 
+// background css
+import './App.css';
+
 //!change back to /graphql when we go live
 const httpLink = createHttpLink({
 	uri: "http://localhost:3001/graphql",
@@ -53,7 +56,7 @@ function App() {
 		<ApolloProvider client={client}>
 			<Router>
 				{/* {currentPath.includes('login') ? null : <SideBar/>} */}
-				<Container maxWidth="xl" disableGutters={true}>
+				<Container className='mainBg' maxWidth="xl" disableGutters={true}>
 			<SideBar />
 					<Switch>
 						<Route exact path="/homepage" component={Homepage} />
