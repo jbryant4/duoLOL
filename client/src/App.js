@@ -62,14 +62,8 @@ function App() {
 		<ApolloProvider client={client}>
 			<Router>
 				{/* {currentPath.includes('login') ? null : <SideBar/>} */}
-<<<<<<< HEAD
 				<Container className='mainBg' maxWidth="xl" disableGutters={true}>
 			<SideBar />
-=======
-				<Container maxWidth="xl" disableGutters={true}>
-					<Navbar />
-					{/* <SideBar /> */}
->>>>>>> 0dbc72e1fbfc2b54e12964ae554dfd85ff1b1829
 					<Switch>
 						<Route exact path="/homepage" component={Homepage} />
 						<Route exact path="/" component={Login} />

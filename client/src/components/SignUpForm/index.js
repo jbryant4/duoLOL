@@ -204,6 +204,7 @@ const SignUpForm = () => {
 		</Box >
 
 	);
+				
 }
 
 export default SignUpForm;
