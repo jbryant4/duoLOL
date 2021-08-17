@@ -9,7 +9,8 @@ function DuoFinder() {
 	return (
 		<Container>
 			<MatchingCard />
-			<Chat />
+			{/* //! move to proper area */}
+			{/* <Chat /> */}
 		</Container>
 	);
 }

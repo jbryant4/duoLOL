@@ -9,13 +9,10 @@ export const initiateSocketConnection = (token) => {
 			token,
 		},
 	});
-	
-	console.log(`Connecting socket...`);
 };
 
 // disconnects socket connection
 export const disconnectSocket = () => {
-	console.log('Disconnecting socket...');
 	if (socket) socket.disconnect();
 }
 
@@ -46,3 +43,7 @@ export const joinRoom = (roomName) => {
 	socket.emit("join", roomName);
 
 };
+
+export const leaveRoom = (roomName) => {
+	socket.emit("leave", roomName)
+}

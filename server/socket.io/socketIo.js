@@ -26,11 +26,10 @@ io.use(async (socket, next) => {
     const token = socket.handshake.auth.token;
     try {
         // verify jwt token and get user data
-        //! ask about process.env secret in class
-        const user = await jwt.verify(token, 'neverchasesinged');
-        console.log('user', user);
+
+        const user = await jwt.verify(token, process.env.JWT_TOKEN_KEY);
         // save the user data into socket object, to be used further
-        socket.user = user;
+        socket.user = user.data.sumName;
         next();
     } catch (e) {
         // if token is invalid, close connection
@@ -40,7 +39,6 @@ io.use(async (socket, next) => {
 });
 
 io.on('connection', (socket) => {
-    console.log(socket.id)
     // join user's own room
     socket.on('send-message', message => {
         io.emit('receive-message', message)
@@ -50,9 +48,9 @@ io.on('connection', (socket) => {
     socket.join(socket.user.id);
     socket.join('myRandomChatRoomId');
     // find user's all channels from the database and call join event on all of them.
-    console.log('a user connected');
+    console.log(`${socket.user} has connected`);
     socket.on('disconnect', () => {
-        console.log('user disconnected');
+        console.log(`${socket.user} has disconnected`);
     });
     socket.on('my message', (msg) => {
         console.log('message: ' + msg);
@@ -64,12 +62,16 @@ io.on('connection', (socket) => {
         socket.join(roomName);
     });
 
+    socket.on('leave', (roomName) => {
+        console.log('leave: ' + roomName);
+        socket.leave(roomName);
+    })
+
     socket.on('message', ({ message, roomName }, callback) => {
         console.log('message: ' + message + ' in ' + roomName);
-
         // generate data to send to receivers
         const outgoingMessage = {
-            name: socket.user.name,
+            name: socket.user,
             id: socket.user.id,
             message,
         };
