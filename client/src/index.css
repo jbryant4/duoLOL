@@ -9,14 +9,15 @@ body {
 
 .loginSignupForm {
   background-color: white;
-  max-width: 25% !important;
+  max-width: 22% !important;
   min-height: 55%;
   position: absolute;
   left: 10%;
   top: 18%;
   border-radius: 10px;
   box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.205);
-  text-align: center!important;
+  text-align: center!important;  
+ 
 }
 
 .loginForm {
@@ -25,6 +26,7 @@ body {
 
 .loginSignBtn {
   background-color: #3cc295!important;
+  margin-bottom: 5px!important;
 }
 
 .loginWrapper {
@@ -37,37 +39,33 @@ body {
 
 .imagesContainer {
   flex-wrap: wrap;
-  justify-content: center;
-  padding-bottom: 5px;
-}
-
-.bottomDiv {
-  position: absolute;
-  bottom: 20px;
-  left: 0;
-  width: 100%;
+  justify-content:center;
+  margin-bottom: 5px;
 }
 
 .signupIcons {
-  max-width: 20%;
+  max-width: 80%;
+  margin: 2px 2px;
 }
 
 .signupIcons:hover {
   transform: scale(1.1);
 }
 
-.signupIcons:active {
-  transform: scale(1.1);
-}
-
 .iconsCheckbox {
-  display: none;
+  display: none!important;
 }
 
-.test {
-  width: 33%;  
-  
+.checkboxContainer {
+  max-width: 26%;
 }
+
+input[type=checkbox]:checked+img {
+  transform: scale(1.1);
+  background-color: #3cc29569!important;
+  border-radius: 5px
+}
+
 /* card matching */
 
 .closeBtn {

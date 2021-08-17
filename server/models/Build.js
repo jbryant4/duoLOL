@@ -14,27 +14,15 @@ const buildSchema = new Schema(
         },
         boots: {
             type: String,
-            required: true,
+            required: true
         },
         mythic: {
             type: String,
-            required: true,
+            required: true
         },
-        item3: {
+        legendaries: {
             type: String,
-            required: true,
-        },
-        item4: {
-            type: String,
-            required: true,
-        },
-        item5: {
-            type: String,
-            required: true,
-        },
-        item6: {
-            type: String,
-            required: true,
+            require: true
         }
         //this format for mvp but could also add summoner spells,runes and creator thoughts
     }

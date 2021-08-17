@@ -26,10 +26,8 @@ const typeDefs = gql`
         champion: String
         boots: String
         mythic: String
-        item3: String
-        item4: String
-        item5: String
-        item6: String
+        legendaries: String
+        builtBy: String
     }
     type ChampionSummary {
         name: String
@@ -105,10 +103,7 @@ const typeDefs = gql`
         champion: String
         boots: String
         mythic: String
-        item3: String
-        item4: String
-        item5: String
-        item6: String
+        legendaries: String
     }
 
     type Auth {

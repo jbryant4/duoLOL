@@ -1,6 +1,11 @@
 import React from "react";
 
-import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
+import {
+	BrowserRouter as Router,
+	Redirect,
+	Route,
+	Switch,
+} from "react-router-dom";
 
 import {
 	ApolloProvider,
@@ -18,11 +23,12 @@ import Homepage from "./pages/Homepage";
 import duoFinder from "./pages/DuoFinder";
 import AboutChampion from "./pages/AboutChampion";
 import Login from "./pages/Login";
-import BuildABuild from "./pages/BuildABuild"
+import BuildABuild from "./pages/BuildABuild";
 
 // Components
-import Chat from './components/Chat'
+import Chat from "./components/Chat";
 import SideBar from "./components/SideBar";
+import Navbar from "./components/Navbar";
 // import Footer from "./components/Footer";
 
 // background css
@@ -50,14 +56,20 @@ const client = new ApolloClient({
 
 // Routes
 function App() {
-	const currentPath = window.location.pathname
+	const currentPath = window.location.pathname;
 
 	return (
 		<ApolloProvider client={client}>
 			<Router>
 				{/* {currentPath.includes('login') ? null : <SideBar/>} */}
+<<<<<<< HEAD
 				<Container className='mainBg' maxWidth="xl" disableGutters={true}>
 			<SideBar />
+=======
+				<Container maxWidth="xl" disableGutters={true}>
+					<Navbar />
+					{/* <SideBar /> */}
+>>>>>>> 0dbc72e1fbfc2b54e12964ae554dfd85ff1b1829
 					<Switch>
 						<Route exact path="/homepage" component={Homepage} />
 						<Route exact path="/" component={Login} />
@@ -69,9 +81,7 @@ function App() {
 				</Container>
 			</Router>
 
-
 			{/* <Footer /> */}
-
 		</ApolloProvider>
 	);
 }
