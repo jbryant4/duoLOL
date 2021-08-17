@@ -26,10 +26,8 @@ const typeDefs = gql`
         champion: String
         boots: String
         mythic: String
-        item3: String
-        item4: String
-        item5: String
-        item6: String
+        legendaries: String
+        builtBy: String
     }
     type ChampionSummary {
         name: String
@@ -73,6 +71,24 @@ const typeDefs = gql`
         champion(name: String!): Champion
         mastery(region: String!, riotId: String! ): [ChampionSummary]
         matches(region: String!,type: String!, puuid: String!): [Match]
+        buildItems(patch: String):AllItems
+    }
+    type AllItems {
+        boots:[Item]
+        mythics:[Item]
+        legendaries:[Item]
+    }
+
+    type Item {
+        itemNum: String
+        name: String
+        description: String
+        icon: Image
+        rifts: String
+        depth: Int
+        from: [String]
+        into: [String]
+        
     }
 
     type Mutation {
@@ -87,10 +103,7 @@ const typeDefs = gql`
         champion: String
         boots: String
         mythic: String
-        item3: String
-        item4: String
-        item5: String
-        item6: String
+        legendaries: String
     }
 
     type Auth {
