@@ -1,7 +1,9 @@
 const app = require('express')();
-const http = require('http').createServer(app);
-// jwt secret
-const JWT_SECRET = 'myRandomHash';
+const http = require('http').createServer(app)
+require('dotenv').config()
+// const socketioJwt = require( "socketio-jwt" );
+const jwt = require('jsonwebtoken');
+
 
 const io = require("socket.io")(http, {
     cors: {
@@ -24,10 +26,10 @@ io.use(async (socket, next) => {
     const token = socket.handshake.auth.token;
     try {
         // verify jwt token and get user data
-        const user = await jwt.verify(token, JWT_SECRET);
-        console.log('user', user);
+
+        const user = await jwt.verify(token, process.env.JWT_TOKEN_KEY);
         // save the user data into socket object, to be used further
-        socket.user = user;
+        socket.user = user.data.sumName;
         next();
     } catch (e) {
         // if token is invalid, close connection
@@ -37,7 +39,6 @@ io.use(async (socket, next) => {
 });
 
 io.on('connection', (socket) => {
-    console.log(socket.id)
     // join user's own room
     socket.on('send-message', message => {
         io.emit('receive-message', message)
@@ -47,9 +48,9 @@ io.on('connection', (socket) => {
     socket.join(socket.user.id);
     socket.join('myRandomChatRoomId');
     // find user's all channels from the database and call join event on all of them.
-    console.log('a user connected');
+    console.log(`${socket.user} has connected`);
     socket.on('disconnect', () => {
-        console.log('user disconnected');
+        console.log(`${socket.user} has disconnected`);
     });
     socket.on('my message', (msg) => {
         console.log('message: ' + msg);
@@ -61,12 +62,16 @@ io.on('connection', (socket) => {
         socket.join(roomName);
     });
 
+    socket.on('leave', (roomName) => {
+        console.log('leave: ' + roomName);
+        socket.leave(roomName);
+    })
+
     socket.on('message', ({ message, roomName }, callback) => {
         console.log('message: ' + message + ' in ' + roomName);
-
         // generate data to send to receivers
         const outgoingMessage = {
-            name: socket.user.name,
+            name: socket.user,
             id: socket.user.id,
             message,
         };
@@ -80,6 +85,6 @@ io.on('connection', (socket) => {
     })
 });
 
-http.listen(3000, () => {
+http.listen(3005, () => {
     console.log('listening on *:3005');
 });

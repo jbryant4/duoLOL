@@ -1,6 +1,11 @@
 import React from "react";
 
-import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
+import {
+	BrowserRouter as Router,
+	Redirect,
+	Route,
+	Switch,
+} from "react-router-dom";
 
 import {
 	ApolloProvider,
@@ -18,9 +23,12 @@ import Homepage from "./pages/Homepage";
 import duoFinder from "./pages/DuoFinder";
 import AboutChampion from "./pages/AboutChampion";
 import Login from "./pages/Login";
+import BuildABuild from "./pages/BuildABuild";
 
 // Components
+import Chat from "./components/Chat";
 import SideBar from "./components/SideBar";
+import Navbar from "./components/Navbar";
 // import Footer from "./components/Footer";
 
 //!change back to /graphql when we go live
@@ -45,27 +53,27 @@ const client = new ApolloClient({
 
 // Routes
 function App() {
-	const currentPath = window.location.pathname
+	const currentPath = window.location.pathname;
 
 	return (
 		<ApolloProvider client={client}>
 			<Router>
 				{/* {currentPath.includes('login') ? null : <SideBar/>} */}
 				<Container maxWidth="xl" disableGutters={true}>
-			<SideBar />
+					<Navbar />
+					{/* <SideBar /> */}
 					<Switch>
 						<Route exact path="/homepage" component={Homepage} />
 						<Route exact path="/" component={Login} />
 						<Route exact path="/duoFinder" component={duoFinder} />
 						<Route exact path="/AboutChampion" component={AboutChampion} />
+						<Route exact path="/BuildABuild" component={BuildABuild} />
 						<Route component={Homepage} />
 					</Switch>
 				</Container>
 			</Router>
 
-
 			{/* <Footer /> */}
-
 		</ApolloProvider>
 	);
 }

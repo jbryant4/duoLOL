@@ -42,11 +42,16 @@ const resolvers = {
         matches: async (parent, { region, type, puuid }) => {
             const matches = await riotApi.matchHistoryData(region, type, puuid);
             return matches
+        },
+        buildItems: async (parent, {patch}) => {
+            const items = await riotApi.getBuildItems(patch);
+            return items
+            
         }
     },
     Mutation: {
         addUser: async (parent, args ) => {
-            // console.log(args);
+            console.log(args);
             const user = await User.create(args);
 
             const lolData = await riotApi.riotDataSignUp(user.sumName, 'na1')

@@ -5,24 +5,26 @@ import {
     disconnectSocket,
     sendMessage,
     joinRoom,
+    leaveRoom,
 } from "./socketIo.service";
+import AuthService from '../../utils/auth'
 
 
 function Chat() {
 
-
-
-    const [token, setToken] = useState("");
-    const [messages, setMessages] = useState([])
-    const tokenInputRef = useRef("");
+    // const [tokens, setToken] = useState("");
+    const [messages, setMessages] = useState([]);
     const inputRef = useRef("");
     const joinRef = useRef("");
     const [join, setJoin] = useState('myRandomChatRoomId');
+    const [leave, setLeave] = useState('myRandomChatRoomId');
 
+    const token = AuthService.getToken();
+    // console.log(token)
 
-    // needs to be replaced with the user and its token
+    //! needs to be replaced with the user
     const SENDER = {
-        id: "123",
+        //id: "123",
         name: "Cody Hebert",
     };
 
@@ -30,7 +32,6 @@ function Chat() {
         if (token) {
             initiateSocketConnection(token);
             subscribeToMessages((err, data) => {
-                console.log(data);
                 setMessages((prev) => [...prev, data]);
             });
             return () => {
@@ -39,13 +40,6 @@ function Chat() {
         }
     }, [token]);
 
-    // submits token typing it it want to auth durring log in to get rid of this function
-    const submitToken = (e) => {
-        e.preventDefault();
-        const tokenValue = tokenInputRef.current.value;
-        setToken(tokenValue);
-    };
-
     // submits message and appends it to the server and the client
     const submitMessage = (e) => {
         e.preventDefault();
@@ -53,35 +47,16 @@ function Chat() {
         sendMessage({ message, roomName: join }, (cb) => {
             // callback is acknowledgement from server
             console.log(cb);
-            setMessages((prev) => [
-                ...prev,
-                {
-                    message,
-                    ...SENDER,
-                },
-            ]);
+            messages.push({
+                message,
+                ...SENDER
+            })
+            setMessages(messages);
             // clear the input after the message is sent
             inputRef.current.value = "";
         });
     };
 
-    // const onConnectMessage = (e) => {
-    //   e.preventDefault();
-    //   const mesInput = connectMessage.value
-
-    //   if (mesInput === '') {
-    //     return displayMessage(mesInput)
-    //   }
-    // }
-
-    // const displayMessage = () => {
-
-    //     const message = messages.value
-    //     sendMessage({ message }, (cb) => {
-    //         // callback is acknowledgement from server
-    //         console.log(cb);
-    //     })
-    // }
 
     // handles joining room names
     const handleInputChange = (e) => {
@@ -90,26 +65,31 @@ function Chat() {
 
     // room join function
     const joinChatRoom = () => {
-        joinRoom(join)
+        leaveRoom(leave);
+        joinRoom(join);
+        setLeave(join);
+        setMessages([])
         joinRef.current.value = "";
     }
 
 
     return (
         <div>
-            <form onSubmit={submitToken}>
-                <input type="text" placeholder="Enter token" ref={tokenInputRef} />
-                <button type="submit">Submit</button>
-            </form>
             <input type="text" placeholder="Type in text" ref={joinRef} onChange={handleInputChange} />
             <button onClick={() => joinChatRoom()}>Join Room</button>
             <div className="box">
                 <div className="messages">
-                    {messages.map((user) => (
-                        <div key={user.id}>
-                            {user.name}: {user.message}
-                        </div>
-                    ))}
+                    {console.log(messages)}
+                    {messages.map((user, i) => {
+                        //! fix random div popping up
+                        if (i % 2 === 0) {
+                            return (
+                                <div key={user.id}>
+                                    {user.name}: {user.message}
+                                </div>
+                            )
+                        }
+                    })}
                 </div>
                 <form className="input-div" onSubmit={submitMessage}>
                     <input type="text" placeholder="Type in text" ref={inputRef} />

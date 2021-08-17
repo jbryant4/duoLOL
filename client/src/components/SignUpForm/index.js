@@ -106,7 +106,13 @@ const SignUpForm = () => {
 
 			setFormState({ ...formState, roles: newArray })
 		}
+
 	}
+
+
+		
+	};
+
 
 	return (
 		<Box component="form"

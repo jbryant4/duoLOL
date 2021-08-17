@@ -7,6 +7,7 @@ import Header from "../components/Header";
 
 // Material UI
 import { Container, Box, makeStyles } from "@material-ui/core";
+import MatchComponent from "../components/MatchComponent";
 
 const useStyles = makeStyles({
 	boxMain: {
@@ -76,7 +77,7 @@ function Homepage() {
 	const classes = useStyles();
 
 	const testFriends = ["Robert", "Cody", "Joeseph", "Nathan"];
-
+	const html = `<mainText><stats><attention>35</attention> Attack Damage<br><attention>30%</attention> Attack Speed<br><attention>200</attention> Health<br><attention>20</attention> Ability Haste</stats><br><li><passive>Threefold Strike:</passive> Attacks grant <speed>20 Move Speed</speed> for 3 seconds. If the target is a champion, increase your <scaleAD>base Attack Damage by 6%</scaleAD> for 3 seconds, stacking up to 5 times (Max increase <scaleAD>30% AD</scaleAD>).<li><passive>Spellblade:</passive> After using an Ability, your next Attack is enhanced with an additional <physicalDamage>(200% base Attack Damage) physical damage</physicalDamage> <OnHit>On-Hit</OnHit> (1.5s cooldown). <br><br><rarityMythic>Mythic Passive:</rarityMythic> Grants all other <rarityLegendary>Legendary</rarityLegendary> items <attention>3</attention> Attack Damage,  <attention>3</attention> Ability Haste, and <attention> 3</attention> Move Speed</mainText><br>`
 	return (
 		<Container>
 			<Header />
@@ -99,37 +100,13 @@ function Homepage() {
 					<FriendList name={testFriends} />
 				</Box>
 				<Box className={classes.matchHistory}>
+					<h1>Match History</h1>
+					<Box
+						className={classes.match}
+						dangerouslySetInnerHTML={{ __html: html }}
+						/>
 					<Box className={classes.match}>
-						<h1>Match History</h1>
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-							eiusmod tempor incididunt ut labore et dolore magna aliqua.
-							Vivamus at augue eget arcu dictum varius duis at i
-						</p>
-					</Box>
-					<Box className={classes.match}>
-						<h1>Match</h1>
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-							eiusmod tempor incididunt ut labore et dolore magna aliqua.
-							Vivamus at augue eget arcu dictum varius duis at i
-						</p>
-					</Box>
-					<Box className={classes.match}>
-						<h1>Match</h1>
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-							eiusmod tempor incididunt ut labore et dolore magna aliqua.
-							Vivamus at augue eget arcu dictum varius duis at i
-						</p>
-					</Box>
-					<Box className={classes.match}>
-						<h1>Match</h1>
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-							eiusmod tempor incididunt ut labore et dolore magna aliqua.
-							Vivamus at augue eget arcu dictum varius duis at i
-						</p>
+						<MatchComponent />
 					</Box>
 				</Box>
 			</Box>
