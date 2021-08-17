@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ImageAvatars({link, name}) {
 	const classes = useStyles();
-	const test = "Test Text";
 
 	return (
 		<div className={classes.root}>

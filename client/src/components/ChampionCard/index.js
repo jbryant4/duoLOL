@@ -2,9 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-
 import Typography from "@material-ui/core/Typography";
-
 import ImageAvatars from "../ImageAvatars";
 
 const useStyles = makeStyles({
@@ -46,7 +44,7 @@ const useStyles = makeStyles({
 	
 });
 
-export default function OutlinedCard({ champions, setChamp, champ, imgIndex,setImgIndex }) {
+export default function OutlinedCard({ champions, setChamp, champ,imgIndex,setImgIndex }) {
 	const classes = useStyles();
 
 	function handleChampChange(e) {
