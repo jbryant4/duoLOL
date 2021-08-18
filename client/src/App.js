@@ -29,7 +29,11 @@ import BuildABuild from "./pages/BuildABuild";
 import Chat from "./components/Chat";
 // import SideBar from "./components/SideBar";
 import Navbar from "./components/Navbar";
+import Chat from "./components/Chat"
 // import Footer from "./components/Footer";
+
+// background css
+import './App.css';
 
 //!change back to /graphql when we go live
 const httpLink = createHttpLink({
@@ -58,7 +62,8 @@ function App() {
 	return (
 		<ApolloProvider client={client}>
 			<Router>
-				<Container maxWidth="xl" disableGutters={true}>
+				{/* {currentPath.includes('login') ? null : <SideBar/>} */}
+				<Container className='noBg' maxWidth="xl" disableGutters={true}>
 					<Navbar />
 					<Switch>
 						<Route exact path="/homepage" component={Homepage} />

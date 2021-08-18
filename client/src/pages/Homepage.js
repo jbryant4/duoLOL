@@ -4,6 +4,7 @@ import React from "react";
 //components
 import FriendList from "../components/FriendList";
 import Header from "../components/Header";
+import Chat from "../components/Chat"
 
 // Material UI
 import { Container, Box, makeStyles } from "@material-ui/core";
@@ -15,6 +16,10 @@ import {QUERY_ME} from "../utils/queries"
 
 //page styles
 const useStyles = makeStyles({
+	containerFull: {
+		minHeight: "100%",
+		minWidth: "100%",
+	},
 	boxMain: {
 		background: "aqua",
 		display: "flex",
@@ -119,6 +124,7 @@ function Homepage() {
 					</Box>
 				</Box>
 			</Box>
+			<Chat />
 		</Container>
 	);
 }

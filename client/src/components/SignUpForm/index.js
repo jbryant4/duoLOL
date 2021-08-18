@@ -207,6 +207,7 @@ const SignUpForm = () => {
 		</Box >
 
 	);
+				
 }
 
 
