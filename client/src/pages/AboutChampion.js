@@ -7,7 +7,10 @@ import { Container, Box, Grid } from "@material-ui/core"
 import Header from "../components/Header";
 import ChampionCard from "../components/ChampionCard";
 import Champ from "../components/ChampInfo"
-//import Riot Data with query 
+import Navbar from "../components/Navbar";
+
+
+//import Riot Data with query
 
 import { useQuery } from "@apollo/client";
 import { QUERY_CHAMPIONS } from "../utils/queries"
@@ -27,10 +30,11 @@ const AboutChampion = () => {
 
 	return (
 		<section>
+			<Navbar />
 			<Container maxWidth="md">
 				<Header />
 				<Grid container>
-					<Grid item xs={12} sm={3} md={3} lg={3}> 
+					<Grid item xs={12} sm={3} md={3} lg={3}>
 						<Box className="championBox" >
 							<h2>Select a Champion</h2>
 							<ChampionCard
