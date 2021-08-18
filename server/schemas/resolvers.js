@@ -99,13 +99,13 @@ const resolvers = {
             return { user: updatedUser, token };
         },
         addBuild: async (parent, { content }, context) => {
-
+            
             if (context.user) {
-                const build = await Build.create({ ...content, username: context.user.sumName });
+                const build = await Build.create({ ...content, madeBy: context.user.sumName });
 
                 await User.findByIdAndUpdate(
                     { _id: context.user._id },
-                    { $push: { builds: build._id } },
+                    { $push: { builds: build } },
                     { new: true }
                 );
 

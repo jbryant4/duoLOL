@@ -23,6 +23,9 @@ const buildSchema = new Schema(
         legendaries: {
             type: String,
             require: true
+        },
+        madeBy: {
+            type: String
         }
         //this format for mvp but could also add summoner spells,runes and creator thoughts
     }

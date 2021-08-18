@@ -7,12 +7,14 @@ import Header from "../components/Header";
 import Chat from "../components/Chat"
 
 // Material UI
-import { Container, Box, makeStyles } from "@material-ui/core";
+import { Container, Box, makeStyles, CardMedia, Card } from "@material-ui/core";
 import MatchComponent from "../components/MatchComponent";
 
 //gql 
 import { useQuery } from "@apollo/client";
-import {QUERY_ME} from "../utils/queries"
+import { QUERY_ME } from "../utils/queries"
+
+//images
 
 //page styles
 const useStyles = makeStyles({
@@ -32,7 +34,7 @@ const useStyles = makeStyles({
 		justifyContent: "flex-start",
 		alignItems: "center",
 		width: "15%",
-		background: "blue",
+		
 	},
 	summonerDiv: {
 		display: "flex",
@@ -86,42 +88,53 @@ const useStyles = makeStyles({
 function Homepage() {
 	const classes = useStyles();
 
+
 	const { loading, data, error } = useQuery(QUERY_ME);
-	if(loading) {return(<h2>Loading...</h2>)};
+	if (loading) { return (<h2>Loading...</h2>) };
 	if (error) { console.log(error) };
 
 	const me = data?.me || {}
 
-	console.log(me)
+	console.log(me.builds)
 
 	const testFriends = ["Robert", "Cody", "Joeseph", "Nathan"];
-	
+
 	return (
 		<Container>
 			<Header />
-			<Box className={classes.boxMain}>
+			<Box className={classes.boxMain} >
 				<Box className={classes.imageDiv}>
-					<image>Placeholder for image</image>
+					<img alt={me.tier} src={`/ranked-emblems/${me.tier}.png`} className={classes.img}/>
 				</Box>
 				<Box className={classes.summonerDiv}>
-					<h2>Summoner Name</h2>
-					<h4>Rank</h4>
+					<h2>{me.sumName}</h2>
+					<h4>{me.tier} {me.rank}</h4>
 				</Box>
 				<Box className={classes.duoDiv}>
-					<h1>Find Your Duo</h1>
-					<h4>Dashboard</h4>
+					
+					<h4>Wins: {me.wins}</h4>
+					<h4>losses: {me.losses}</h4>
 				</Box>
 			</Box>
 			<Box className={classes.boxContainer}>
 				<Box className={classes.friendList}>
 					<h1>Friends List</h1>
-					<FriendList name={testFriends} />
+					{me.friends.length === 0 ?  <h2>Go make some friends with Duo  Finder</h2> :
+					<FriendList name={me.friends} />
+					}
 				</Box>
 				<Box className={classes.matchHistory}>
 					<h1>Match History</h1>
 					<Box className={classes.match}>
 						<MatchComponent />
 					</Box>
+				</Box>
+				<Box className={classes.friendList}>
+					
+					<h1>Custom Builds</h1>
+					{me.builds.length === 0 ?  <h2>Go make some custom builds with our custom build page</h2> :
+					<FriendList name={me.friends} />
+					}
 				</Box>
 			</Box>
 			<Chat />

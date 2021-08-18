@@ -87,10 +87,14 @@ export default function Build({ }) {
         } catch (e) {
             console.log(e);
         }
-        console.log('passed')
-        // setFormState({
-        //     email: '', password: ''
-        // });
+        
+        setTitle('');
+        setChamp('');
+        setBoot({ link: "test", name: '+' });
+        setMythic({ link: "test", name: '+' });
+        setLegendaries([]);
+
+        
     };
 
     return (
