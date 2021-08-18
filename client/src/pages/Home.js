@@ -4,6 +4,7 @@ import React from "react";
 //components
 import FriendList from "../components/FriendList";
 import Header from "../components/Header";
+import Navbar from "../components/Navbar";
 
 
 // Material UI
@@ -98,6 +99,7 @@ function Homepage() {
 
 	return (
 		<Container>
+			<Navbar/ >
 			<Header />
 			<Box className={classes.boxMain}>
 				<Box className={classes.imageDiv}>

@@ -7,6 +7,7 @@ import { Container, Box, Grid } from "@material-ui/core"
 import Header from "../components/Header";
 import ChampionCard from "../components/ChampionCard";
 import Champ from "../components/ChampInfo"
+import Navbar from "../components/Navbar";
 
 
 //import Riot Data with query
@@ -29,6 +30,7 @@ const AboutChampion = () => {
 
 	return (
 		<section>
+			<Navbar />
 			<Container maxWidth="md">
 				<Header />
 				<Grid container>

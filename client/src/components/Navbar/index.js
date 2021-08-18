@@ -93,7 +93,7 @@ export default function Navbar() {
 					textColor="primary"
 					aria-label="scrollable force tabs example"
 				>
-					<Link to="/homepage" className={classes.linkStyle}>
+					<Link to="/home" className={classes.linkStyle}>
 						<Tab label="Home" icon={<HomeIcon />} {...a11yProps(0)}></Tab>
 					</Link>
 
@@ -113,7 +113,7 @@ export default function Navbar() {
 						<Tab label="Duo Finder" icon={<GroupAddIcon />} {...a11yProps(3)} />
 					</Link>
 
-					<Link to="/Chat" className={classes.linkStyle}>
+					<Link to="/ChatPage" className={classes.linkStyle}>
 						<Tab
 							label="Chat"
 							icon={<QuestionAnswerOutlinedIcon />}
