@@ -22,8 +22,8 @@ const resolvers = {
             return Build.findOne({ _id });
         },
         // get a user by username
-        user: async (parent, { email }) => {
-            return User.findOne({ email })
+        user: async (parent, { _id }) => {
+            return User.findOne({ _id })
                 .select('-__v -password')
                 .populate('builds')
         },

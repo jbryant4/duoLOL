@@ -39,7 +39,7 @@ async function riotDataUpdata(riotId, region = 'na1') {
     //solo que data
     const lolData = await api.get(region, 'league.getLeagueEntriesForSummoner', riotId)
     //return first slot in array because that is solo que data
-    return lolData[0]
+    return lolData[1]
 }
 //!get mastery for all champs for a user 
 async function champMasteryData(region, riotId) {
