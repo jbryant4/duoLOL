@@ -4,7 +4,7 @@ let socket;
 
 // initiates socket connection with auth
 export const initiateSocketConnection = (token) => {
-	socket = io(process.env.REACT_APP_SOCKET_ENDPOINT, {
+	socket = io("http://localhost:3005", {
 		auth: {
 			token,
 		},

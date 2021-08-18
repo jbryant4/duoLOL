@@ -5,17 +5,15 @@ import React from "react";
 import BuildList from '../components/BuildList'
 import FriendList from "../components/FriendList";
 import Header from "../components/Header";
-import Chat from "../components/Chat"
+import Navbar from "../components/Navbar";
 
 // Material UI
 import { Container, Box, makeStyles, CardMedia, Card } from "@material-ui/core";
 import MatchComponent from "../components/MatchComponent";
 
-//gql 
+//gql
 import { useQuery } from "@apollo/client";
-import { QUERY_ME } from "../utils/queries"
-
-//images
+import { QUERY_ME } from "../utils/queries";
 
 //page styles
 const useStyles = makeStyles({
@@ -35,7 +33,7 @@ const useStyles = makeStyles({
 		justifyContent: "flex-start",
 		alignItems: "center",
 		width: "15%",
-		
+
 	},
 	summonerDiv: {
 		display: "flex",
@@ -91,55 +89,60 @@ function Homepage() {
 
 
 	const { loading, data, error } = useQuery(QUERY_ME);
-	if (loading) { return (<h2>Loading...</h2>) };
-	if (error) { console.log(error) };
+	if (loading) {
+		return <h2>Loading...</h2>;
+	}
+	if (error) {
+		console.log(error);
+	}
 
-	const me = data?.me || {}
+	const me = data?.me || {};
 
-	console.log(me.builds)
+	console.log(me);
 
 	const testFriends = ["Robert", "Cody", "Joeseph", "Nathan"];
 
 	return (
-		<Container>
-			<Header />
-			<Box className={classes.boxMain} >
-				<Box className={classes.imageDiv}>
-					<img alt={me.tier} src={`/ranked-emblems/${me.tier}.png`} className={classes.img}/>
-				</Box>
-				<Box className={classes.summonerDiv}>
-					<h2>{me.sumName}</h2>
-					<h4>{me.tier} {me.rank}</h4>
-				</Box>
-				<Box className={classes.duoDiv}>
-					
-					<h4>Wins: {me.wins}</h4>
-					<h4>losses: {me.losses}</h4>
-				</Box>
-			</Box>
-			<Box className={classes.boxContainer}>
-				<Box className={classes.friendList}>
-					<h1>Friends List</h1>
-					{me.friends.length === 0 ?  <h2>Go make some friends with Duo  Finder</h2> :
-					<FriendList name={me.friends} />
-					}
-				</Box>
-				<Box className={classes.matchHistory}>
-					<h1>Match History</h1>
-					<Box className={classes.match}>
-						<MatchComponent />
+		<div>
+			<Navbar />
+			<Container>
+				<Header />
+				<Box className={classes.boxMain} >
+					<Box className={classes.imageDiv}>
+						<img alt={me.tier} src={`/ranked-emblems/${me.tier}.png`} className={classes.img} />
+					</Box>
+					<Box className={classes.summonerDiv}>
+						<h2>{me.sumName}</h2>
+						<h4>{me.tier} {me.rank}</h4>
+					</Box>
+					<Box className={classes.duoDiv}>
+
+						<h4>Wins: {me.wins}</h4>
+						<h4>losses: {me.losses}</h4>
 					</Box>
 				</Box>
-				<Box className={classes.friendList}>
-					
-					<h1>Custom Builds</h1>
-					{me.builds.length === 0 ?  <h2>Go make some custom builds with our custom build page</h2> :
-					<BuildList name={me.builds} />
-					}
+				<Box className={classes.boxContainer}>
+					<Box className={classes.friendList}>
+						<h1>Friends List</h1>
+						{me.friends.length === 0 ? <h2>Go make some friends with Duo  Finder</h2> :
+							<FriendList name={me.friends} />
+						}
+					</Box>
+					<Box className={classes.boxContainer}>
+						<Box className={classes.friendList}>
+							<h1>Friends List</h1>
+							<FriendList name={testFriends} />
+						</Box>
+						<Box className={classes.matchHistory}>
+							<h1>Match History</h1>
+							<Box className={classes.match}>
+								<MatchComponent />
+							</Box>
+						</Box>
+					</Box>
 				</Box>
-			</Box>
-			<Chat />
-		</Container>
+			</Container>
+		</div>
 	);
 }
 
