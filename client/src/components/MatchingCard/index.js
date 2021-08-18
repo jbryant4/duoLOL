@@ -30,8 +30,6 @@ import jngIcon from "../../assets/images/RoleIcons/jng.png";
 import midIcon from "../../assets/images/RoleIcons/mid.png";
 import adcIcon from "../../assets/images/RoleIcons/adc.png";
 import supIcon from "../../assets/images/RoleIcons/sup.png";
-import zIndex from '@material-ui/core/styles/zIndex';
-
 
 
 const db = [
@@ -82,24 +80,6 @@ const useStyles = makeStyles((theme) => ({
         height: 525,
         backgroundPosition: "unset"
     },
-    expandIcon: {
-        position: "absolute",
-        top: "50%",
-        right: 0,
-        backgroundColor: 'white'
-    },
-
-    expand: {
-        transform: 'rotate(0deg)',
-        marginLeft: 'auto',
-        transition: theme.transitions.create('transform', {
-            duration: theme.transitions.duration.shortest,
-        }),
-        order: -1
-    },
-    expandOpen: {
-        transform: 'rotate(180deg)',
-    },
 
     // new card 
     content: {
@@ -126,7 +106,7 @@ const useStyles = makeStyles((theme) => ({
             content: '""',
             position: 'absolute',
             bottom: 0,
-            display: 'block',
+            // display: 'block',
             width: '100%',
             height: '45%',
             background: 'linear-gradient(to top, rgba(255, 255, 255, 0.24), rgba(0,0,0,0))',
@@ -136,7 +116,7 @@ const useStyles = makeStyles((theme) => ({
         placeContent: "space-evenly"
     },
     swipeCard: {
-        zIndex: '999',
+        zIndex: '0',
         cursor: "pointer",
     },
     userCardIcon: {
@@ -214,11 +194,10 @@ export default function MatchingCard({ }) {
                                 <img className={classes.userSecondCardIcon} src={character.mainRoles[1]} />
                             </Box>
 
-                            <PositionedPopper />
+                        <PositionedPopper />
 
 
                         </Box>
-
 
                         <CardContent>
                             <Typography variant="body1" color="textPrimary" component="p" className="disable-select">

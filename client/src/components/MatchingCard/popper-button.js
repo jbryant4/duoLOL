@@ -21,10 +21,10 @@ const useStyles = makeStyles((theme) => ({
         width: 500,
     },
     typography: {
-        // padding: theme.spacing(2),
+        // padding: theme.spacing(1),
         width: 225,
         margin: 10,
-        
+
 
     },
     popperBtn: {
@@ -33,23 +33,19 @@ const useStyles = makeStyles((theme) => ({
         right: 0,
         backgroundColor: 'rgba(240, 248, 255, 0.493)',
         fontWeight: 'bold',
-        zIndex: '999',
-        padding: '8px'
+        padding: '8px',
+        zIndex: 999
     },
     iconCollapse: {
         color: "white"
-        
-    },
-    champStatsCard: {
-        zIndex: -199,
-        
+
     },
     paperContainer: {
         margin: 0,
         paddingTop: 3,
         paddingBottom: 3,
     }
-    
+
 
 
 }));
@@ -85,7 +81,7 @@ export default function PositionedPopper() {
                 )}
             </Popper>
 
-            <Box className={classes.popperIconContainer}>                
+            <Box className={classes.popperIconContainer}>
 
                 <Button size='small' className={classes.popperBtn} id="popperBtn" onClick={handleClick('right')}>
                     <AssessmentIcon className={classes.iconCollapse} /> <ArrowForwardIosIcon className={classes.iconCollapse} />

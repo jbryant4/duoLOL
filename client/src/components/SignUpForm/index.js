@@ -108,17 +108,6 @@ const SignUpForm = () => {
 			setFormState({ ...formState, primRoles: newArray })
 		}
 	}
-<<<<<<< HEAD
-=======
-
-
-
-
-
-
-
-
->>>>>>> 21f190dd3f67a01adfa4ef71fd5beee5913df215
 
 	return (
 		<Box component="form"
