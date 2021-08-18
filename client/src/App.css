@@ -37,6 +37,10 @@
   }
 } */
 
+.noBg {
+  background: rgba(red, green, blue, 0);
+}
+
 .mainBg {
   background-image:url(./assets//images/sumBg.jpg);
   min-height: 100%;
@@ -44,4 +48,5 @@
   background-position:center;
   background-repeat: no-repeat;
   background-size: cover;
+  /* background-color: rgba(3, 0, 165, 0.5); */
 }

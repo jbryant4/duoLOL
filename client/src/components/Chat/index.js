@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, Box, Container } from '@material-ui/core';
 import {
     subscribeToMessages,
     initiateSocketConnection,
@@ -21,6 +21,52 @@ function Chat() {
 
     const token = AuthService.getToken();
     // console.log(token)
+
+    const useStyles = makeStyles({
+        contain: {
+            width: "45%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            textDecoration: "none",
+            color: "goldenrod",
+            backgroundColor: "rgba(3, 0, 165, 0.3)",
+            flexWrap: "wrap",
+            border: "2px solid goldenrod",
+        },
+        box: {
+            color: "goldenrod",
+            height: "200px",
+            width:"100%",
+            overflow: "scroll",
+            overflowX: "hidden",
+            display: "flex",
+            flexDirection:"column",
+        },
+        formBox: {
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "stretch",
+            justifyContent: "center",
+            width: "100%",        
+        },
+        messageInput: {
+            color: "goldenrod",
+            background: "rgba(3, 0, 165, 0.3)",
+            border: "2px solid darkgoldenrod",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+        },
+        buttonInput: {
+            backgroundColor: "goldenrod",
+            border: "2px solid darkgoldenrod",
+            color: "rgb(3,0,165)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+        }
+    });
 
     //! needs to be replaced with the user
     const SENDER = {
@@ -71,32 +117,34 @@ function Chat() {
         setMessages([])
         joinRef.current.value = "";
     }
-
+    const classes = useStyles();
 
     return (
-        <div>
-            <input type="text" placeholder="Type in text" ref={joinRef} onChange={handleInputChange} />
-            <button onClick={() => joinChatRoom()}>Join Room</button>
-            <div className="box">
-                <div className="messages">
+        <Container className={classes.contain}>
+            {/* <input type="text" placeholder="Type in text" ref={joinRef} onChange={handleInputChange} />
+            <button onClick={() => joinChatRoom()}>Join Room</button> */}
+            {/* <Box > */}
+                <Box className={classes.box}>
                     {console.log(messages)}
                     {messages.map((user, i) => {
-                        //! fix random div popping up
+                        //! fix random Box popping up
                         if (i % 2 === 0) {
                             return (
-                                <div key={user.id}>
+                                <Box key={user.id}>
                                     {user.name}: {user.message}
-                                </div>
+                                </Box>
                             )
                         }
                     })}
-                </div>
-                <form className="input-div" onSubmit={submitMessage}>
-                    <input type="text" placeholder="Type in text" ref={inputRef} />
-                    <button type="submit">Submit</button>
-                </form>
-            </div>
-        </div>
+                </Box>
+                {/* <Box> */}
+                    <form className={classes.formBox} onSubmit={submitMessage}>
+                        <input className={classes.messageInput} type="text" placeholder="Start Messaging" ref={inputRef} />
+                        <button className={classes.buttonInput} type="submit">Submit</button>
+                    </form>
+                {/* </Box> */}
+            {/* </Box> */}
+        </Container>
     )
 
 }

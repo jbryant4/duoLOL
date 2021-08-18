@@ -28,6 +28,7 @@ import BuildABuild from "./pages/BuildABuild";
 // Components
 // import Chat from "./components/Chat";
 import Navbar from "./components/Navbar";
+import Chat from "./components/Chat"
 // import Footer from "./components/Footer";
 
 // background css
@@ -61,8 +62,8 @@ function App() {
 		<ApolloProvider client={client}>
 			<Router>
 				{/* {currentPath.includes('login') ? null : <SideBar/>} */}
-				<Container className='mainBg' maxWidth="xl" disableGutters={true}>
-			<SideBar />
+				<Container className='noBg' maxWidth="xl" disableGutters={true}>
+					<Navbar />
 					<Switch>
 						<Route exact path="/homepage" component={Homepage} />
 						<Route exact path="/" component={Login} />
