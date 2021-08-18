@@ -24,13 +24,11 @@ const useStyles = makeStyles((theme) => ({
         // padding: theme.spacing(1),
         width: 225,
         margin: 10,
-
-
     },
     popperBtn: {
         position: "absolute",
-        top: "50%",
-        right: 0,
+        top: "45%",
+        right: '41%',        
         backgroundColor: 'rgba(240, 248, 255, 0.493)',
         fontWeight: 'bold',
         padding: '8px',
@@ -85,7 +83,6 @@ export default function PositionedPopper() {
 
                 <Button size='small' className={classes.popperBtn} id="popperBtn" onClick={handleClick('right')}>
                     <AssessmentIcon className={classes.iconCollapse} /> <ArrowForwardIosIcon className={classes.iconCollapse} />
-
                 </Button>
             </Box>
         </Box>
