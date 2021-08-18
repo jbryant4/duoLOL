@@ -124,7 +124,7 @@ function Homepage() {
 					</Box>
 				</Box>
 			</Box>
-			<Chat />
+			{/* <Chat /> */}
 		</Container>
 	);
 }
