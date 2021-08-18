@@ -109,14 +109,6 @@ const SignUpForm = () => {
 		}
 	}
 
-
-
-
-
-
-
-
-
 	return (
 		<Box component="form"
 			sx={{

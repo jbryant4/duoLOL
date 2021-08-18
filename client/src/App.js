@@ -27,7 +27,7 @@ import BuildABuild from "./pages/BuildABuild";
 import ChatPage from "./pages/ChatPage";
 
 // Components
-import Chat from "./components/Chat";
+import Chat from "./components/Chat"
 // import Footer from "./components/Footer";
 
 // background css
