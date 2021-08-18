@@ -83,8 +83,8 @@ const useStyles = makeStyles({
 	},
 });
 
-// Homepage
-function Homepage() {
+// Home
+function Home() {
 	const classes = useStyles();
 
 
@@ -146,5 +146,5 @@ function Homepage() {
 	);
 }
 
-// export Homepage
-export default Homepage;
+// export Home
+export default Home;

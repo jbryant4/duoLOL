@@ -21,35 +21,29 @@ const useStyles = makeStyles((theme) => ({
         width: 500,
     },
     typography: {
-        // padding: theme.spacing(2),
+        // padding: theme.spacing(1),
         width: 225,
         margin: 10,
-        
-
     },
     popperBtn: {
         position: "absolute",
-        top: "50%",
-        right: 0,
+        top: "45%",
+        right: '41%',        
         backgroundColor: 'rgba(240, 248, 255, 0.493)',
         fontWeight: 'bold',
-        zIndex: '999',
-        padding: '8px'
+        padding: '8px',
+        zIndex: 999
     },
     iconCollapse: {
         color: "white"
-        
-    },
-    champStatsCard: {
-        zIndex: -199,
-        
+
     },
     paperContainer: {
         margin: 0,
         paddingTop: 3,
         paddingBottom: 3,
     }
-    
+
 
 
 }));
@@ -72,7 +66,7 @@ export default function PositionedPopper() {
             <Popper open={open} anchorEl={anchorEl} placement={placement} transition>
                 {({ TransitionProps }) => (
                     <Fade {...TransitionProps} timeout={350}>
-                        <Paper elevation={3} rounded className={classes.paperContainer} >
+                        <Paper elevation={3} className={classes.paperContainer} >
                             <Typography className={classes.typography} >
 
                                 <ChampStatsCard className={classes.champStatsCard} />
@@ -85,11 +79,10 @@ export default function PositionedPopper() {
                 )}
             </Popper>
 
-            <Box className={classes.popperIconContainer}>                
+            <Box className={classes.popperIconContainer}>
 
                 <Button size='small' className={classes.popperBtn} id="popperBtn" onClick={handleClick('right')}>
                     <AssessmentIcon className={classes.iconCollapse} /> <ArrowForwardIosIcon className={classes.iconCollapse} />
-
                 </Button>
             </Box>
         </Box>
