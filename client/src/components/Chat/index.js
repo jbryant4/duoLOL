@@ -24,7 +24,7 @@ function Chat() {
 
     const useStyles = makeStyles({
         contain: {
-            width: "45%",
+            width: "85%",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -36,7 +36,7 @@ function Chat() {
         },
         box: {
             color: "goldenrod",
-            height: "200px",
+            height: "600px",
             width:"100%",
             overflow: "scroll",
             overflowX: "hidden",
@@ -65,7 +65,7 @@ function Chat() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-        }
+        },
     });
 
     //! needs to be replaced with the user
@@ -126,15 +126,19 @@ function Chat() {
             {/* <Box > */}
                 <Box className={classes.box}>
                     {console.log(messages)}
-                    {messages.map((user, i) => {
-                        //! fix random Box popping up
-                        if (i % 2 === 0) {
-                            return (
-                                <Box key={user.id}>
-                                    {user.name}: {user.message}
+                    {messages.filter(message => message.message).map((message, i) => {
+                    const highlightStyle = {
+                    }
+                    if(SENDER.name !== message.name){
+                        highlightStyle.color="blue"
+                        highlightStyle.backgroundColor="darkgoldenrod"
+                    }
+                    return (
+                                <Box  key={message.id}
+                                style={highlightStyle}>
+                                    {message.name}: {message.message}
                                 </Box>
                             )
-                        }
                     })}
                 </Box>
                 {/* <Box> */}
