@@ -81,5 +81,32 @@ export const QUERY_BUILD_ITEMS = gql`
 `;
 
 export const QUERY_ME = gql`
-	
+	query me {
+  		me{
+			_id
+			email
+			rank
+			tier
+			wins
+			losses
+			sumName
+			primRoles
+			riotId
+			puuid
+			friendCount
+			builds{
+				_id
+				title
+				champion
+				boots
+				mythic
+				legendaries
+				builtBy
+			}
+			friends{
+				_id
+				sumName
+			}
+		}
+	}
 `;

@@ -54,7 +54,7 @@ const SignUpForm = () => {
 	const [formState, setFormState] = useState({ email: '', sumName: '', password: '', primRoles: [] });
 	const [addUser] = useMutation(ADD_USER);
 
-	console.log(formState)
+	
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
 		// check if form has everything (as per react-bootstrap docs)
@@ -67,7 +67,7 @@ const SignUpForm = () => {
 		console.log(formState)
 		try {
 			const { data } = await addUser({
-				variables: { ...formState }
+				variables: formState 
 			});
 			const token = data.addUser.token;
 			Auth.login(token);
