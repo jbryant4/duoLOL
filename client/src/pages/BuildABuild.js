@@ -6,14 +6,15 @@ import React from "react";
 import Build from "../components/BuildMaker";
 import Navbar from "../components/Navbar";
 
-
 // BuildABuild
 function BuildABuild() {
 	return (
-		<Container>
+		<div>
 			<Navbar />
-			<Build />
-		</Container>
+			<Container>
+				<Build />
+			</Container>
+		</div>
 	);
 }
 

@@ -7,6 +7,8 @@ import { Box, Container } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import { positions } from '@material-ui/system';
 
+import LoginNavbar from "../components/LoginNavbar";
+
 
 
 // Login Function
@@ -17,6 +19,7 @@ function Login(props) {
 
 	return (
 		<Box>
+			<LoginNavbar />
 			<div>
 				<video
 					autoPlay loop muted

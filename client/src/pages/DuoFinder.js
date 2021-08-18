@@ -10,11 +10,13 @@ import Navbar from "../components/Navbar";
 // DuoFinder
 function DuoFinder() {
 	return (
-		<Container>
+		<div>
 			<Navbar />
-			<FriendList />
-			<MatchingCard />
-		</Container>
+			<Container>
+				<FriendList />
+				<MatchingCard />
+			</Container>
+		</div>
 	);
 }
 
