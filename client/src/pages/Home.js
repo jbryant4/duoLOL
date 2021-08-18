@@ -98,7 +98,7 @@ function Homepage() {
 
 	const me = data?.me || {};
 
-	console.log(me);
+	console.log(data);
 
 	const testFriends = ["Robert", "Cody", "Joeseph", "Nathan"];
 
@@ -124,15 +124,15 @@ function Homepage() {
 				<Box className={classes.boxContainer}>
 					<Box className={classes.friendList}>
 						<h1>Friends List</h1>
-						{me.friends.length === 0 ? <h2>Go make some friends with Duo  Finder</h2> :
+						{me.friends ? <h2>Go make some friends with Duo  Finder</h2> :
 							<FriendList name={me.friends} />
 						}
 					</Box>
+					<Box className={classes.friendList}>
+						<h1>Custom Builds</h1>
+						<BuildList builds={me.builds} />
+					</Box>
 					<Box className={classes.boxContainer}>
-						<Box className={classes.friendList}>
-							<h1>Friends List</h1>
-							<FriendList name={testFriends} />
-						</Box>
 						<Box className={classes.matchHistory}>
 							<h1>Match History</h1>
 							<Box className={classes.match}>

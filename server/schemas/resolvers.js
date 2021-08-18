@@ -8,12 +8,12 @@ const resolvers = {
         me: async (parent, args, context) => {
             // console.log(context.user)
             if (context.user) {
-                const userData = await User.findOne({ _id: context.user._id })
+                const user = await User.findOne({ _id: context.user._id })
                     .select('-__v -password')
                     .populate('builds')
                     .populate('friends');
 
-                return userData;
+                return {...user};
             }
 
             throw new AuthenticationError('Not logged in');
