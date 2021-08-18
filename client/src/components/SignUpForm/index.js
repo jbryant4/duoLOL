@@ -108,9 +108,6 @@ const SignUpForm = () => {
 
 			setFormState({ ...formState, roles: newArray })
 		}
-<<<<<<< HEAD
-	}
-=======
 
 	}
 
@@ -118,7 +115,6 @@ const SignUpForm = () => {
 
 	
 
->>>>>>> 1b6a7d14d38079d5c81932dcaa94fe29bad168a3
 
 	return (
 		<Box component="form"
@@ -210,6 +206,7 @@ const SignUpForm = () => {
 		</Box >
 
 	);
+				
 }
 
 export default SignUpForm;
