@@ -9,15 +9,26 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 
 //icons
+import QuestionAnswerOutlinedIcon from "@material-ui/icons/QuestionAnswerOutlined";
 import HomeIcon from "@material-ui/icons/Home";
 import EmojiEventsIcon from "@material-ui/icons/EmojiEvents";
 import GroupAddIcon from "@material-ui/icons/GroupAdd";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import BuildIcon from "@material-ui/icons/Build";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 //Style
 const useStyles = makeStyles({
 	menuStyle: {
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "center",
+		textDecoration: "none",
+		color: "white",
+		backgroundColor: "goldenrod",
+		width: "100%",
+	},
+	NavbarBottom: {
+		marginBottom: "25px",
 		display: "flex",
 		alignItems: "center",
 		justifyContent: "center",
@@ -36,7 +47,12 @@ export default function Navbar() {
 		{
 			text: "Home",
 			icon: <HomeIcon />,
-			destination: "/homepage",
+			destination: "/home",
+		},
+		{
+			text: "Chat",
+			icon: <QuestionAnswerOutlinedIcon />,
+			destination: "/Chatpage",
 		},
 		{
 			text: "About Champion",
@@ -53,9 +69,10 @@ export default function Navbar() {
 			icon: <GroupAddIcon />,
 			destination: "/DuoFinder",
 		},
+
 		{
-			text: "Login or SignUp",
-			icon: <AccountCircleIcon />,
+			text: "Log Out",
+			icon: <ExitToAppIcon />,
 			destination: "/",
 		},
 	];
@@ -64,7 +81,7 @@ export default function Navbar() {
 			{menuList.map((item) => {
 				const { text, icon, destination } = item;
 				return (
-					<Link to={destination} className={classes.menuStyle}>
+					<Link to={destination} className={classes.NavbarBottom}>
 						<ListItem button key={text} className={classes.menuStyle}>
 							{icon && <ListItemIcon>{icon}</ListItemIcon>}
 							<ListItemText primary={text} />

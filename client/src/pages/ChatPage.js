@@ -2,21 +2,21 @@
 import { Container } from "@material-ui/core";
 import React from "react";
 
-//component
-import Build from "../components/BuildMaker";
+//components
+import Chat from "../components/Chat";
 import Navbar from "../components/Navbar";
 
-// BuildABuild
-function BuildABuild() {
+// Chat
+function ChatPage() {
 	return (
 		<div>
 			<Navbar />
 			<Container>
-				<Build />
+				<Chat />
 			</Container>
 		</div>
 	);
 }
 
-// export BuildABuild
-export default BuildABuild;
+// export Chat
+export default ChatPage;
