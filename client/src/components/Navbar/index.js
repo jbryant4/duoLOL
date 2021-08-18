@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
 		backgroundColor: theme.palette.background.paper,
 	},
 	menuStyle: {
-		alignItems: "center",
+		
 		justifyContent: "center",
 		backgroundColor: "goldenrod",
 		width: "100%",
