@@ -6,6 +6,8 @@ import Grid from '@material-ui/core/Grid';
 // Utility imports
 import { ADD_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
+
+
 // import iconsPool from "../../assets/images/RoleIcons/roleIconsPool";
 
 import topIcon from "../../assets/images/RoleIcons/top.png"
@@ -65,7 +67,7 @@ const SignUpForm = () => {
 		console.log(formState)
 		try {
 			const { data } = await addUser({
-				variables: {...formState}
+				variables: { ...formState }
 			});
 			const token = data.addUser.token;
 			Auth.login(token);
@@ -105,8 +107,15 @@ const SignUpForm = () => {
 
 			setFormState({ ...formState, primRoles: newArray })
 		}
-
 	}
+
+
+
+
+
+
+
+
 
 	return (
 		<Box component="form"
@@ -199,5 +208,6 @@ const SignUpForm = () => {
 
 	);
 }
+
 
 export default SignUpForm;

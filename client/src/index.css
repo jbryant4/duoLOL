@@ -16,8 +16,7 @@ body {
   top: 18%;
   border-radius: 10px;
   box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.205);
-  text-align: center!important;  
- 
+  text-align: center!important;
 }
 
 .loginForm {
@@ -39,7 +38,7 @@ body {
 
 .imagesContainer {
   flex-wrap: wrap;
-  justify-content:center;
+  justify-content: center;
   margin-bottom: 5px;
 }
 
@@ -87,8 +86,36 @@ input:focus::placeholder {
   font-family: 'Roboto Slab', serif;
 }
 
+.disable-select {
+  user-select: none;
+  /* supported by Chrome and Opera */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+}
+
+#disable-select {
+  user-select: none;
+  /* supported by Chrome and Opera */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+}
+
+
 .error-text {
   color: red;
+  color:rgba(240, 248, 255, 0.493)
 }
 
 code {
