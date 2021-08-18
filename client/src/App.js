@@ -19,21 +19,19 @@ import { setContext } from "@apollo/client/link/context";
 import Container from "@material-ui/core/Container";
 
 // Pages
-import Homepage from "./pages/Homepage";
+import Home from "./pages/Home";
 import duoFinder from "./pages/DuoFinder";
 import AboutChampion from "./pages/AboutChampion";
 import Login from "./pages/Login";
 import BuildABuild from "./pages/BuildABuild";
+import ChatPage from "./pages/ChatPage";
 
 // Components
-
-// import SideBar from "./components/SideBar";
-import Navbar from "./components/Navbar";
 import Chat from "./components/Chat"
 // import Footer from "./components/Footer";
 
 // background css
-import './App.css';
+import "./App.css";
 
 //!change back to /graphql when we go live
 const httpLink = createHttpLink({
@@ -62,16 +60,15 @@ function App() {
 	return (
 		<ApolloProvider client={client}>
 			<Router>
-				{/* {currentPath.includes('login') ? null : <SideBar/>} */}
-				<Container className='noBg' maxWidth="xl" disableGutters={true}>
-					<Navbar />
+				<Container className="noBg" maxWidth="xl" disableGutters={true}>
 					<Switch>
-						<Route exact path="/homepage" component={Homepage} />
+						<Route exact path="/home" component={Home} />
 						<Route exact path="/" component={Login} />
 						<Route exact path="/duoFinder" component={duoFinder} />
 						<Route exact path="/AboutChampion" component={AboutChampion} />
 						<Route exact path="/BuildABuild" component={BuildABuild} />
-						<Route component={Homepage} />
+						<Route exact path="/ChatPage" component={ChatPage} />
+						<Route component={Home} />
 					</Switch>
 				</Container>
 			</Router>
