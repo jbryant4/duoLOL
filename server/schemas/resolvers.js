@@ -18,6 +18,16 @@ const resolvers = {
 
             throw new AuthenticationError('Not logged in');
         },
+        users: async (parent, args, context) => {
+            if (context.user) {
+                const users = await User.find()
+                .select('-__v -password')             
+            // console.log({user})
+                return users;
+            }
+
+            throw new AuthenticationError('Not logged in');
+        },
         build: async (parent, { _id }) => {
             return Build.findOne({ _id });
         },

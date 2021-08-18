@@ -66,6 +66,7 @@ const typeDefs = gql`
     }
     type Query {
         me: User
+        users: [User]
         user(email: String!): User
         build(_id: ID!): Build
         champions(patch: String): [ChampionSummary]
