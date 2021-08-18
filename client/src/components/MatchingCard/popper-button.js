@@ -72,7 +72,7 @@ export default function PositionedPopper() {
             <Popper open={open} anchorEl={anchorEl} placement={placement} transition>
                 {({ TransitionProps }) => (
                     <Fade {...TransitionProps} timeout={350}>
-                        <Paper elevation={3} rounded className={classes.paperContainer} >
+                        <Paper elevation={3} className={classes.paperContainer} >
                             <Typography className={classes.typography} >
 
                                 <ChampStatsCard className={classes.champStatsCard} />

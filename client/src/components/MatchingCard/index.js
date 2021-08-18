@@ -20,8 +20,6 @@ import TinderCard from 'react-tinder-card'
 import { HeartFill } from "@styled-icons/bootstrap/HeartFill"
 import { Close } from "@styled-icons/material-rounded/Close"
 
-// framer for animating
-import { Frame, useMotionValue, useTransform, useAnimation } from 'framer';
 
 import { CicleButton } from "./circle-button";
 import PositionedPopper from './popper-button';
