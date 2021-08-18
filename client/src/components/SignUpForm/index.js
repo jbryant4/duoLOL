@@ -6,6 +6,8 @@ import Grid from '@material-ui/core/Grid';
 // Utility imports
 import { ADD_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
+
+
 // import iconsPool from "../../assets/images/RoleIcons/roleIconsPool";
 
 import topIcon from "../../assets/images/RoleIcons/top.png"
@@ -106,6 +108,9 @@ const SignUpForm = () => {
 
 			setFormState({ ...formState, roles: newArray })
 		}
+<<<<<<< HEAD
+	}
+=======
 
 	}
 
@@ -113,6 +118,7 @@ const SignUpForm = () => {
 
 	
 
+>>>>>>> 1b6a7d14d38079d5c81932dcaa94fe29bad168a3
 
 	return (
 		<Box component="form"
