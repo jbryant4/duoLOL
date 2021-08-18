@@ -51,24 +51,24 @@ const iconsPool = [
 
 // Sign up function
 const SignUpForm = () => {
-	const [formState, setFormState] = useState({ email: '', sumName: '', password: '', roles: [] });
+	const [formState, setFormState] = useState({ email: '', sumName: '', password: '', primRoles: [] });
 	const [addUser] = useMutation(ADD_USER);
 
-	console.log(formState)
+	
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
 		// check if form has everything (as per react-bootstrap docs)
-		const form = event.currentTarget;
-		if (form.checkValidity() === false) {
-			event.preventDefault();
-			event.stopPropagation();
-		}
+		// const form = event.currentTarget;
+		// if (form.checkValidity() === false) {
+		// 	event.preventDefault();
+		// 	event.stopPropagation();
+		// }
 
+		console.log(formState)
 		try {
 			const { data } = await addUser({
-				variables: formState
+				variables: formState 
 			});
-			console.log()
 			const token = data.addUser.token;
 			Auth.login(token);
 		} catch (err) {
@@ -79,10 +79,9 @@ const SignUpForm = () => {
 			email: '',
 			sumName: '',
 			password: '',
-			roles: []
+			primRoles: []
 		});
 
-		return formState
 	};
 
 	const handleChange = (event) => {
@@ -99,16 +98,27 @@ const SignUpForm = () => {
 	const checkBox = (event) => {
 		let role = event.target.name
 		if (event.target.checked) {
-			setFormState({ ...formState, roles: [...formState.roles, role] })
+			setFormState({ ...formState, primRoles: [...formState.primRoles, role] })
 		}
 		else {
-			let newArray = formState.roles
+			let newArray = formState.primRoles
 			newArray.splice(newArray.indexOf(role), 1)
 
 
-			setFormState({ ...formState, roles: newArray })
+			setFormState({ ...formState, primRoles: newArray })
 		}
 	}
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+
+
+>>>>>>> 21f190dd3f67a01adfa4ef71fd5beee5913df215
 
 	return (
 		<Box component="form"
@@ -176,7 +186,7 @@ const SignUpForm = () => {
 				{iconsPool.map((iconIndex, index) => (
 					<Box className="checkboxContainer">
 						<label class="checker">
-							<input type="checkbox" onChange={checkBox} disabled={formState.roles.length >= 2 && formState.roles.indexOf(iconIndex.id) == -1} name={iconIndex.id} className="iconsCheckbox" id={iconIndex.id} />
+							<input type="checkbox" onChange={checkBox} disabled={formState.primRoles.length >= 2 && formState.primRoles.indexOf(iconIndex.id) == -1} name={iconIndex.id} className="iconsCheckbox" id={iconIndex.id} />
 							<img className="signupIcons" src={iconIndex.src} key={index} />
 						</label>
 					</Box>
@@ -200,6 +210,8 @@ const SignUpForm = () => {
 		</Box >
 
 	);
+				
 }
+
 
 export default SignUpForm;
