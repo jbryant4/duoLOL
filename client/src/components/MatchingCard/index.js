@@ -20,8 +20,6 @@ import TinderCard from 'react-tinder-card'
 import { HeartFill } from "@styled-icons/bootstrap/HeartFill"
 import { Close } from "@styled-icons/material-rounded/Close"
 
-// framer for animating
-import { Frame, useMotionValue, useTransform, useAnimation } from 'framer';
 
 import { CicleButton } from "./circle-button";
 import PositionedPopper from './popper-button';
@@ -32,8 +30,6 @@ import jngIcon from "../../assets/images/RoleIcons/jng.png";
 import midIcon from "../../assets/images/RoleIcons/mid.png";
 import adcIcon from "../../assets/images/RoleIcons/adc.png";
 import supIcon from "../../assets/images/RoleIcons/sup.png";
-import zIndex from '@material-ui/core/styles/zIndex';
-
 
 
 const db = [
@@ -84,24 +80,6 @@ const useStyles = makeStyles((theme) => ({
         height: 525,
         backgroundPosition: "unset"
     },
-    expandIcon: {
-        position: "absolute",
-        top: "50%",
-        right: 0,
-        backgroundColor: 'white'
-    },
-
-    expand: {
-        transform: 'rotate(0deg)',
-        marginLeft: 'auto',
-        transition: theme.transitions.create('transform', {
-            duration: theme.transitions.duration.shortest,
-        }),
-        order: -1
-    },
-    expandOpen: {
-        transform: 'rotate(180deg)',
-    },
 
     // new card 
     content: {
@@ -128,7 +106,7 @@ const useStyles = makeStyles((theme) => ({
             content: '""',
             position: 'absolute',
             bottom: 0,
-            display: 'block',
+            // display: 'block',
             width: '100%',
             height: '45%',
             background: 'linear-gradient(to top, rgba(255, 255, 255, 0.24), rgba(0,0,0,0))',
@@ -138,7 +116,7 @@ const useStyles = makeStyles((theme) => ({
         placeContent: "space-evenly"
     },
     swipeCard: {
-        zIndex: '999',
+        zIndex: '0',
         cursor: "pointer",
     },
     userCardIcon: {
@@ -153,6 +131,9 @@ const useStyles = makeStyles((theme) => ({
         bottom: 0,
         right: 90,
         width: 90
+    },    
+    tinderCardWrapper: {
+        position: 'relative'
     }
 }));
 
@@ -192,59 +173,57 @@ export default function MatchingCard({ }) {
     }
 
     return (
-        <Box>
+        <Box className={classes.tinderCardContainer}>
             {characters.map((character, index) =>
-                <TinderCard ref={childRefs[index]} className={classes.swipeCard} key={character.name} onSwipe={(dir) => swiped(dir, character.name)} onCardLeftScreen={() => outOfFrame(character.name)}>
-                    <Card className={classes.root} elevation={3}>
-                        <Box className={classes.main} minHeight={300} position={'relative'}>
-                            <CardMedia
-                                className={classes.media}
-                                image="https://images-ext-1.discordapp.net/external/KKjfwJamf75_hTOB0hwApPZoj8mGhxBe_Tm5qpc8IZs/http/ddragon.leagueoflegends.com/cdn/img/champion/loading/Aatrox_0.jpg"
-                            // title="Kha Zix"
-                            />
+                <Box className={classes.tinderCardWrapper}>
+                    <TinderCard ref={childRefs[index]} className={classes.swipeCard} key={character.name} preventSwipe={['up', 'down']} onSwipe={(dir) => swiped(dir, character.name)} onCardLeftScreen={() => outOfFrame(character.name)}>
+                        <Card className={classes.root} elevation={3}>
+                            <Box className={classes.main} minHeight={300} position={'relative'}>
+                                <CardMedia
+                                    className={classes.media}
+                                    image="https://images-ext-1.discordapp.net/external/KKjfwJamf75_hTOB0hwApPZoj8mGhxBe_Tm5qpc8IZs/http/ddragon.leagueoflegends.com/cdn/img/champion/loading/Aatrox_0.jpg"
 
-                            <Box className={classes.content}>
-                                <Typography variant={'h2'} className={classes.title}>
-                                    {character.name}
+                                />
+
+                                <Box className={classes.content}>
+                                    <Typography variant={'h2'} className={classes.title}>
+                                        {character.name}
+                                    </Typography>
+                                </Box>
+
+                                <Box>
+                                    <img className={classes.userCardIcon} src={character.mainRoles[0]} />
+                                </Box>
+                                <Box>
+                                    <img className={classes.userSecondCardIcon} src={character.mainRoles[1]} />
+                                </Box>
+                            </Box>
+
+                            <CardContent>
+                                <Typography variant="body1" color="textPrimary" component="p" className="disable-select">
+                                    {character.bio}
                                 </Typography>
-                            </Box>
-
-                            <Box>
-                                <img className={classes.userCardIcon} src={character.mainRoles[0]} />
-                            </Box>
-                            <Box>
-                                <img className={classes.userSecondCardIcon} src={character.mainRoles[1]} />
-                            </Box>
-
-                            <PositionedPopper />
+                            </CardContent>
 
 
-                        </Box>
+                            <CardActions className={classes.actionBarWrapper}>
 
+                                <CicleButton onClick={() => swipe('left')}>
+                                    <Close className="closeBtn" />
+                                </CicleButton>
 
-                        <CardContent>
-                            <Typography variant="body1" color="textPrimary" component="p" className="disable-select">
-                                {character.bio}
-                            </Typography>
-                        </CardContent>
+                                <CicleButton onClick={() => swipe('right')}>
+                                    <HeartFill className="heartBtn" />
+                                </CicleButton>
 
+                            </CardActions>
 
-                        <CardActions className={classes.actionBarWrapper}>
+                        </Card >
 
-                            <CicleButton onClick={() => swipe('left')}>
-                                <Close className="closeBtn" />
-                            </CicleButton>
-
-                            <CicleButton onClick={() => swipe('right')}>
-                                <HeartFill className="heartBtn" />
-                            </CicleButton>
-
-                        </CardActions>
-
-                    </Card >
-
-                </TinderCard>
+                    </TinderCard>
+                </Box>
             )}
+            <PositionedPopper className={classes.popperBtnDuoPage} />
         </Box >
     );
 }
