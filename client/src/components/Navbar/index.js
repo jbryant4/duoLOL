@@ -65,6 +65,10 @@ const useStyles = makeStyles((theme) => ({
 		justifyContent: "center",
 		backgroundColor: "goldenrod",
 		width: "100%",
+		marginBottom: "25px",
+	},
+	linkStyle: {
+		textDecoration: "none",
 	},
 }));
 
@@ -89,24 +93,38 @@ export default function Navbar() {
 					textColor="primary"
 					aria-label="scrollable force tabs example"
 				>
-					<Tab label="Home" icon={<HomeIcon />} {...a11yProps(0)} />
-					<Tab
-						label="About Champion"
-						icon={<EmojiEventsIcon />}
-						{...a11yProps(1)}
-					/>
-					<Tab label="Build a Build" icon={<BuildIcon />} {...a11yProps(2)} />
-					<Tab
-						label="Friend Finder"
-						icon={<GroupAddIcon />}
-						{...a11yProps(3)}
-					/>
-					<Tab
-						label="Chat"
-						icon={<QuestionAnswerOutlinedIcon />}
-						{...a11yProps(4)}
-					/>
-					<Tab label="Log Out" icon={<ExitToAppIcon />} {...a11yProps(6)} />
+					<Link to="/homepage" className={classes.linkStyle}>
+						<Tab label="Home" icon={<HomeIcon />} {...a11yProps(0)}></Tab>
+					</Link>
+
+					<Link to="/AboutChampion" className={classes.linkStyle}>
+						<Tab
+							label="About Champion"
+							icon={<EmojiEventsIcon />}
+							{...a11yProps(1)}
+						/>
+					</Link>
+
+					<Link to="/BuildABuild" className={classes.linkStyle}>
+						<Tab label="Build a Build" icon={<BuildIcon />} {...a11yProps(2)} />
+					</Link>
+
+					<Link to="/DuoFinder" className={classes.linkStyle}>
+						<Tab label="Duo Finder" icon={<GroupAddIcon />} {...a11yProps(3)} />
+					</Link>
+
+					<Link to="/Chat" className={classes.linkStyle}>
+						<Tab
+							label="Chat"
+							icon={<QuestionAnswerOutlinedIcon />}
+							{...a11yProps(4)}
+						/>
+					</Link>
+
+					<Link to="/" className={classes.linkStyle}>
+						<Tab label="Log Out" icon={<ExitToAppIcon />} {...a11yProps(6)} />
+					</Link>
+
 				</Tabs>
 			</AppBar>
 		</div>
