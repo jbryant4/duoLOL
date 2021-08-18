@@ -101,7 +101,7 @@ const resolvers = {
         addBuild: async (parent, { content }, context) => {
             
             if (context.user) {
-                const build = await Build.create({ ...content, madeBy: context.user.sumName });
+                const build = await Build.create({ ...content, madeBy: context.user.sumName, madeId: context.user._id });
 
                 await User.findByIdAndUpdate(
                     { _id: context.user._id },

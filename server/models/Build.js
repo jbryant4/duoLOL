@@ -26,6 +26,9 @@ const buildSchema = new Schema(
         },
         madeBy: {
             type: String
+        },
+        madeId: {
+            type: String
         }
         //this format for mvp but could also add summoner spells,runes and creator thoughts
     }

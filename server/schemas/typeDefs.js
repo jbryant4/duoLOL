@@ -27,7 +27,8 @@ const typeDefs = gql`
         boots: String
         mythic: String
         legendaries: String
-        builtBy: String
+        madeBy: String,
+        madeId: String
     }
     type ChampionSummary {
         name: String

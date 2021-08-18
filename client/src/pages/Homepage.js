@@ -2,6 +2,7 @@
 import React from "react";
 
 //components
+import BuildList from '../components/BuildList'
 import FriendList from "../components/FriendList";
 import Header from "../components/Header";
 import Chat from "../components/Chat"
@@ -133,7 +134,7 @@ function Homepage() {
 					
 					<h1>Custom Builds</h1>
 					{me.builds.length === 0 ?  <h2>Go make some custom builds with our custom build page</h2> :
-					<FriendList name={me.friends} />
+					<BuildList name={me.builds} />
 					}
 				</Box>
 			</Box>
