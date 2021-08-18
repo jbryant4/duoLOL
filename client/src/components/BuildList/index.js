@@ -1,54 +1,103 @@
-import React from "react";
+import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import clsx from 'clsx';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardContent from '@material-ui/core/CardContent';
+import Collapse from '@material-ui/core/Collapse';
+import Avatar from '@material-ui/core/Avatar';
+import IconButton from '@material-ui/core/IconButton';
+import { red } from '@material-ui/core/colors';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-//Material Components
-import Button from "@material-ui/core/Button";
-import { makeStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
 
-const useStyles = makeStyles({
-	buttonClass: {
-		backgroundColor: "purple",
-		variant: "outlined",
-		width: "10rem",
-		color: "white",
-		padding: "5px",
-		margin: "10px",
-		display: "flex",
-		justifyContent: "space-around",
+const useStyles = makeStyles((theme) => ({
+	root: {
+		maxWidth: 345,
+		margin: 5
 	},
-	friend: {
-		margin: "10px",
-		padding: "10px",
-		border: "1px solid black",
-		borderRadius: "10% 05%",
-		backgroundColor: "whitesmoke",
-		fontWeight: "bold",
-		fontSize: "1rem",
+	media: {
+		height: 0,
+		paddingTop: '56.25%', // 16:9
 	},
-});
+	expand: {
+		transform: 'rotate(0deg)',
+		marginLeft: 'auto',
+		transition: theme.transitions.create('transform', {
+			duration: theme.transitions.duration.shortest,
+		}),
+	},
+	expandOpen: {
+		transform: 'rotate(180deg)',
+	},
+	avatar: {
+		backgroundColor: red[500],
+	},
+	items: {
+		display: 'flex',
+		flexWrap: 'no-wrap'
+	}
+}));
 
-// Friend List
-export default function FriendList({ name }) {
-	// use Material styles
+export default function BuildList({ builds }) {
 	const classes = useStyles();
-	const friendsList = name;
-	console.log(friendsList);
+	const [expandedId, setExpandedId] = useState(-1);
+
+
+	const handleExpandClick = i => {
+		setExpandedId(expandedId === i ? -1 : i);
+	};
+
+
 	return (
-		<Grid>
-			<div>
-				{friendsList &&
-					friendsList.map((friendName) => (
-						<div key={friendName} className={classes.friend}>
-							{friendName}
-							<Button
-								className={classes.buttonClass}
-								// onClick={() => go to chat)}
+		<>
+			{builds.map((buildString, i) => {
+
+				const build = {
+					title: buildString.title,
+					champion: JSON.parse(buildString.champion),
+					items: [JSON.parse(buildString.boots), JSON.parse(buildString.mythic), ...JSON.parse(buildString.legendaries)]
+				}
+
+
+				return (
+					<Card className={classes.root} key={build.title}>
+						<CardHeader
+							avatar={
+								<Avatar aria-label="" className={classes.avatar} src={build.champion.link} />
+							}
+							title={build.title}
+							subheader={build.champion.name}
+							action={<IconButton
+								className={clsx(classes.expand, {
+									[classes.expandOpen]: expandedId === i,
+								})}
+								onClick={() => handleExpandClick(i)}
+								aria-expanded={expandedId === i}
+								aria-label="show more"
 							>
-								Chat
-							</Button>
-						</div>
-					))}
-			</div>
-		</Grid>
+								<ExpandMoreIcon />
+							</IconButton>}
+						/>
+
+
+						{/* if we want to add likes to build this is an easy way*/}
+						{/* <CardActions disableSpacing>
+				<IconButton aria-label="add to favorites">
+				<FavoriteIcon />
+				</IconButton>
+			</CardActions> */}
+						<Collapse in={expandedId === i} timeout="auto" unmountOnExit>
+							<CardContent className={classes.items}>
+								{build.items.map(item => (
+									<Avatar aria-label={item.name} src={item.link} />
+								))}
+							</CardContent>
+						</Collapse>
+					</Card>
+				)
+			})}
+		</>
 	);
 }

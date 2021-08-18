@@ -6,14 +6,14 @@ const riotApi = require('../utils/riotApi/riotApi');
 const resolvers = {
     Query: {
         me: async (parent, args, context) => {
-            // console.log(context.user)
             if (context.user) {
                 const user = await User.findOne({ _id: context.user._id })
-                    .select('-__v -password')
-                    .populate('builds')
-                    .populate('friends');
-
-                return {...user};
+                .select('-__v -password')
+                .populate('builds')
+                .populate('friends');
+                
+            // console.log({user})
+                return user;
             }
 
             throw new AuthenticationError('Not logged in');
@@ -71,7 +71,7 @@ const resolvers = {
         },
         login: async (parent, { email, password }) => {
             // console.log(email , password)
-            const user = await User.findOne({ email });
+            const user = await User.findOne( {email} );
 
             if (!user) {
                 throw new AuthenticationError('Incorrect credentials');
@@ -80,7 +80,7 @@ const resolvers = {
             const correctPw = await user.isCorrectPassword(password);
 
             if (!correctPw) {
-                throw new AuthenticationError('Incorrect credentials');
+                throw new AuthenticationError('Incorrect password');
             }
             //call 
             const lolData = await riotApi.riotDataUpdata(user.riotId, 'na1')

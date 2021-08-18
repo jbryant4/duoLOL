@@ -81,6 +81,9 @@ const useStyles = makeStyles({
 		flexWrap: "wrap",
 		justifyContent: "center",
 	},
+	img: {
+		maxHeight: 250
+	}
 });
 
 // Home
@@ -98,10 +101,6 @@ function Home() {
 
 	const me = data?.me || {};
 
-	console.log(data);
-
-	const testFriends = ["Robert", "Cody", "Joeseph", "Nathan"];
-
 	return (
 		<div>
 			<Navbar />
@@ -114,11 +113,11 @@ function Home() {
 					<Box className={classes.summonerDiv}>
 						<h2>{me.sumName}</h2>
 						<h4>{me.tier} {me.rank}</h4>
+						<h4>Wins: {me.wins}</h4>
+						<h4>losses: {me.losses}</h4>
 					</Box>
 					<Box className={classes.duoDiv}>
 
-						<h4>Wins: {me.wins}</h4>
-						<h4>losses: {me.losses}</h4>
 					</Box>
 				</Box>
 				<Box className={classes.boxContainer}>

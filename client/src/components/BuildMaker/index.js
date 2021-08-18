@@ -89,7 +89,7 @@ export default function Build({ }) {
         }
         
         setTitle('');
-        setChamp('');
+        setChamp({ link: "test", name: '+' });
         setBoot({ link: "test", name: '+' });
         setMythic({ link: "test", name: '+' });
         setLegendaries([]);
