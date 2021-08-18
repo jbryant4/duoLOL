@@ -23,7 +23,7 @@ const userSchema = new Schema(
         },
         // require roles later
         primRoles: {
-            type: String,
+            type: [String],
         },
         riotId: {
             type: String,
