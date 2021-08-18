@@ -4,13 +4,13 @@ import React from "react";
 //components
 import FriendList from "../components/FriendList";
 import Header from "../components/Header";
-import Chat from "../components/Chat"
+
 
 // Material UI
 import { Container, Box, makeStyles } from "@material-ui/core";
 import MatchComponent from "../components/MatchComponent";
 
-//gql 
+//gql
 import { useQuery } from "@apollo/client";
 import {QUERY_ME} from "../utils/queries"
 
@@ -95,7 +95,7 @@ function Homepage() {
 	console.log(me)
 
 	const testFriends = ["Robert", "Cody", "Joeseph", "Nathan"];
-	
+
 	return (
 		<Container>
 			<Header />
@@ -124,7 +124,6 @@ function Homepage() {
 					</Box>
 				</Box>
 			</Box>
-			<Chat />
 		</Container>
 	);
 }

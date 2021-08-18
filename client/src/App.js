@@ -61,7 +61,7 @@ function App() {
 		<ApolloProvider client={client}>
 			<Router>
 				{/* {currentPath.includes('login') ? null : <SideBar/>} */}
-				<Container className='noBg' maxWidth="xl" disableGutters={true}>
+				<Container className="noBg" maxWidth="xl" disableGutters={true}>
 					<Navbar />
 					<Switch>
 						<Route exact path="/homepage" component={Homepage} />
@@ -69,6 +69,7 @@ function App() {
 						<Route exact path="/duoFinder" component={duoFinder} />
 						<Route exact path="/AboutChampion" component={AboutChampion} />
 						<Route exact path="/BuildABuild" component={BuildABuild} />
+						<Route exact path="/Chat" component={Chat} />
 						<Route component={Homepage} />
 					</Switch>
 				</Container>
