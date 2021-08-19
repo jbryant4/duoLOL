@@ -46,7 +46,7 @@ const AboutChampion = () => {
 	const [imgIndex, setImgIndex] = useState(0);
 	const classes = useStyles();
 
-	const { loading, data, error } = useQuery(QUERY_CHAMPIONS);
+	const { data, error } = useQuery(QUERY_CHAMPIONS);
 	if (error) {
 		console.log(error);
 	}
