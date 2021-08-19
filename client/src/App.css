@@ -38,14 +38,14 @@
 } */
 
 .noBg {
-  background: rgba(red, green, blue, 0);
+	background: rgba(red, green, blue, 0);
 }
 
 .mainBg {
-  background-image:url(./assets//images/sumBg.jpg);
-  min-height: 100%;
-  min-width: 100%;
-  background-position:center;
-  background-repeat: no-repeat;
-  background-size: cover;
+	background-image: url(./assets//images/sumBg.jpg);
+	min-height: 100%;
+	min-width: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
