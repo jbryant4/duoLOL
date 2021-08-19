@@ -1,5 +1,5 @@
 // React
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 //components
 import BuildList from '../components/BuildList'
@@ -89,17 +89,21 @@ const useStyles = makeStyles({
 // Home
 function Home() {
 	const classes = useStyles();
-
-
+	
 	const { loading, data, error } = useQuery(QUERY_ME);
-	if (loading) {
-		return <h2>Loading...</h2>;
-	}
-	if (error) {
-		console.log(error);
-	}
+	
+		if (loading) {
+			return <h2>Loading...</h2>;
+		}
+		if (error) {
+			console.log(error);
+			return
+		}
 
-	const me = data?.me || {};
+		const me = data?.me || {};
+
+		
+	
 
 	return (
 		<div>

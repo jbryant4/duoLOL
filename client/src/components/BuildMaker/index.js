@@ -78,7 +78,7 @@ export default function Build({ }) {
             mythic: JSON.stringify(mythic),
             legendaries: JSON.stringify(legendaries)
         }
-
+        console.log(buildInfo)
         try {
             await addBuild({
                 variables: { content: buildInfo }
@@ -88,7 +88,7 @@ export default function Build({ }) {
             console.log(e);
         }
         
-        setTitle('');
+        setTitle('test');
         setChamp({ link: "test", name: '+' });
         setBoot({ link: "test", name: '+' });
         setMythic({ link: "test", name: '+' });

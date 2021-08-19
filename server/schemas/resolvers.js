@@ -109,7 +109,7 @@ const resolvers = {
             return { user: updatedUser, token };
         },
         addBuild: async (parent, { content }, context) => {
-            
+            console.log(content)
             if (context.user) {
                 const build = await Build.create({ ...content, madeBy: context.user.sumName, madeId: context.user._id });
 

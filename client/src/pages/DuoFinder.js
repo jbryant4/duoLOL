@@ -4,7 +4,6 @@ import React from "react";
 
 //components
 import MatchingCard from "../components/MatchingCard";
-import FriendList from "../components/FriendList";
 import Navbar from "../components/Navbar";
 
 // DuoFinder
@@ -13,7 +12,6 @@ function DuoFinder() {
 		<div>
 			<Navbar />
 			<Container>
-				<FriendList />
 				<MatchingCard />
 			</Container>
 		</div>

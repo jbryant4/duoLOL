@@ -172,7 +172,10 @@ export default function MatchingCard({ }) {
     const users = data?.users;
     console.log(users)
 
+    async function handleAddFriend(friendId) {
 
+        
+    }
 
 
     return (
@@ -183,6 +186,7 @@ export default function MatchingCard({ }) {
                 const role2 = userData.primRoles[1]
                 const icon2 = roleObj[role2]
                 const user = {
+                    id: userData._id,
                     name: userData.sumName,
                     src: "Aatrox",
                     bio: userData._id,
@@ -230,7 +234,7 @@ export default function MatchingCard({ }) {
                                         <Close className="closeBtn" />
                                     </CicleButton>
 
-                                    <CicleButton onClick={() => swipe('right')}>
+                                    <CicleButton onClick={() => {swipe('right'); handleAddFriend(user.id)}}>
                                         <HeartFill className="heartBtn" />
                                     </CicleButton>
 
