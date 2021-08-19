@@ -10,7 +10,6 @@ import {
 } from "./socketIo.service";
 
 import AuthService from "../../utils/auth";
-import { borderBottom } from "@material-ui/system";
 
     function Chat () {
         const [messages, setMessages] = useState([]);

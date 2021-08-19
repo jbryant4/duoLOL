@@ -17,27 +17,38 @@ import { ADD_BUILD } from '../../utils/mutations';
 
 
 const useStyles = makeStyles((theme) => ({
-    itemBox: {
-        height: 250,
-        overflow: 'scroll',
-        border: 'solid 2px red',
-        margin: '10px 5px'
-    },
-    itemImg: {
-        margin: 5,
-    },
-    media: {
-        height: 140,
-    },
-    innerFlex: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        alignContent: 'center'
-    }
+	root: {
+		backgroundColor: "var(--tertiaryColor)",
+		boxShadow: "inset 0px 0px 20px black",
+	},
 
-
+	itemBox: {
+		height: 250,
+		overflow: "scroll",
+		border: "solid 2px red",
+		margin: "10px 5px",
+		backgroundColor: "var(--altSecondary)",
+	},
+	itemImg: {
+		margin: 5,
+	},
+	media: {
+		height: 140,
+	},
+	innerFlex: {
+		display: "flex",
+		flexWrap: "wrap",
+		justifyContent: "flex-start",
+		alignItems: "center",
+		alignContent: "center",
+	},
+	buttonClass: {
+		backgroundColor: "var(--primaryColor)",
+		variant: "outlined",
+		color: "primary",
+		fontWeight: "600",
+		margin: 10,
+	},
 }));
 
 export default function Build({ }) {
@@ -65,7 +76,7 @@ export default function Build({ }) {
     const handleBuildSubmit = async (event) => {
         event.preventDefault();
 
-        //make sure that everyone state has what it needs in it 
+        //make sure that everyone state has what it needs in it
         if (title === 'title' || champ.name === 'test' || boot.name === 'test' || mythic.name === 'test' || legendaries.length != 4) {
             console.log('please fill out build')
             return
@@ -87,14 +98,14 @@ export default function Build({ }) {
         } catch (e) {
             console.log(e);
         }
-        
+
         setTitle('');
         setChamp({ link: "test", name: '+' });
         setBoot({ link: "test", name: '+' });
         setMythic({ link: "test", name: '+' });
         setLegendaries([]);
 
-        
+
     };
 
     return (
@@ -106,12 +117,12 @@ export default function Build({ }) {
                         <CardContent>
                             <Grid className={classes.innerFlex}>
                                 <Typography gutterBottom variant="h5" component="h2">
-                                    Build Name:
+                                    Enter Your New Build Name:
                                 </Typography>
                                 <TextField onChange={handleTitleChange} />
                             </Grid>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                                Champion
+                            <Typography variant="body" color="textSecondary" component="p">
+                                Choose Your Champion
                             </Typography>
                             <Grid className={classes.innerFlex} onClick={() => setContent('champion')}>
                                 <ImageAvatars link={champ.link} name={champ.name} />
@@ -120,20 +131,20 @@ export default function Build({ }) {
                                 </Typography>
                             </Grid>
                             <Grid>
-                                <Typography variant="body2" color="textSecondary" component="p">
-                                    Items
+                                <Typography variant="body" color="textSecondary" component="p">
+                                    Choose Your Items
                                 </Typography>
                                 <Grid className={classes.innerFlex} >
                                     <div item='boot' onClick={() => setContent('boots')}>
-                                        <p>Boots</p>
+                                        <p>Boots:</p>
                                         <ImageAvatars link={boot.link} name={boot.name} />
                                     </div>
                                     <div item='mythic' onClick={() => setContent('mythic')}>
-                                        <p>Mythic</p>
+                                        <p>Mythic:</p>
                                         <ImageAvatars link={mythic.link} name={mythic.name} />
                                     </div>
                                     <div item='legendary' onClick={() => setContent('legendary')}>
-                                        <p>Legendaries</p>
+                                        <p>Legendary Items:</p>
                                         <div className={classes.innerFlex}>
                                             <ImageAvatars link={legendaries[0]?.link} name={legendaries[0]?.name} />
                                             <ImageAvatars link={legendaries[1]?.link} name={legendaries[1]?.name} />
@@ -145,7 +156,7 @@ export default function Build({ }) {
                             </Grid>
                         </CardContent>
 
-                        <Button size="small" color="primary" type="submit" >
+                        <Button className={classes.buttonClass} size="Large" color="primary" type="submit" >
                             Create Build
                         </Button>
                     </Card>
