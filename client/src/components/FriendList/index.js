@@ -7,7 +7,6 @@ import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles({
 	buttonClass: {
-		backgroundColor: "purple",
 		variant: "outlined",
 		width: "10rem",
 		color: "white",
