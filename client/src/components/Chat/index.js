@@ -181,7 +181,7 @@ function Chat() {
 
     // handles joining room names
     const handleInputChange = (e) => {
-        setRoom(joinRef.current.value)
+        setRoom()
     }
 
     // room join function
@@ -257,7 +257,7 @@ function Chat() {
                 </Box>
                 <form className={classes.formBox} onSubmit={submitMessage}>
                     <input className={classes.messageInput} type="text" placeholder="Start Messaging" ref={inputRef} />
-                    <button className={classes.buttonInput} type="submit">Submit</button>
+                    <button className={classes.buttonInput} onSubmit={() => joinChatRoom()} type="submit">Submit</button>
                 </form>
             </Box>
         </Container>
