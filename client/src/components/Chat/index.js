@@ -81,6 +81,7 @@ function Chat() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            borderRadius: "15px"
         },
         buttonInput: {
             backgroundColor: "goldenrod",
@@ -89,6 +90,7 @@ function Chat() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            borderRadius: "15px"
         },
         joinBox: {
             margin: "30px",

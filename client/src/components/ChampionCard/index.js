@@ -11,7 +11,7 @@ const useStyles = makeStyles({
 		flexDirection: "column",
 		flexWrap: "wrap",
 		alignItems: "center",
-		width: "100px",
+		width: "45%",
 		backgroundColor: "whitesmoke",
 		margin: 2
 	},
@@ -36,7 +36,8 @@ const useStyles = makeStyles({
 		maxHeight: 870,
 		overflow: 'scroll',
 		alignItems: 'center',
-		justifyContent: 'center'
+		justifyContent: 'center',
+		width: "100%"
 	},
 	titleWrap: {
 		padding:0
