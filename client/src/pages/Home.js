@@ -33,7 +33,6 @@ const useStyles = makeStyles({
 		justifyContent: "flex-start",
 		alignItems: "center",
 		width: "15%",
-
 	},
 	summonerDiv: {
 		display: "flex",
@@ -74,7 +73,7 @@ const useStyles = makeStyles({
 		flexDirection: "column",
 		alignContent: "flex-start",
 		width: "75%",
-		background: "blue",
+		background: "var(--secondaryColor)",
 	},
 	match: {
 		display: "flex",
@@ -82,8 +81,8 @@ const useStyles = makeStyles({
 		justifyContent: "center",
 	},
 	img: {
-		maxHeight: 250
-	}
+		maxHeight: 250,
+	},
 });
 
 // Home

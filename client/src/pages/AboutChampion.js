@@ -26,13 +26,13 @@ const useStyles = makeStyles({
 	},
 
 	title: {
-		backgroundColor: "rgba(30, 28, 74,1)",
+		backgroundColor: "var(--secondaryColor)",
 		boxShadow: "inset 0 0 10px black",
 		display: "flex",
 		justifyContent: "center",
 		fontWeight: "bold",
-		color: "goldenrod",
-		marginTop: "10px"
+		color: "var(--primaryColor)",
+		marginTop: "10px",
 	},
 });
 // AboutChampion
@@ -56,7 +56,7 @@ const AboutChampion = () => {
 			<Container maxWidth="md">
 				<Header />
 				<Grid container>
-					<Grid item xs={12} sm={3} md={3} lg={3}>
+					<Grid item xs={12} sm={12} md={3} lg={3}>
 						<div className={classes.title}>
 						<h2>Select a Champion</h2>
 						</div>
@@ -70,7 +70,7 @@ const AboutChampion = () => {
 							/>
 						</Box>
 					</Grid>
-					<Grid item xs={12} sm={9} md={9} lg={9}>
+					<Grid item xs={12} sm={12} md={9} lg={9}>
 						<Paper>
 							<Box>
 								{champ && (

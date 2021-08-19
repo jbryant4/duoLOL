@@ -10,12 +10,12 @@ const useStyles = makeStyles((theme) => ({
 	},
 	title: {
 		flexGrow: 1,
-		backgroundColor: "rgba(30, 28, 74,1)",
+		backgroundColor: "var(--secondaryColor)",
 		boxShadow: "inset 0 0 10px black",
 		display: "flex",
 		justifyContent: "center",
 		fontWeight: "bold",
-		color: "goldenrod",
+		color: "var(--primaryColor)",
 	},
 }));
 
@@ -26,7 +26,7 @@ export default function Header() {
 		<div className={classes.root}>
 			<AppBar position="static">
 				<Toolbar className={classes.title}>
-					<Typography variant="h5">Cupid League of Legends</Typography>
+					<Typography variant="h5">Cupid LoL</Typography>
 				</Toolbar>
 			</AppBar>
 		</div>

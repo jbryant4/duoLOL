@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 		margin: "0px -100px",
 	},
 	buttonClass: {
-		backgroundColor: "goldenrod",
+		backgroundColor: "var(--primaryColor)",
 		variant: "outlined",
 		color: "primary",
 	},
@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
 		flexDirection: "column",
 		alignItems: "center",
 		justifyContent: "space-evenly",
-		color: "Purple",
+		color: "var(--secondaryColor)",
 	},
 	tipDiv: {
 		display: "flex",
