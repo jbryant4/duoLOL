@@ -18,7 +18,7 @@ import { Box } from "@material-ui/core";
 function LoginForm(props) {
 	const [formState, setFormState] = useState({ email: "", password: "" });
 	const [login, { error }] = useMutation(LOGIN);
-
+	console.log(formState)
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
 		try {
