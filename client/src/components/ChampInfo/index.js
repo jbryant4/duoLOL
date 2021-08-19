@@ -4,6 +4,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
+import Box from "@material-ui/core/Box";
 
 //query
 import { useQuery } from "@apollo/client";
@@ -13,9 +14,16 @@ import { QUERY_CHAMPION } from "../../utils/queries";
 const useStyles = makeStyles((theme) => ({
 	root: {
 		"& > *": {
-			margin: theme.spacing(1),
+			margin: theme.spacing(2),
 		},
 		flexGrow: 1,
+		display: "flex",
+		flexWrap: "wrap",
+		maxHeight: 660,
+		overflow: "scroll",
+		alignItems: "center",
+		justifyContent: "center",
+		margin: "25px",
 	},
 	paper: {
 		padding: theme.spacing(2),
@@ -23,10 +31,8 @@ const useStyles = makeStyles((theme) => ({
 		color: theme.palette.text.secondary,
 	},
 	imageStyle: {
-
-		width: "100%",
-		margin: "0px -100px"
-
+		width: "80%",
+		margin: "0px -100px",
 	},
 	buttonClass: {
 		backgroundColor: "goldenrod",
@@ -34,49 +40,49 @@ const useStyles = makeStyles((theme) => ({
 		color: "primary",
 	},
 	imgDiv: {
-		display: 'flex',
-		justifyContent: 'center',
-		alignItems: 'center',
-		flexWrap: 'no-wrap',
-		marginTop: 5
-
+		display: "flex",
+		justifyContent: "center",
+		alignItems: "center",
+		flexWrap: "no-wrap",
+		marginTop: 5,
 	},
 	infoDiv: {
-		display: 'flex',
-		flexWrap: 'wrap',
-		alignItems: 'center',
-		justifyContent: 'space-evenly',
-		width: "41.7rem",
-
+		display: "flex",
+		flexWrap: "wrap",
+		alignItems: "center",
+		justifyContent: "space-around",
+		width: "100%",
 	},
 	infoTitle: {
-		width: "50%"
+		width: "50%",
 	},
 	infoP: {
 		width: "50%",
-		textAlign: 'end'
+		textAlign: "center",
+		fontWeight: "Bold",
+		color: "red",
 	},
 	innerFlex: {
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center',
-		margin: 0,
-		justifyContent: 'space-evenly'
+		display: "flex",
+		flexDirection: "column",
+		alignItems: "center",
+		justifyContent: "space-evenly",
+		color: "Purple",
 	},
 	tipDiv: {
-		display: 'flex',
-		alignItems: 'flex-start',
+		display: "flex",
+		alignItems: "flex-start",
+		justifyContent: "space-evenly",
 		margin: 0,
-		justifyContent: 'space-evenly'
 	},
 	tipDivInner: {
-		width: "45%",
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center',
+		display: "flex",
+		flexDirection: "column",
+		alignItems: "center",
+		justifyContent: "space-evenly",
 		margin: 0,
-		justifyContent: 'space-evenly'
-	}
+		lineHeight: 1,
+	},
 }));
 
 export default function ChampInfo({ champ, imgIndex, setImgIndex }) {
@@ -114,15 +120,14 @@ export default function ChampInfo({ champ, imgIndex, setImgIndex }) {
 	}
 
 	function handleNullImage() {
-		console.log('null image')
-		return setImgIndex(0)
+		console.log("null image");
+		return setImgIndex(0);
 	}
 
 	return (
 		<div className={classes.root}>
 			<Grid container alignContent="center">
-
-				<Grid container spacing={2} className={classes.imgDiv} >
+				<Grid container spacing={2} className={classes.imgDiv}>
 					<Button
 						className={classes.buttonClass}
 						onClick={() => handleBtnClick("prev", champion.images.length)}
@@ -146,17 +151,22 @@ export default function ChampInfo({ champ, imgIndex, setImgIndex }) {
 					<h2 className={classes.infoTitle}>
 						{champion.name}:<span>{champion.title}</span>
 					</h2>
-					<p className={classes.infoP}>{champion.tags[0]}   {champion.tags[1] && champion.tags[1]}</p>
+					<p className={classes.infoP}>
+						{champion.tags[0]} {champion.tags[1] && champion.tags[1]}
+					</p>
 					<p>{champion.lore}</p>
 				</Grid>
 
 				<Grid>
-					<div>
+					<Box xs={12} sm={9} md={9} lg={9}>
 						<h3>Champion Abilities</h3>
 						<Grid container className={classes.infoDiv}>
 							<div className={classes.innerFlex}>
 								<h4>{champion.passive.name}</h4>
-								<img alt={champion.passive.name} src={champion.passive.icon.url} />
+								<img
+									alt={champion.passive.name}
+									src={champion.passive.icon.url}
+								/>
 							</div>
 							{champion.abilities &&
 								champion.abilities.map((spell) => {
@@ -168,7 +178,7 @@ export default function ChampInfo({ champ, imgIndex, setImgIndex }) {
 									);
 								})}
 						</Grid>
-					</div>
+					</Box>
 					<div>
 						<h3>Tips</h3>
 						<Grid container className={classes.tipDiv}>
