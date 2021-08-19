@@ -51,7 +51,7 @@ const AboutChampion = () => {
 
 	const champions = data?.champions || [];
 
-	console.log(champ);
+	// console.log(champ);
 
 	return (
 		<section>

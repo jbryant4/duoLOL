@@ -92,7 +92,8 @@ const useStyles = makeStyles({
 		width: "30%",
 		background: "var(--altSecondary)",
 		color: "var(--primaryColor)",
-		boxShadow: "inset 0 0 35px black"
+		boxShadow: "inset 0 0 35px black",
+		scrollbarColor: "black"
 	},
 	matchHistory: {
 		display: "flex",
@@ -107,7 +108,8 @@ const useStyles = makeStyles({
 		width: "30%",
 		background: "var(--altSecondary)",
 		color: "var(--primaryColor)",
-		boxShadow: "inset 0 0 35px black"
+		boxShadow: "inset 0 0 35px black",
+		
 	},
 	match: {
 		display: "flex",
