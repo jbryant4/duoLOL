@@ -2,27 +2,28 @@
 import React, { useState } from "react";
 import LoginForm from "../components/LoginForm";
 import SignUpForm from "../components/SignUpForm";
-import loginVideo from "../assets/videos/1.mp4"
+import loginVideo from "../assets/videos/1.mp4";
 import { Box, Container } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
-import { positions } from '@material-ui/system';
 
+// components
 import LoginNavbar from "../components/LoginNavbar";
-
-
 
 // Login Function
 function Login(props) {
-	const [isLogin, setIsLogin] = useState(true)
-	const loginSwitch = "Or login instead"
-	const signUpSwitch = "Doesn't have an account? Click here and create one right now!"
+	const [isLogin, setIsLogin] = useState(true);
+	const loginSwitch = "Or login instead";
+	const signUpSwitch =
+		"Doesn't have an account? Click here and create one right now!";
 
 	return (
 		<Box>
 			<LoginNavbar />
 			<div>
 				<video
-					autoPlay loop muted
+					autoPlay
+					loop
+					muted
 					style={{
 						position: "absolute",
 						width: "100%",
@@ -31,7 +32,7 @@ function Login(props) {
 						height: "100%",
 						objectFit: "cover",
 						transform: "translate(-50%, -50%)",
-						zIndex: "-1"
+						zIndex: "-1",
 					}}
 				>
 					<source src={loginVideo} type="video/mp4" />
@@ -39,13 +40,13 @@ function Login(props) {
 				<Container className="loginSignupForm">
 					<Box className="loginWrapper">
 						{isLogin ? <LoginForm /> : <SignUpForm />}
-
-
-						<Button className="switchFormBtn" onClick={() => setIsLogin(!isLogin)}>{isLogin ? signUpSwitch : loginSwitch}</Button>
-
-
+						<Button
+							className="switchFormBtn"
+							onClick={() => setIsLogin(!isLogin)}
+						>
+							{isLogin ? signUpSwitch : loginSwitch}
+						</Button>
 					</Box>
-
 				</Container>
 			</div>
 		</Box>

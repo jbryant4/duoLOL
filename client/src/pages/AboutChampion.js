@@ -1,5 +1,6 @@
 // React
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+
 // Material UI
 import { Container, Box, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -38,7 +39,8 @@ const useStyles = makeStyles({
 		borderRadius: "35% 0%",
 	},
 });
-// AboutChampion
+
+// AboutChampion page
 const AboutChampion = () => {
 	const [champ, setChamp] = useState(null);
 	const [imgIndex, setImgIndex] = useState(0);
@@ -56,7 +58,7 @@ const AboutChampion = () => {
 	return (
 		<section>
 			<Navbar />
-			<Container maxWidth="md">
+			<Container maxWidth="lg">
 				<Header />
 				<Grid container>
 					<Grid item xs={12} sm={12} md={3} lg={3}>

@@ -2,8 +2,18 @@ import { gql } from "@apollo/client";
 
 // Sign Up
 export const ADD_USER = gql`
-	mutation addUser( $email: String!,$sumName: String!, $password: String!, $primRoles: [String]) {
-		addUser( email: $email , sumName: $sumName, password: $password, primRoles: $primRoles) {
+	mutation addUser(
+		$email: String!
+		$sumName: String!
+		$password: String!
+		$primRoles: [String]
+	) {
+		addUser(
+			email: $email
+			sumName: $sumName
+			password: $password
+			primRoles: $primRoles
+		) {
 			token
 			user {
 				_id
@@ -26,21 +36,20 @@ export const LOGIN = gql`
 
 // Add a Build
 export const ADD_BUILD = gql`
-	mutation addBuild($content: buildInfo!){
-  		addBuild(content: $content) {
-   			 _id
-    		madeBy
-    		madeId
-  }
-}
+	mutation addBuild($content: buildInfo!) {
+		addBuild(content: $content) {
+			_id
+			madeBy
+			madeId
+		}
+	}
 `;
 
 export const ADD_FRIEND = gql`
-	mutation addFriend($friendId: ID!){
-		addFriend(friendId:$friendId){
+	mutation addFriend($friendId: ID!) {
+		addFriend(friendId: $friendId) {
 			_id
 			friends
 		}
 	}
 `;
-

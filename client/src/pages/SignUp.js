@@ -1,6 +1,7 @@
 // React imports
 import SignUpForm from "../components/SignUpForm";
 
+// video
 import loginVideo from "../assets/videos/1.mp4";
 
 // SignUp Function
@@ -24,7 +25,6 @@ function SignUp(props) {
 			>
 				<source src={loginVideo} type="video/mp4" />
 			</video>
-
 			<SignUpForm />
 		</div>
 	);
