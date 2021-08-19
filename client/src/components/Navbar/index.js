@@ -50,26 +50,25 @@ export default function Navbar() {
 			destination: "/home",
 		},
 		{
-			text: "Chat",
-			icon: <QuestionAnswerOutlinedIcon />,
-			destination: "/Chatpage",
-		},
-		{
-			text: "About Champion",
+			text: "About Champions",
 			icon: <EmojiEventsIcon />,
 			destination: "/AboutChampion",
 		},
 		{
-			text: "Build a Build",
-			icon: <BuildIcon />,
-			destination: "/BuildABuild",
+			text: "Chat",
+			icon: <QuestionAnswerOutlinedIcon />,
+			destination: "/Chatpage",
 		},
 		{
 			text: "Duo Finder",
 			icon: <GroupAddIcon />,
 			destination: "/DuoFinder",
 		},
-
+		{
+			text: "Build a Build",
+			icon: <BuildIcon />,
+			destination: "/BuildABuild",
+		},
 		{
 			text: "Log Out",
 			icon: <ExitToAppIcon />,

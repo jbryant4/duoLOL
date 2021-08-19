@@ -33,6 +33,7 @@ const useStyles = makeStyles({
 		fontWeight: "bold",
 		color: "var(--primaryColor)",
 		marginTop: "10px",
+		borderRadius: "35% 0%",
 	},
 });
 // AboutChampion

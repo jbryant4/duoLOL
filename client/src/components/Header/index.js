@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
+
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
 	title: {
 		flexGrow: 1,
 		backgroundColor: "var(--secondaryColor)",
-		boxShadow: "inset 0 0 10px black",
+		boxShadow: "inset 0 0 35px black",
 		display: "flex",
 		justifyContent: "center",
 		fontWeight: "bold",
@@ -26,7 +26,7 @@ export default function Header() {
 		<div className={classes.root}>
 			<AppBar position="static">
 				<Toolbar className={classes.title}>
-					<Typography variant="h5">Cupid LoL</Typography>
+					<h2>Cupid LoL</h2>
 				</Toolbar>
 			</AppBar>
 		</div>
