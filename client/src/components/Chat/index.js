@@ -10,8 +10,10 @@ import {
 } from "./socketIo.service";
 import AuthService from '../../utils/auth'
 import { borderBottom } from '@material-ui/system';
+
 import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../../utils/queries';
+
 
 
 function Chat() {
@@ -150,8 +152,6 @@ function Chat() {
         name: chatter
     };
 
-
-
     const chatRooms = ["ARAM", "Ranked", "Duo", "LCS", "Patch Notes", "Post Games"]
 
     useEffect(() => {
@@ -210,6 +210,7 @@ function Chat() {
 
     return (
         <Container>
+
             <Box className={classes.roomName}>
                 {room}
             </Box>
