@@ -24,7 +24,7 @@ const useStyles = makeStyles({
 		display: "flex",
 		textDecoration: "none",
 		color: "white",
-		backgroundColor: "goldenrod",
+		backgroundColor: "var(--primaryColor)",
 		width: "100%",
 	},
 });

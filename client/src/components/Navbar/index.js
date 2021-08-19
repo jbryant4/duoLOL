@@ -24,7 +24,7 @@ const useStyles = makeStyles({
 		justifyContent: "center",
 		textDecoration: "none",
 		color: "white",
-		backgroundColor: "goldenrod",
+		backgroundColor: "var(--primaryColor)",
 		width: "100%",
 	},
 	NavbarBottom: {
@@ -34,7 +34,7 @@ const useStyles = makeStyles({
 		justifyContent: "center",
 		textDecoration: "none",
 		color: "white",
-		backgroundColor: "goldenrod",
+		backgroundColor: "var(--primaryColor)",
 		width: "100%",
 	},
 });
