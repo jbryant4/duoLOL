@@ -1,9 +1,9 @@
 import React, { useState, useMemo } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
-import { useQuery } from '@apollo/client';
+import { ApolloClient, gql, useQuery } from '@apollo/client';
 import { QUERY_USERS } from '../../utils/queries';
+import { graphql } from 'graphql';
 
 // import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -43,16 +43,14 @@ const roleObj = {
 }
 
 //! what is sent to the card
-const db = [
-    {
-        name: "Nathan",
-        src: "https://static.wikia.nocookie.net/leagueoflegends/images/0/08/Kha%27Zix_DarkStarLoading.jpg/revision/latest/scale-to-width-down/308?cb=20200425004141",
-        bio: "lorem ipsum",
-        mainRoles: [topIcon, adcIcon]
-    },
-
-]
-
+// let db = [
+//     {
+//         name: "Nathan",
+//         src: "https://static.wikia.nocookie.net/leagueoflegends/images/0/08/Kha%27Zix_DarkStarLoading.jpg/revision/latest/scale-to-width-down/308?cb=20200425004141",
+//         bio: "lorem ipsum",
+//         mainRoles: [topIcon, adcIcon]
+//     }
+// ]
 
 
 const useStyles = makeStyles((theme) => ({
@@ -110,14 +108,14 @@ const useStyles = makeStyles((theme) => ({
     },
     userCardIcon: {
         position: 'absolute',
-        bottom: 0,
+        top: 1,
         right: 0,
         width: 90,
 
     },
     userSecondCardIcon: {
         position: 'absolute',
-        bottom: 0,
+        top: 1,
         right: 90,
         width: 90
     },
@@ -126,51 +124,73 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+
+
+
 const alreadyRemoved = []
-let usersState = db // This fixes issues with updating users state forcing it to use the current state and not the state that was active when the card was created.
 
 export default function MatchingCard({ }) {
     const classes = useStyles();
-    const [expanded, setExpanded] = React.useState(false);
 
-    // tinder op
-    const [usersList, setusers] = useState(db)
+    // tinder op   
     const [lastDirection, setLastDirection] = useState()
+   
+    const { loading, data, error } = useQuery(QUERY_USERS);
 
-    const childRefs = useMemo(() => Array(db.length).fill(0).map(i => React.createRef()), [])
+    const cachedMutatedData = useMemo(() => {
+        if (loading || error) return null
+
+        // mutate data here
+        return data
+    }, [loading, error, data])
+
+    if (loading) <h1>Loading....</h1>
+    if (error) console.log(error)
+
+    // safe to assume data now exist and you can use data.
+    const mutatedData = (() => {
+        // if you want to mutate the data for some reason
+        return data
+    })()
+
+    const users = data?.users;
+
+    const childRefs = useMemo(() => Array(data.length).fill(0).map(i => React.createRef()), [])
+
+    // if (loading) {
+    //     return <h1>Loading....</h1>;
+    // }
+    // if (error) {
+    //     console.log(error);
+    // }
+
+
+
 
     const swiped = (direction, nameToDelete) => {
         console.log('removing: ' + nameToDelete)
         setLastDirection(direction)
         alreadyRemoved.push(nameToDelete)
+        console.log(users)
     }
 
     const outOfFrame = (name) => {
-        console.log(name + ' left the screen!')
-        usersState = usersState.filter(user => user.name !== name)
-        setusers(usersState)
+
     }
 
+
     const swipe = (dir) => {
+        console.log("SWIPE", dir)
         const cardsLeft = users.filter(person => !alreadyRemoved.includes(person.name))
         if (cardsLeft.length) {
             const toBeRemoved = cardsLeft[cardsLeft.length - 1].name // Find the card object to be removed
-            const index = db.map(person => person.name).indexOf(toBeRemoved) // Find the index of which to make the reference to
+            const index = data?.users.map(person => person.name).indexOf(toBeRemoved) // Find the index of which to make the reference to
             alreadyRemoved.push(toBeRemoved) // Make sure the next card gets removed next time if this card do not have time to exit the screen
             childRefs[index].current.swipe(dir) // Swipe the card!
         }
     }
 
-    const { loading, data, error } = useQuery(QUERY_USERS);
-    if (loading) {
-        return <h1>Loading....</h1>;
-    }
-    if (error) {
-        console.log(error);
-    }
 
-    const users = data?.users;
-    console.log(users)
 
 
 
@@ -188,7 +208,7 @@ export default function MatchingCard({ }) {
                     bio: userData._id,
                     mainRoles: [icon1, icon2]
                 }
-            
+
 
 
 
