@@ -18,6 +18,7 @@ import Popper from '@material-ui/core/Popper';
 import Swipe from './swipe';
 
 
+
 //icons not from materialUi
 import { HeartFill } from "@styled-icons/bootstrap/HeartFill"
 import { Close } from "@styled-icons/material-rounded/Close"
@@ -88,7 +89,8 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     actionBarWrapper: {
-        placeContent: "space-evenly"
+        placeContent: "space-evenly",
+        textAlign: "center"
     },
     swipeCard: {
         zIndex: '0',
@@ -121,10 +123,11 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function MatchingCard({ }) {
-    const classes = useStyles();
+export default function MatchingCard() {
+    const classes = useStyles();    
 
-
+    const [dir, setDir] = useState()
+    // console.log(dir)
     const { loading, data, error } = useQuery(QUERY_USERS);
     if (loading) return <h2>Loading....</h2>
     if (error) { console.log(error) }
@@ -162,12 +165,14 @@ export default function MatchingCard({ }) {
 
                                         />
 
+                                        <PositionedPopper className={classes.popperBtnDuoPage} />
+
+
                                         <Box className={classes.content}>
                                             <Typography variant={'h2'} className={classes.title}>
                                                 {user.name}
                                             </Typography>
                                         </Box>
-                                        <PositionedPopper className={classes.popperBtnDuoPage} />
                                         <Box>
                                             <img className={classes.userCardIcon} src={user.mainRoles[0]} />
                                         </Box>
@@ -184,14 +189,17 @@ export default function MatchingCard({ }) {
 
 
                                     <CardActions className={classes.actionBarWrapper}>
+                                        
+                                        <h5> Swipe the card RIGHT to match or LEFT to see another DUO!</h5>
 
-                                        <CicleButton onClick={() => swipeDir('left')}>
+                                        <Swipe dir={dir} />
+                                        {/* <CicleButton onClick={() => setDir('left')}>                                          
                                             <Close className="closeBtn" />
                                         </CicleButton>
 
-                                        <CicleButton>
+                                        <CicleButton onClick={() => setDir('right')}>
                                             <HeartFill className="heartBtn" />
-                                        </CicleButton>
+                                        </CicleButton> */}
 
                                     </CardActions>
 
