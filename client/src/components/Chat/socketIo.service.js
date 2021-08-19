@@ -4,7 +4,7 @@ let socket;
 
 // initiates socket connection with auth
 export const initiateSocketConnection = (token) => {
-	socket = io("http://localhost:3005", {
+	socket = io("https://cupidlolserver.herokuapp.com/", {
 		auth: {
 			token,
 		},
