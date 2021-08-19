@@ -21,8 +21,10 @@ const useStyles = makeStyles({
 		margin: "10px",
 	},
 
-	paper: {
-		width: "100%",
+	paperClass: {
+		backgroundColor: "var(--tertiaryColor)",
+		boxShadow: "inset 0px 0px 20px black",
+		borderRadius: "5%"
 	},
 
 	title: {
@@ -59,7 +61,7 @@ const AboutChampion = () => {
 				<Grid container>
 					<Grid item xs={12} sm={12} md={3} lg={3}>
 						<div className={classes.title}>
-						<h2>Select a Champion</h2>
+							<h2>Select a Champion</h2>
 						</div>
 						<Box className={classes.selectChampion}>
 							<ChampionCard
@@ -72,7 +74,7 @@ const AboutChampion = () => {
 						</Box>
 					</Grid>
 					<Grid item xs={12} sm={12} md={9} lg={9}>
-						<Paper>
+						<Paper className={classes.paperClass}>
 							<Box>
 								{champ && (
 									<Champ
