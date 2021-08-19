@@ -65,7 +65,6 @@ export default function TopChamp({ champsMastery }) {
         <>
             {cardData.map(mastery => (
                 <Card className={classes.root}>
-                    {console.log(mastery)}
                     <CardActionArea>
                         <CardMedia
                             className={classes.media}

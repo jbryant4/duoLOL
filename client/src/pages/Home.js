@@ -14,6 +14,7 @@ import MatchComponent from "../components/MatchComponent";
 //gql
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries";
+import FriendSug from "../components/FriendSug";
 
 //page styles
 const useStyles = makeStyles({
@@ -125,6 +126,10 @@ function Home() {
 				</Box>
 				<Box className={classes.boxContainer}>
 					<Box className={classes.friendList}>
+						<FriendSug
+						currentFriends={me.friends}
+						me = {me._id}
+						/>
 						<h1>Friends List</h1>
 						{me.friends ? <h2>Go make some friends with Duo  Finder</h2> :
 							<FriendList name={me.friends} />

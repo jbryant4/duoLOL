@@ -7,7 +7,7 @@ const V_THRESHOLD = 0.3
 export default function Swipe({children}) {
     const [xPos, setXPos] = useState(0)    
     const { x } = useSpring({ x: xPos * 1500 })
-
+    console.log(children)
     // useEffect(() => {
     //     if (dir == 'right') setXPos(300)
     //     else if (dir == 'left') setXPos(-300)

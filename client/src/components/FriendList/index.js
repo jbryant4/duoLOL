@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
 //Material Components
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 
+import FriendSug from "../FriendSug"
 const useStyles = makeStyles({
 	buttonClass: {
 		variant: "outlined",
@@ -28,6 +29,7 @@ const useStyles = makeStyles({
 
 // Friend List
 export default function FriendList({ name }) {
+	
 	// use Material styles
 	const classes = useStyles();
 	const friendsList = name;
