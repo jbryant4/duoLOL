@@ -7,7 +7,6 @@ import ImageAvatars from "../ImageAvatars";
 import { useQuery } from "@apollo/client";
 import { QUERY_CHAMPIONS } from "../../utils/queries";
 
-
 const useStyles = makeStyles({
 	root: {
 		display: "flex",
@@ -47,36 +46,39 @@ const useStyles = makeStyles({
 });
 
 export default function BuildChamp({ champ, setChamp, content, setContent }) {
-    const classes = useStyles();
+	const classes = useStyles();
 
-    //champion query
-    const { loading, data, error } = useQuery(QUERY_CHAMPIONS);
-    if (loading) {
-        return <h1>Loading....</h1>;
-    }
-    if (error) {
-        console.log(error);
-    }
+	//champion query
+	const { loading, data, error } = useQuery(QUERY_CHAMPIONS);
+	if (loading) {
+		return <h1>Loading....</h1>;
+	}
+	if (error) {
+		console.log(error);
+	}
 
-    const champions = data?.champions
+	const champions = data?.champions;
 
+	function handleChampChange(e) {
+		e.preventDefault();
 
-    function handleChampChange(e) {
-        e.preventDefault();
+		setChamp({ link: e.target.src, name: e.target.alt });
+		setContent("no");
+	}
 
-        setChamp({ link: e.target.src, name: e.target.alt })
-        setContent('no')
-    }
-
-    return (
-        <div className={classes.cardContainer}>
-            {champions &&
-                champions.map(champion => (
-                    <Card onClick={handleChampChange} key={champion.name} className={classes.root} variant="outlined">
-
-                        <ImageAvatars link={champion.icon.url} name={champion.name} />
-                    </Card>
-                ))}
-        </div>
-    );
+	return (
+		<div className={classes.cardContainer}>
+			{champions &&
+				champions.map((champion) => (
+					<Card
+						onClick={handleChampChange}
+						key={champion.name}
+						className={classes.root}
+						variant="outlined"
+					>
+						<ImageAvatars link={champion.icon.url} name={champion.name} />
+					</Card>
+				))}
+		</div>
+	);
 }
