@@ -109,11 +109,11 @@ async function getChampions(_patch) {
     const link = `http://ddragon.leagueoflegends.com/cdn/${patch}/data/en_US/champion.json`
     try {
         const data = await axios.get(link)
-
+        
         for (const [key, value] of Object.entries(data.data.data)) {
             champList.push({
                 name: key,
-                blurb: value.blurb,
+                key: value.key,
                 icon: {
                     url: `http://ddragon.leagueoflegends.com/cdn/${patch}/img/champion/${key}.png`
                 }
@@ -123,6 +123,7 @@ async function getChampions(_patch) {
     catch (err) {
         console.error(err)
     }
+    
     return champList
 }
 

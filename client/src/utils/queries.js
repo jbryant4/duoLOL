@@ -14,6 +14,7 @@ export const QUERY_CHAMPIONS = gql`
 	query champions {
 		champions{
     		name
+			key
     		icon {
       			url
     		}

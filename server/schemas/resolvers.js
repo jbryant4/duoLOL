@@ -111,7 +111,6 @@ const resolvers = {
                 { new: true }
             )
 
-            console.log(updatedUser)
             const token = signToken(updatedUser)
             return { user: updatedUser, token };
         },

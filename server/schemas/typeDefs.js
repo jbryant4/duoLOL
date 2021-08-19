@@ -40,7 +40,7 @@ const typeDefs = gql`
     type ChampionSummary {
         name: String
         icon: Image
-        blurb: String
+        key: Int
     }
     type Image {
         name: String

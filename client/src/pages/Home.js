@@ -6,7 +6,7 @@ import BuildList from '../components/BuildList'
 import FriendList from "../components/FriendList";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
-
+import TopChamp from "../components/TopChamp"
 // Material UI
 import { Container, Box, makeStyles, CardMedia, Card } from "@material-ui/core";
 import MatchComponent from "../components/MatchComponent";
@@ -136,9 +136,10 @@ function Home() {
 					</Box>
 					<Box className={classes.boxContainer}>
 						<Box className={classes.matchHistory}>
-							<h1>Match History</h1>
+							<h1>Top Champs</h1>
 							<Box className={classes.match}>
-								<MatchComponent />
+								{/* <MatchComponent champs={me.masteries}/> */}
+								<TopChamp champsMastery={me.masteries}/>
 							</Box>
 						</Box>
 					</Box>
