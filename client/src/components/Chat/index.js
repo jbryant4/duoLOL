@@ -10,10 +10,11 @@ import {
 } from "./socketIo.service";
 import AuthService from '../../utils/auth'
 import { borderBottom } from '@material-ui/system';
+import { useQuery } from '@apollo/client';
+import { QUERY_ME } from '../../utils/queries';
 
 
 function Chat() {
-
     const [messages, setMessages] = useState([]);
     const inputRef = useRef("");
     const joinRef = useRef("");
@@ -22,6 +23,9 @@ function Chat() {
 
     const token = AuthService.getToken();
     // console.log(token)
+
+    const chatter = AuthService.getProfile().data.sumName;
+    
 
     const useStyles = makeStyles({
         contain: {
@@ -135,7 +139,7 @@ function Chat() {
             alignSelf: "center",
             color: "rgba(3, 0, 165, .75)",
             fontSize: "65px",
-            margin: 0 ,
+            margin: 0,
             fontFamily: "'STIX Two Text', serif",
         }
     });
@@ -143,8 +147,10 @@ function Chat() {
     //! needs to be replaced with the user
     const SENDER = {
         //id: "123",
-        name: "Cody Hebert",
+        name: chatter
     };
+
+
 
     const chatRooms = ["ARAM", "Ranked", "Duo", "LCS", "Patch Notes", "Post Games"]
 
@@ -184,6 +190,8 @@ function Chat() {
         setRoom(joinRef.current.value)
     }
 
+
+
     // room join function
     const joinChatRoom = (e) => {
         e.preventDefault();
@@ -199,11 +207,12 @@ function Chat() {
     }
     const classes = useStyles();
 
+
     return (
         <Container>
-                <Box className={classes.roomName}>
-                    {room}
-                </Box>
+            <Box className={classes.roomName}>
+                {room}
+            </Box>
             <Box className={classes.contain}>
                 <Box className={classes.joinBox}>
                     <Box className={classes.roomHeader}>
