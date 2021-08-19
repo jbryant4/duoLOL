@@ -84,7 +84,7 @@ export default function CustomizedProgressBars() {
     return (
         <Box display='flex' className={classes.rnkStatsWrap}>
             <Box className={classes.iconFormat}>
-                <img className={classes.champStatIcon} src={khaIcon} ></img>
+                <img alt="icon" className={classes.champStatIcon} src={khaIcon} ></img>
                 <Typography variant={'h2'} className={classes.champNameStats} id="disable-select">
                     Kha'Zix
                 </Typography>

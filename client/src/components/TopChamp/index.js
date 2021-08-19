@@ -5,10 +5,8 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
-import Avatar from "@material-ui/core/Avatar";
 // import AvatarGroup from "@material-ui/lab/AvatarGroup";
 
-import { fontFamily, fontWeight } from "@material-ui/system";
 import { useQuery } from "@apollo/client";
 import { QUERY_CHAMPIONS } from "../../utils/queries";
 
@@ -65,7 +63,7 @@ export default function TopChamp({ champsMastery }) {
         <>
             {cardData.map(mastery => (
                 <Card className={classes.root}>
-                    {console.log(mastery)}
+                    {/* {console.log(mastery)} */}
                     <CardActionArea>
                         <CardMedia
                             className={classes.media}

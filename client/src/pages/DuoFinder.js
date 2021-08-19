@@ -13,13 +13,13 @@ import { QUERY_USERS } from "../utils/queries";
 
 // DuoFinder
 function DuoFinder() {
-	const { loading, data, error } = useQuery(QUERY_USERS);
+	const { loading, error } = useQuery(QUERY_USERS);
 	if (loading) return <h2>Loading....</h2>;
 	if (error) {
 		console.log(error);
 	}
 
-	const users = data?.user || [];
+	// const users = data?.user || [];
 
 	return (
 		<div>
