@@ -11,6 +11,8 @@ import TopChamp from "../components/TopChamp"
 import { Container, Box, makeStyles, CardMedia, Card } from "@material-ui/core";
 import MatchComponent from "../components/MatchComponent";
 
+
+
 //gql
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries";
@@ -123,16 +125,16 @@ function Home() {
 
 	const { loading, data, error } = useQuery(QUERY_ME);
 
-		if (loading) {
-			return <h2>Loading...</h2>;
-		}
-		if (error) {
-			console.log(error);
-			return
-		}
+	if (loading) {
+		return <h2>Loading...</h2>;
+	}
+	if (error) {
+		console.log(error);
+		return
+	}
 
-		const me = data?.me || {};
-		console.log(data)
+	const me = data?.me || {};
+	console.log(data)
 
 
 
@@ -152,7 +154,10 @@ function Home() {
 						<h4>losses: {me.losses}</h4>
 					</Box>
 					<Box className={classes.duoDiv}>
-
+						<img alt='logo' src="/images/cupid_lol_static.png" style={{
+							width: "55%",
+							transform: "rotate(15deg)"
+						}} />
 					</Box>
 				</Box>
 				<Box className={classes.boxContainer}>
@@ -164,20 +169,20 @@ function Home() {
 					</Box>
 					<Box className={classes.buildList}>
 						<h1>Custom Builds</h1>
-						<Box  className={classes.buildContainer}>
-						<BuildList builds={me.builds} />
+						<Box className={classes.buildContainer}>
+							<BuildList builds={me.builds} />
 						</Box>
 					</Box>
 					{/* <Box className={classes.boxContainer}> */}
-						<Box className={classes.matchHistory}>
-							<Box>
+					<Box className={classes.matchHistory}>
+						<Box>
 							<h1>Top Champs</h1>
-							</Box>
-							<Box className={classes.match}>
-								{/* <MatchComponent champs={me.masteries}/> */}
-								<TopChamp champsMastery={me.masteries}/>
-							</Box>
 						</Box>
+						<Box className={classes.match}>
+							{/* <MatchComponent champs={me.masteries}/> */}
+							<TopChamp champsMastery={me.masteries} />
+						</Box>
+					</Box>
 					{/* </Box> */}
 				</Box>
 			</Container>
