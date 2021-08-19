@@ -4,10 +4,9 @@ const TeemoJS = require('teemojs');
 const axios = require('axios');
 
 //riot api key 
-//! will be saved to an .env when we go to production 
+ 
 const key = process.env.RIOT_KEY
 //set key for all axios calls 
-
 axios.defaults.headers.common["X-Riot-Token"] = key;
 axios.defaults.headers.common["Origin"] = 'localhost:3000';
 //set api key for riot api wrapper
@@ -70,26 +69,27 @@ async function riotDataUpdata(riotId, region = 'na1') {
     }
 }
 //!get mastery for all champs for a user 
-async function champMasteryData(region, riotId) {
+async function champMasteryData(region = 'na1', riotId) {
+    const link=`https://${region}.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${riotId}`
     //return user top 20 champion (most played) 
-    const userChampionsMastery = await api.get(region, 'championMastery.getAllChampionMasteries', riotId)
-
-    //return top 
+    const {data} = await axios.get(link)
+    
+    const userChampionsMastery = data.slice(0,20)
     return userChampionsMastery;
 }
 
 //! get all match info for the last 20 matches 
 //? (regions: americas asia or europe)(puuid)(ranked or normal)
-async function matchHistoryData(region, type = 'rank', puuid) {
+async function matchHistoryData(region = 'AMERICAS', type = 'ranked', puuid) {
     const link = `https://${region}.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?type=${type}&start=0&count=20`
-    const matchIds = await axios.get(link)
-
+    const {data} = await axios.get(link)
+    const matchIds = data
     let matchHistoryData = []
 
     matchIds.map(async function (match) {
         const link = `https://${region}.api.riotgames.com/lol/match/v5/matches/${match}`
-        const matchData = await axios.get(link)
-
+        const {data} = await axios.get(link)
+        const matchData = data
         matchHistoryData.push(matchData)
     });
 

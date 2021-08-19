@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
@@ -41,18 +41,6 @@ const roleObj = {
     adc: adcIcon,
     sup: supIcon,
 }
-
-//! what is sent to the card
-const db = [
-    {
-        name: "Nathan",
-        src: "https://static.wikia.nocookie.net/leagueoflegends/images/0/08/Kha%27Zix_DarkStarLoading.jpg/revision/latest/scale-to-width-down/308?cb=20200425004141",
-        bio: "lorem ipsum",
-        mainRoles: [topIcon, adcIcon]
-    },
-
-]
-
 
 
 const useStyles = makeStyles((theme) => ({
@@ -127,15 +115,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const alreadyRemoved = []
-let usersState = db // This fixes issues with updating users state forcing it to use the current state and not the state that was active when the card was created.
 
-export default function MatchingCard({ }) {
+export default function MatchingCard({ db }) {
+    let usersState = db;
     const classes = useStyles();
-    const [expanded, setExpanded] = React.useState(false);
-
-    // tinder op
-    const [usersList, setusers] = useState(db)
+    const [users, setUsers] = useState(db)
     const [lastDirection, setLastDirection] = useState()
+
 
     const childRefs = useMemo(() => Array(db.length).fill(0).map(i => React.createRef()), [])
 
@@ -147,8 +133,8 @@ export default function MatchingCard({ }) {
 
     const outOfFrame = (name) => {
         console.log(name + ' left the screen!')
-        usersState = usersState.filter(user => user.name !== name)
-        setusers(usersState)
+        usersState = usersState.filter(character => character.name !== name)
+        setUsers(usersState)
     }
 
     const swipe = (dir) => {
@@ -161,20 +147,9 @@ export default function MatchingCard({ }) {
         }
     }
 
-    const { loading, data, error } = useQuery(QUERY_USERS);
-    if (loading) {
-        return <h1>Loading....</h1>;
-    }
-    if (error) {
-        console.log(error);
-    }
-
-    const users = data?.users;
-    console.log(users)
-
     async function handleAddFriend(friendId) {
+        console.log(friendId)
 
-        
     }
 
 
@@ -192,12 +167,13 @@ export default function MatchingCard({ }) {
                     bio: userData._id,
                     mainRoles: [icon1, icon2]
                 }
-            
+                console.log(userData)
 
 
 
                 return (
                     < Box className={classes.tinderCardWrapper} >
+                        <h2>helpers</h2>
                         <TinderCard ref={childRefs[index]} className={classes.swipeCard} key={user.name} preventSwipe={['up', 'down']} onSwipe={(dir) => swiped(dir, user.name)} onCardLeftScreen={() => outOfFrame(user.name)}>
                             <Card className={classes.root} elevation={3}>
                                 <Box className={classes.main} minHeight={300} position={'relative'}>
@@ -234,7 +210,7 @@ export default function MatchingCard({ }) {
                                         <Close className="closeBtn" />
                                     </CicleButton>
 
-                                    <CicleButton onClick={() => {swipe('right'); handleAddFriend(user.id)}}>
+                                    <CicleButton onClick={() => swipe('right')}>
                                         <HeartFill className="heartBtn" />
                                     </CicleButton>
 

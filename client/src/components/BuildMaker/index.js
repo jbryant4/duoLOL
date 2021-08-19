@@ -78,7 +78,7 @@ export default function Build({ }) {
             mythic: JSON.stringify(mythic),
             legendaries: JSON.stringify(legendaries)
         }
-        console.log(buildInfo)
+        
         try {
             await addBuild({
                 variables: { content: buildInfo }
@@ -94,7 +94,7 @@ export default function Build({ }) {
         setMythic({ link: "test", name: '+' });
         setLegendaries([]);
 
-        
+        window.location.assign("/home")
     };
 
     return (
