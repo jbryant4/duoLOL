@@ -4,48 +4,49 @@ import Card from "@material-ui/core/Card";
 
 import ImageAvatars from "../ImageAvatars";
 
-//import Data 
+//import Data
 import { useQuery } from "@apollo/client";
 import { QUERY_BUILD_ITEMS } from "../../utils/queries";
 
 
 const useStyles = makeStyles({
-    root: {
-        display: "flex",
-        flexDirection: "column",
-        flexWrap: "wrap",
-        alignItems: "center",
-        width: "100px",
-        backgroundColor: "whitesmoke",
-        margin: 2
-    },
-    bullet: {
-        display: "inline-block",
-        margin: "0 2px",
-        transform: "scale(0.8)",
-    },
-    title: {
-        fontSize: 15,
-        maxWidth: "100%",
-        margin: 0,
-        padding: 0,
-        fontWeight: 'bold'
-    },
-    pos: {
-        marginBottom: 0,
-    },
-    cardContainer: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        maxHeight: 870,
-        overflow: 'scroll',
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    titleWrap: {
-        padding: 0
-    }
+	root: {
+		display: "flex",
+		flexDirection: "column",
+		flexWrap: "wrap",
+		alignItems: "center",
+		backgroundColor: "var(--secondaryColor)",
+		margin: 2,
+		boxShadow: "inset 0 0 10px black",
 
+	},
+	bullet: {
+		display: "inline-block",
+		margin: "0 2px",
+		transform: "scale(0.8)",
+	},
+	title: {
+		fontSize: 15,
+		maxWidth: "100%",
+		margin: 0,
+		padding: 0,
+		fontWeight: "bold",
+	},
+	pos: {
+		marginBottom: 0,
+	},
+	cardContainer: {
+		display: "flex",
+		flexWrap: "wrap",
+		maxHeight: "300px",
+		overflow: "scroll",
+		alignItems: "center",
+		justifyContent: "center",
+		boxShadow: "0 0 30px black",
+	},
+	titleWrap: {
+		padding: 0,
+	},
 });
 
 export default function BuildItem({ setBoot, setMythic, legendaries, setLegendaries, setContent, dataItem }) {

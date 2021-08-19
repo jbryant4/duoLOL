@@ -3,6 +3,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 
+//Logo
+import Logo from "../../assets/images/Logo.png";
 
 const useStyles = makeStyles((theme) => ({
 	root: {
