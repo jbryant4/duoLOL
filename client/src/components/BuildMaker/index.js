@@ -19,7 +19,7 @@ import { ADD_BUILD } from '../../utils/mutations';
 const useStyles = makeStyles((theme) => ({
 	root: {
 		backgroundColor: "var(--tertiaryColor)",
-		boxShadow: "inset 0px 0px 35px grey",
+		boxShadow: "inset 0px 0px 20px black",
 	},
 
 	itemBox: {
