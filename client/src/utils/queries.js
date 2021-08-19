@@ -12,78 +12,78 @@ export const QUERY__ALL_SOMETHING = gql`
 
 export const QUERY_CHAMPIONS = gql`
 	query champions {
-		champions{
-    		name
+		champions {
+			name
 			key
-    		icon {
-      			url
-    		}
-  		}
+			icon {
+				url
+			}
+		}
 	}
 `;
 
 export const QUERY_CHAMPION = gql`
 	query champion($name: String!) {
-  		champion(name: $name){
-    		name
+		champion(name: $name) {
+			name
 			images {
 				name
 				url
 			}
-    		title
-    		lore
-    		tags
-    		allytips
-    		enemytips
-    		passive {
-      			name
-      			description
-      			icon{
-        			url
-      			}
-    		}
-    		abilities {
-      			name
-      			description
-      			icon{
-        			url
-      			}
-    		}
-  		}
-}
+			title
+			lore
+			tags
+			allytips
+			enemytips
+			passive {
+				name
+				description
+				icon {
+					url
+				}
+			}
+			abilities {
+				name
+				description
+				icon {
+					url
+				}
+			}
+		}
+	}
 `;
 
 export const QUERY_BUILD_ITEMS = gql`
 	query buildItems {
-  		buildItems{
-    		boots {
-      			name
-      			icon{
-        			url
-      			}
-      			description
-    		}
-    		mythics {
-      			name
-      			icon{
-        			url
-      			}
-      			description
-    		}
-    	legendaries{
-      		name
-      		icon{
-      			url
-      		}
-      		description
-    	}
-  }
-}
+		buildItems {
+			boots {
+				name
+				icon {
+					url
+				}
+				description
+			}
+			mythics {
+				name
+				icon {
+					url
+				}
+				description
+			}
+			legendaries {
+				name
+				icon {
+					url
+				}
+				description
+			}
+		}
+	}
 `;
 
 export const QUERY_ME = gql`
 	query me {
-  		me{
+		me {
 			_id
 			email
 			rank
@@ -95,7 +95,7 @@ export const QUERY_ME = gql`
 			riotId
 			puuid
 			friendCount
-			builds{
+			builds {
 				_id
 				title
 				champion
@@ -103,26 +103,26 @@ export const QUERY_ME = gql`
 				mythic
 				legendaries
 			}
-			friends{
+			friends {
 				_id
 				sumName
 			}
-			masteries{
-          		championId
-          		championLevel
-          		championPoints
-        	}
+			masteries {
+				championId
+				championLevel
+				championPoints
+			}
 		}
 	}
 `;
 
 export const QUERY_USERS = gql`
 	query users {
-  		users{
-    		_id
-    		primRoles
-    		sumName
-    		tier
-  		}
+		users {
+			_id
+			primRoles
+			sumName
+			tier
+		}
 	}
 `;

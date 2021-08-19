@@ -141,9 +141,9 @@ function Home() {
 
 
 	return (
-		<div>
+		<Container maxWidth="lg">
 			<Navbar />
-			<Container>
+			<Container maxWidth="lg">
 				<Header />
 				<Box className={classes.boxMain} >
 					<Box className={classes.imageDiv}>
@@ -190,7 +190,7 @@ function Home() {
 					{/* </Box> */}
 				</Box>
 			</Container>
-		</div>
+		</Container>
 	);
 }
 
