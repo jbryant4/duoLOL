@@ -104,7 +104,7 @@ const typeDefs = gql`
         login(email: String!, password: String!): Auth
         addUser(email: String!, password: String!,sumName:String!, primRoles:[String]): Auth
         addBuild(content: buildInfo!): Build
-        addFriend(friendId: ID!): User
+        addFriend(friendId: String!): User
     }
 
     input buildInfo {

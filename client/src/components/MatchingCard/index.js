@@ -127,7 +127,7 @@ const useStyles = makeStyles((theme) => ({
 export default function MatchingCard() {
     const classes = useStyles();    
 
-    const [dir, setDir] = useState()
+    // const [dir, setDir] = useState()
     // console.log(dir)
     const { loading, data, error } = useQuery(QUERY_USERS);
     if (loading) return <h2>Loading....</h2>
@@ -136,6 +136,9 @@ export default function MatchingCard() {
 
     console.log(data)
 
+    async function handBtnClick(dir,friendId){
+
+    }
     return (
         <div style={{ width: '100%', height: 'calc(100vh - 73px)', display: 'flex', alignItems: 'center', justifyContent: 'center' }} >
 
@@ -193,14 +196,22 @@ export default function MatchingCard() {
                                         
                                         <h5> Swipe the card RIGHT to match or LEFT to see another DUO!</h5>
 
-                                        <Swipe dir={dir} />
-                                        {/* <CicleButton onClick={() => setDir('left')}>                                          
+                                        {/* <Swipe dir={dir} user={user.bio}/> */}
+                                        {/* <CicleButton onClick={() => ('left')}>                                          
                                             <Close className="closeBtn" />
                                         </CicleButton>
 
                                         <CicleButton onClick={() => setDir('right')}>
                                             <HeartFill className="heartBtn" />
                                         </CicleButton> */}
+
+                                         <CicleButton onClick={() => handBtnClick('left',user.bio)}>                                          
+                                            <Close className="closeBtn" />
+                                        </CicleButton>
+
+                                        <CicleButton onClick={() => handBtnClick('right',user.bio)}>
+                                            <HeartFill className="heartBtn" />
+                                        </CicleButton>
 
                                     </CardActions>
 

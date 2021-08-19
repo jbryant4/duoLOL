@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
 //Material Components
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 
+import FriendSug from "../FriendSug"
 const useStyles = makeStyles({
 	buttonClass: {
 		variant: "outlined",
@@ -27,24 +28,18 @@ const useStyles = makeStyles({
 });
 
 // Friend List
-export default function FriendList({ name }) {
+export default function FriendList({ friends }) {
+	console.log(friends)
 	// use Material styles
 	const classes = useStyles();
-	const friendsList = name;
-	console.log(friendsList);
+	;
 	return (
 		<Grid>
 			<div>
-				{friendsList &&
-					friendsList.map((friendName) => (
-						<div key={friendName} className={classes.friend}>
-							{friendName}
-							<Button
-								className={classes.buttonClass}
-								// onClick={() => go to chat)}
-							>
-								Chat
-							</Button>
+				{friends  &&
+					friends.map(friend => (
+						<div key={friend.sumName} className={classes.friend}>
+							{friend.sumName}
 						</div>
 					))}
 			</div>
