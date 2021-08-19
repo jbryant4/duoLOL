@@ -82,8 +82,9 @@ const useStyles = makeStyles({
 	},
 	friendListContainer: {
 		display: "flex",
-		flexWrap: "wrap",
-		height: 500,
+		flexDirection: 'column',
+		flexWrap: "no wrap",
+		height: 700,
 		overflow: "scroll",
 		overflowX: "hidden",
 		flexDirection: "column",
@@ -135,7 +136,7 @@ function Home() {
 	}
 
 	const me = data?.me || {};
-	console.log(data)
+	console.log(me)
 
 
 
@@ -167,10 +168,8 @@ function Home() {
 							currentFriends={me.friends}
 							me={me._id}
 						/>
-						<h1>Friends List</h1>
-						{me.friends ? <h2>Go make some friends with Duo  Finder</h2> :
-							<FriendList name={me.friends} />
-						}
+						<h1 width='100%'>Friends List</h1>
+						<FriendList friends={me.friends} />
 					</Box>
 					<Box className={classes.buildList}>
 						<h1>Custom Builds</h1>

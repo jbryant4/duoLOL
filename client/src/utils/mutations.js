@@ -36,10 +36,13 @@ export const ADD_BUILD = gql`
 `;
 
 export const ADD_FRIEND = gql`
-	mutation addFriend($friendId: ID!){
+	mutation addFriend($friendId: String!){
 		addFriend(friendId:$friendId){
 			_id
-			friends
+			friends {
+				_id
+				sumName
+			}
 		}
 	}
 `;
