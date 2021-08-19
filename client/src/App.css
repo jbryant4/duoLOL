@@ -1,9 +1,9 @@
 :root {
 	--primaryColor: rgb(218, 165, 32);
 	--secondaryColor: rgba(30, 28, 100, 1);
-	--tertiaryColor: #39a6b2;
-	--altPrimary: #7510f7;
-	--altSecondary: rgba(30, 28, 100, 0.3);
+	--tertiaryColor: rgba(225, 225, 225, 0.7);
+	--altPrimary: rgba(218, 165, 32, 0.4);
+	--altSecondary: rgba(30, 28, 100, 0.4);
 }
 
 .noBg {

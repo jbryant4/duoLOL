@@ -17,35 +17,38 @@ import { ADD_BUILD } from '../../utils/mutations';
 
 
 const useStyles = makeStyles((theme) => ({
-    itemBox: {
-        height: 250,
-        overflow: 'scroll',
-        border: 'solid 2px red',
-        margin: '10px 5px',
-        backgroundColor: "var(--altSecondary)"
-    },
-    itemImg: {
-        margin: 5,
-    },
-    media: {
-        height: 140,
-    },
-    innerFlex: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        alignContent: 'center',
-    },
-    buttonClass: {
-        backgroundColor: "var(--primaryColor)",
-		variant: "outlined",
-		color: "primary",
-        fontWeight: "600",
-        margin: 10,
+	root: {
+		backgroundColor: "var(--tertiaryColor)",
+		boxShadow: "inset 0px 0px 35px grey",
 	},
 
-
+	itemBox: {
+		height: 250,
+		overflow: "scroll",
+		border: "solid 2px red",
+		margin: "10px 5px",
+		backgroundColor: "var(--altSecondary)",
+	},
+	itemImg: {
+		margin: 5,
+	},
+	media: {
+		height: 140,
+	},
+	innerFlex: {
+		display: "flex",
+		flexWrap: "wrap",
+		justifyContent: "flex-start",
+		alignItems: "center",
+		alignContent: "center",
+	},
+	buttonClass: {
+		backgroundColor: "var(--primaryColor)",
+		variant: "outlined",
+		color: "primary",
+		fontWeight: "600",
+		margin: 10,
+	},
 }));
 
 export default function Build({ }) {
