@@ -8,7 +8,6 @@ import {
 	joinRoom,
 	leaveRoom,
 } from "./socketIo.service";
-
 import AuthService from "../../utils/auth";
 import { borderBottom } from "@material-ui/system";
 
@@ -21,181 +20,6 @@ function Chat() {
 
 	const token = AuthService.getToken();
 	// console.log(token)
-
-import AuthService from '../../utils/auth'
-import { borderBottom } from '@material-ui/system';
-
-import { useQuery } from '@apollo/client';
-import { QUERY_ME } from '../../utils/queries';
-
-
-
-function Chat() {
-    const [messages, setMessages] = useState([]);
-    const inputRef = useRef("");
-    const joinRef = useRef("");
-    const [room, setRoom] = useState('Global Chat Room');
-    // const [leave, setLeave] = useState('myRandomChatRoomId');
-
-    const token = AuthService.getToken();
-    // console.log(token)
-
-    const chatter = AuthService.getProfile().data.sumName;
-    
-
-    const useStyles = makeStyles({
-        contain: {
-            width: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            textDecoration: "none",
-            color: "goldenrod",
-            flexWrap: "wrap",
-
-        },
-        box: {
-            color: "goldenrod",
-            height: "600px",
-            width: "75%",
-            overflow: "scroll",
-            overflowX: "hidden",
-            display: "flex",
-            flexDirection: "column",
-            border: "2px solid goldenrod",
-            backgroundImage: `url(/images/testRoom.jpg)`,
-            minHeight: "100%",
-            minWidth: "75%",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
-
-        },
-        formBox: {
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "stretch",
-            justifyContent: "center",
-            width: "75%",
-            alignContent: "center",
-            flexWrap: "wrap",
-        },
-        customRoomBox: {
-            display: "flex",
-            flexDirection: "column",
-            flexWrap: "wrap",
-            alignContent: "center",
-            justifyContent: "center",
-            alignItems: "stretch",
-        },
-        messageInput: {
-            color: "goldenrod",
-            background: "rgba(3, 0, 165, 0.3)",
-            border: "2px solid darkgoldenrod",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-        },
-        buttonInput: {
-            backgroundColor: "goldenrod",
-            border: "2px solid darkgoldenrod",
-            color: "rgb(3,0,165)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-        },
-        joinBox: {
-            margin: "30px",
-            border: "2px solid goldenrod",
-            backgroundColor: "rgba(3, 0, 165, 0.3)",
-            width: "15%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "flex-start",
-            height: "600px",
-            flexDirection: "column",
-            backgroundImage: `url(/images/testRoom.jpg)`,
-            maxWidth: "15%",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
-        },
-        roomButtons: {
-            display: "flex",
-            opacity: 0.85,
-            alignItems: "center",
-            justifyContent: "center",
-            border: "2px solid goldenrod",
-            width: "100%",
-            margin: "38px 0 20px 0",
-            background: "darkgoldenrod",
-            color: "rgba(3, 0, 165, 1)",
-            '&:hover': {
-                backgroundColor: 'rgba(3, 0, 165, 0.5)',
-                color: 'goldenrod',
-            },
-        },
-        roomHeader: {
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            alignContent: "center",
-            alignSelf: "center",
-            border: "2px solid goldenrod",
-            width: "100%",
-            background: "darkgoldenrod",
-            color: "rgba(3, 0, 165, .75)",
-            opacity: 0.85
-        },
-        roomName: {
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            alignContent: "center",
-            alignSelf: "center",
-            color: "rgba(3, 0, 165, .75)",
-            fontSize: "65px",
-            margin: 0,
-            fontFamily: "'STIX Two Text', serif",
-        }
-    });
-
-    //! needs to be replaced with the user
-    const SENDER = {
-        //id: "123",
-        name: chatter
-    };
-
-    const chatRooms = ["ARAM", "Ranked", "Duo", "LCS", "Patch Notes", "Post Games"]
-
-    useEffect(() => {
-        if (token) {
-            initiateSocketConnection(token);
-            subscribeToMessages((err, data) => {
-                setMessages((prev) => [...prev, data]);
-            });
-            return () => {
-                disconnectSocket();
-            };
-        }
-    }, [token]);
-
-    // submits message and appends it to the server and the client
-    const submitMessage = (e) => {
-        e.preventDefault();
-        const message = inputRef.current.value;
-        sendMessage({ message, roomName: room }, (cb) => {
-            // callback is acknowledgement from server
-            console.log(cb);
-            messages.push({
-                message,
-                ...SENDER
-            })
-            setMessages(messages);
-            // clear the input after the message is sent
-            inputRef.current.value = "";
-        });
-    };
 
 	const useStyles = makeStyles({
 		contain: {
@@ -318,7 +142,6 @@ function Chat() {
 		name: "Cody Hebert",
 	};
 
-
 	const chatRooms = [
 		"ARAM",
 		"Ranked",
@@ -327,17 +150,6 @@ function Chat() {
 		"Patch Notes",
 		"Post Games",
 	];
-
-
-
-    // room join function
-    const joinChatRoom = (e) => {
-        e.preventDefault();
-        const newRoom = e.target.innerText;
-        if (room != newRoom) {
-            leaveRoom(room);
-            joinRoom(newRoom);
-        }
 
 	useEffect(() => {
 		if (token) {
@@ -367,19 +179,6 @@ function Chat() {
 			inputRef.current.value = "";
 		});
 	};
-
-
-    return (
-        <Container>
-
-            <Box className={classes.roomName}>
-                {room}
-            </Box>
-            <Box className={classes.contain}>
-                <Box className={classes.joinBox}>
-                    <Box className={classes.roomHeader}>
-                        <h2>Rooms!</h2>
-                    </Box>
 
 	// handles joining room names
 	const handleInputChange = (e) => {
