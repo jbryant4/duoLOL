@@ -2,12 +2,13 @@
 import React from "react";
 
 //components
+import BuildList from '../components/BuildList'
 import FriendList from "../components/FriendList";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
 
 // Material UI
-import { Container, Box, makeStyles } from "@material-ui/core";
+import { Container, Box, makeStyles, CardMedia, Card } from "@material-ui/core";
 import MatchComponent from "../components/MatchComponent";
 
 //gql
@@ -32,7 +33,7 @@ const useStyles = makeStyles({
 		justifyContent: "flex-start",
 		alignItems: "center",
 		width: "15%",
-		background: "blue",
+
 	},
 	summonerDiv: {
 		display: "flex",
@@ -80,11 +81,15 @@ const useStyles = makeStyles({
 		flexWrap: "wrap",
 		justifyContent: "center",
 	},
+	img: {
+		maxHeight: 250
+	}
 });
 
 // Home
 function Home() {
 	const classes = useStyles();
+
 
 	const { loading, data, error } = useQuery(QUERY_ME);
 	if (loading) {
@@ -96,37 +101,42 @@ function Home() {
 
 	const me = data?.me || {};
 
-	console.log(me);
-
-	const testFriends = ["Robert", "Cody", "Joeseph", "Nathan"];
-
 	return (
 		<div>
 			<Navbar />
 			<Container>
 				<Header />
-				<Box className={classes.boxMain}>
+				<Box className={classes.boxMain} >
 					<Box className={classes.imageDiv}>
-						<image>Placeholder for image</image>
+						<img alt={me.tier} src={`/ranked-emblems/${me.tier}.png`} className={classes.img} />
 					</Box>
 					<Box className={classes.summonerDiv}>
-						<h2>Summoner Name</h2>
-						<h4>Rank</h4>
+						<h2>{me.sumName}</h2>
+						<h4>{me.tier} {me.rank}</h4>
+						<h4>Wins: {me.wins}</h4>
+						<h4>losses: {me.losses}</h4>
 					</Box>
 					<Box className={classes.duoDiv}>
-						<h1>Find Your Duo</h1>
-						<h4>Dashboard</h4>
+
 					</Box>
 				</Box>
 				<Box className={classes.boxContainer}>
 					<Box className={classes.friendList}>
 						<h1>Friends List</h1>
-						<FriendList name={testFriends} />
+						{me.friends ? <h2>Go make some friends with Duo  Finder</h2> :
+							<FriendList name={me.friends} />
+						}
 					</Box>
-					<Box className={classes.matchHistory}>
-						<h1>Match History</h1>
-						<Box className={classes.match}>
-							<MatchComponent />
+					<Box className={classes.friendList}>
+						<h1>Custom Builds</h1>
+						<BuildList builds={me.builds} />
+					</Box>
+					<Box className={classes.boxContainer}>
+						<Box className={classes.matchHistory}>
+							<h1>Match History</h1>
+							<Box className={classes.match}>
+								<MatchComponent />
+							</Box>
 						</Box>
 					</Box>
 				</Box>

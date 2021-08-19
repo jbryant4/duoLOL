@@ -6,14 +6,24 @@ const riotApi = require('../utils/riotApi/riotApi');
 const resolvers = {
     Query: {
         me: async (parent, args, context) => {
-            // console.log(context.user)
             if (context.user) {
-                const userData = await User.findOne({ _id: context.user._id })
-                    .select('-__v -password')
-                    .populate('builds')
-                    .populate('friends');
+                const user = await User.findOne({ _id: context.user._id })
+                .select('-__v -password')
+                .populate('builds')
+                .populate('friends');
+                
+            // console.log({user})
+                return user;
+            }
 
-                return userData;
+            throw new AuthenticationError('Not logged in');
+        },
+        users: async (parent, args, context) => {
+            if (context.user) {
+                const users = await User.find()
+                .select('-__v -password')             
+            // console.log({user})
+                return users;
             }
 
             throw new AuthenticationError('Not logged in');
@@ -51,7 +61,7 @@ const resolvers = {
     },
     Mutation: {
         addUser: async (parent, args ) => {
-            console.log(args);
+            // console.log(args);
             const user = await User.create(args);
 
             const lolData = await riotApi.riotDataSignUp(user.sumName, 'na1')
@@ -71,7 +81,7 @@ const resolvers = {
         },
         login: async (parent, { email, password }) => {
             // console.log(email , password)
-            const user = await User.findOne({ email });
+            const user = await User.findOne( {email} );
 
             if (!user) {
                 throw new AuthenticationError('Incorrect credentials');
@@ -80,7 +90,7 @@ const resolvers = {
             const correctPw = await user.isCorrectPassword(password);
 
             if (!correctPw) {
-                throw new AuthenticationError('Incorrect credentials');
+                throw new AuthenticationError('Incorrect password');
             }
             //call 
             const lolData = await riotApi.riotDataUpdata(user.riotId, 'na1')
@@ -99,13 +109,13 @@ const resolvers = {
             return { user: updatedUser, token };
         },
         addBuild: async (parent, { content }, context) => {
-
+            
             if (context.user) {
-                const build = await Build.create({ ...content, username: context.user.sumName });
+                const build = await Build.create({ ...content, madeBy: context.user.sumName, madeId: context.user._id });
 
                 await User.findByIdAndUpdate(
                     { _id: context.user._id },
-                    { $push: { builds: build._id } },
+                    { $push: { builds: build } },
                     { new: true }
                 );
 

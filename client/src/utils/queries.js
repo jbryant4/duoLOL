@@ -101,12 +101,22 @@ export const QUERY_ME = gql`
 				boots
 				mythic
 				legendaries
-				builtBy
 			}
 			friends{
 				_id
 				sumName
 			}
 		}
+	}
+`;
+
+export const QUERY_USERS = gql`
+	query users {
+  		users{
+    		_id
+    		primRoles
+    		sumName
+    		tier
+  		}
 	}
 `;
