@@ -16,6 +16,12 @@ const useStyles = makeStyles((theme) => ({
 	root: {
 		maxWidth: 500,
 		margin: 10,
+		backgroundColor: "var(--tertiaryColor)",
+		color: "white",
+		boxShadow: "inset 0px 0px 35px black",
+		borderRadius: "5%",
+		fontWeight: 600,
+		textAlign: "center",
 	},
 	icons: {
 		display: "flex",
@@ -49,7 +55,7 @@ export default function MatchComponent() {
 				/>
 				<CardContent>
 					<Typography gutterBottom variant="h5" component="h2">
-						Champion Name: <span>Champ!</span>
+						Champion Name: 
 					</Typography>
 					<Typography
 						variant="body"

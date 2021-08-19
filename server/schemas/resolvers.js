@@ -18,9 +18,9 @@ const resolvers = {
                 // const matchIds = await riotApi.matchHistoryId('americas','ranked', user.puuid)
 
                 // const matchData = await riotApi.matchHistoryData('americas','ranked', matchIds)
-                console.log(user)
+                
                 const userMe = {...user, masteries}
-                console.log(userMe)
+                
                 return userMe;
             }
 

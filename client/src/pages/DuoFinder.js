@@ -5,6 +5,7 @@ import React from "react";
 //components
 import MatchingCard from "../components/MatchingCard";
 import Navbar from "../components/Navbar";
+import Header from "../components/Header";
 
 //import query stuff
 import {useQuery} from "@apollo/client"
@@ -24,7 +25,9 @@ function DuoFinder() {
 		<div>
 			<Navbar />
 			<Container>
-				<MatchingCard db={users} />
+				<Header />
+				<FriendList />
+				<MatchingCard />
 			</Container>
 		</div>
 	);
