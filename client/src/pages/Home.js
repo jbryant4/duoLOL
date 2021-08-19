@@ -1,5 +1,5 @@
 // React
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 //components
 import BuildList from '../components/BuildList'
@@ -8,10 +8,7 @@ import Header from "../components/Header";
 import Navbar from "../components/Navbar";
 import TopChamp from "../components/TopChamp"
 // Material UI
-import { Container, Box, makeStyles, CardMedia, Card } from "@material-ui/core";
-import MatchComponent from "../components/MatchComponent";
-
-
+import { Container, Box, makeStyles } from "@material-ui/core";
 
 //gql
 import { useQuery } from "@apollo/client";
@@ -94,7 +91,8 @@ const useStyles = makeStyles({
 		width: "30%",
 		background: "var(--altSecondary)",
 		color: "var(--primaryColor)",
-		boxShadow: "inset 0 0 35px black"
+		boxShadow: "inset 0 0 35px black",
+		scrollbarColor: "black"
 	},
 	matchHistory: {
 		display: "flex",
@@ -109,7 +107,8 @@ const useStyles = makeStyles({
 		width: "30%",
 		background: "var(--altSecondary)",
 		color: "var(--primaryColor)",
-		boxShadow: "inset 0 0 35px black"
+		boxShadow: "inset 0 0 35px black",
+		
 	},
 	match: {
 		display: "flex",

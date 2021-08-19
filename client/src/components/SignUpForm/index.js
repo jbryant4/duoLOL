@@ -1,12 +1,10 @@
 // React imports
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
-import Grid from '@material-ui/core/Grid';
 
 // Utility imports
 import { ADD_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
-
 
 // import iconsPool from "../../assets/images/RoleIcons/roleIconsPool";
 
@@ -18,11 +16,9 @@ import supIcon from "../../assets/images/RoleIcons/sup.png"
 
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import IconButton from '@material-ui/core/IconButton';
 
 // import SignUpVideo from "../assets/videos/1.mp4"
 import { Box, Checkbox, FormControl } from "@material-ui/core";
-import { width } from "@material-ui/system";
 
 const iconsPool = [
 	{
