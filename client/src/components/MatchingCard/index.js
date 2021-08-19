@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import { ApolloClient, gql, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { QUERY_USERS } from '../../utils/queries';
 import { graphql } from 'graphql';
 
@@ -15,9 +15,8 @@ import Typography from '@material-ui/core/Typography';
 import { ExpandMore } from '@styled-icons/material/ExpandMore';
 import Box from '@material-ui/core/Box';
 import Popper from '@material-ui/core/Popper';
+import Swipe from './swipe';
 
-// tinder card
-import TinderCard from 'react-tinder-card'
 
 //icons not from materialUi
 import { HeartFill } from "@styled-icons/bootstrap/HeartFill"
@@ -42,25 +41,14 @@ const roleObj = {
     sup: supIcon,
 }
 
-//! what is sent to the card
-// let db = [
-//     {
-//         name: "Nathan",
-//         src: "https://static.wikia.nocookie.net/leagueoflegends/images/0/08/Kha%27Zix_DarkStarLoading.jpg/revision/latest/scale-to-width-down/308?cb=20200425004141",
-//         bio: "lorem ipsum",
-//         mainRoles: [topIcon, adcIcon]
-//     }
-// ]
-
-
 const useStyles = makeStyles((theme) => ({
-    root: {
+    /*root: {
         maxWidth: 350,
-        position: "fixed",
+        position: "absolute",
         top: "50%",
         left: "50%",
         transform: "translate(-50%, -50%)"
-    },
+    },*/
     media: {
         height: 0,
         width: 350,
@@ -120,149 +108,104 @@ const useStyles = makeStyles((theme) => ({
         width: 90
     },
     tinderCardWrapper: {
-        position: 'relative'
-    }
+        position: 'absolute'
+    },
+    // popperBtnDuoPage: {
+    //     position: 'absolute',
+    //     right: 0
+    // }
 }));
 
 
 
 
-const alreadyRemoved = []
+
 
 export default function MatchingCard({ }) {
     const classes = useStyles();
 
-    // tinder op   
-    const [lastDirection, setLastDirection] = useState()
-   
+
     const { loading, data, error } = useQuery(QUERY_USERS);
+    if (loading) return <h2>Loading....</h2>
+    if (error) { console.log(error) }
+    const users = data?.users || []
 
-    const cachedMutatedData = useMemo(() => {
-        if (loading || error) return null
-
-        // mutate data here
-        return data
-    }, [loading, error, data])
-
-    if (loading) <h1>Loading....</h1>
-    if (error) console.log(error)
-
-    // safe to assume data now exist and you can use data.
-    const mutatedData = (() => {
-        // if you want to mutate the data for some reason
-        return data
-    })()
-
-    const users = data?.users;
-
-    const childRefs = useMemo(() => Array(data.length).fill(0).map(i => React.createRef()), [])
-
-    // if (loading) {
-    //     return <h1>Loading....</h1>;
-    // }
-    // if (error) {
-    //     console.log(error);
-    // }
-
-
-
-
-    const swiped = (direction, nameToDelete) => {
-        console.log('removing: ' + nameToDelete)
-        setLastDirection(direction)
-        alreadyRemoved.push(nameToDelete)
-        console.log(users)
-    }
-
-    const outOfFrame = (name) => {
-
-    }
-
-
-    const swipe = (dir) => {
-        console.log("SWIPE", dir)
-        const cardsLeft = users.filter(person => !alreadyRemoved.includes(person.name))
-        if (cardsLeft.length) {
-            const toBeRemoved = cardsLeft[cardsLeft.length - 1].name // Find the card object to be removed
-            const index = data?.users.map(person => person.name).indexOf(toBeRemoved) // Find the index of which to make the reference to
-            alreadyRemoved.push(toBeRemoved) // Make sure the next card gets removed next time if this card do not have time to exit the screen
-            childRefs[index].current.swipe(dir) // Swipe the card!
-        }
-    }
-
-
-
-
-
+    console.log(data)
 
     return (
-        <Box className={classes.tinderCardContainer}>
-            {users.map((userData, index) => {
-                const role1 = userData.primRoles[0]
-                const icon1 = roleObj[role1]
-                const role2 = userData.primRoles[1]
-                const icon2 = roleObj[role2]
-                const user = {
-                    name: userData.sumName,
-                    src: "Aatrox",
-                    bio: userData._id,
-                    mainRoles: [icon1, icon2]
-                }
+        <div style={{ width: '100%', height: 'calc(100vh - 73px)', display: 'flex', alignItems: 'center', justifyContent: 'center' }} >
+
+            <Box className={classes.tinderCardContainer}>
+
+                {users.map((userData, index) => {
+                    const role1 = userData.primRoles[0]
+                    const icon1 = roleObj[role1]
+                    const role2 = userData.primRoles[1]
+                    const icon2 = roleObj[role2]
+                    const user = {
+                        name: userData.sumName,
+                        src: "Aatrox",
+                        bio: userData._id,
+                        mainRoles: [icon1, icon2]
+                    }
+                    console.log(user)
 
 
+                    return (
+                        <div style={{ marginLeft: '-175px', marginTop: '-335.5px', position: 'relative' }}>
+                            <Swipe key={user.name} className={classes.tinderCardWrapper} >
+                                <Card className={classes.root} elevation={3}>
+                                    <Box className={classes.main} minHeight={300} position={'relative'}>
+                                        <CardMedia
+                                            className={classes.media}
+                                            image="https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Aatrox_0.jpg"
 
+                                        />
 
-                return (
-                    < Box className={classes.tinderCardWrapper} >
-                        <TinderCard ref={childRefs[index]} className={classes.swipeCard} key={user.name} preventSwipe={['up', 'down']} onSwipe={(dir) => swiped(dir, user.name)} onCardLeftScreen={() => outOfFrame(user.name)}>
-                            <Card className={classes.root} elevation={3}>
-                                <Box className={classes.main} minHeight={300} position={'relative'}>
-                                    <CardMedia
-                                        className={classes.media}
-                                        image="https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Aatrox_0.jpg"
+                                        <Box className={classes.content}>
+                                            <Typography variant={'h2'} className={classes.title}>
+                                                {user.name}
+                                            </Typography>
+                                        </Box>
+                                        <PositionedPopper className={classes.popperBtnDuoPage} />
+                                        <Box>
+                                            <img className={classes.userCardIcon} src={user.mainRoles[0]} />
+                                        </Box>
+                                        <Box>
+                                            <img className={classes.userSecondCardIcon} src={user.mainRoles[1]} />
+                                        </Box>
+                                    </Box>
 
-                                    />
-
-                                    <Box className={classes.content}>
-                                        <Typography variant={'h2'} className={classes.title}>
-                                            {user.name}
+                                    <CardContent>
+                                        <Typography variant="body1" color="textPrimary" component="p" className="disable-select">
+                                            {user.bio}
                                         </Typography>
-                                    </Box>
-
-                                    <Box>
-                                        <img className={classes.userCardIcon} src={user.mainRoles[0]} />
-                                    </Box>
-                                    <Box>
-                                        <img className={classes.userSecondCardIcon} src={user.mainRoles[1]} />
-                                    </Box>
-                                </Box>
-
-                                <CardContent>
-                                    <Typography variant="body1" color="textPrimary" component="p" className="disable-select">
-                                        {user.bio}
-                                    </Typography>
-                                </CardContent>
+                                    </CardContent>
 
 
-                                <CardActions className={classes.actionBarWrapper}>
+                                    <CardActions className={classes.actionBarWrapper}>
 
-                                    <CicleButton onClick={() => swipe('left')}>
-                                        <Close className="closeBtn" />
-                                    </CicleButton>
+                                        <CicleButton onClick={() => swipeDir('left')}>
+                                            <Close className="closeBtn" />
+                                        </CicleButton>
 
-                                    <CicleButton onClick={() => swipe('right')}>
-                                        <HeartFill className="heartBtn" />
-                                    </CicleButton>
+                                        <CicleButton>
+                                            <HeartFill className="heartBtn" />
+                                        </CicleButton>
 
-                                </CardActions>
+                                    </CardActions>
 
-                            </Card >
+                                </Card >
 
-                        </TinderCard>
-                    </Box>
-                )
-            })}
-            <PositionedPopper className={classes.popperBtnDuoPage} />
-        </Box >
+
+                            </Swipe>
+                        </div>
+                    )
+                })}
+
+
+            </Box >
+        </div>
+
     );
 }
