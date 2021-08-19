@@ -1,12 +1,12 @@
 // React
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 //components
 import BuildList from '../components/BuildList'
 import FriendList from "../components/FriendList";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
-
+import TopChamp from "../components/TopChamp"
 // Material UI
 import { Container, Box, makeStyles, CardMedia, Card } from "@material-ui/core";
 import MatchComponent from "../components/MatchComponent";
@@ -88,17 +88,21 @@ const useStyles = makeStyles({
 // Home
 function Home() {
 	const classes = useStyles();
-
-
+	
 	const { loading, data, error } = useQuery(QUERY_ME);
-	if (loading) {
-		return <h2>Loading...</h2>;
-	}
-	if (error) {
-		console.log(error);
-	}
+	
+		if (loading) {
+			return <h2>Loading...</h2>;
+		}
+		if (error) {
+			console.log(error);
+			return
+		}
 
-	const me = data?.me || {};
+		const me = data?.me || {};
+		console.log(data)
+		
+	
 
 	return (
 		<div>
@@ -132,9 +136,10 @@ function Home() {
 					</Box>
 					<Box className={classes.boxContainer}>
 						<Box className={classes.matchHistory}>
-							<h1>Match History</h1>
+							<h1>Top Champs</h1>
 							<Box className={classes.match}>
-								<MatchComponent />
+								{/* <MatchComponent champs={me.masteries}/> */}
+								<TopChamp champsMastery={me.masteries}/>
 							</Box>
 						</Box>
 					</Box>

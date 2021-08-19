@@ -26,10 +26,20 @@ export const LOGIN = gql`
 
 // Add a Build
 export const ADD_BUILD = gql`
-	mutation addBuild($content:buildInfo!) {
-		addBuild(content: $content) {
+	mutation addBuild($content: buildInfo!){
+  		addBuild(content: $content) {
+   			 _id
+    		madeBy
+    		madeId
+  }
+}
+`;
+
+export const ADD_FRIEND = gql`
+	mutation addFriend($friendId: ID!){
+		addFriend(friendId:$friendId){
 			_id
-			builtBy
+			friends
 		}
 	}
 `;

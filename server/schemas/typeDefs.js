@@ -18,6 +18,13 @@ const typeDefs = gql`
         friendCount: Int
         builds:[Build]
         friends: [User]
+        masteries: [Masteries]
+    }
+
+    type Masteries {
+    championId: Int
+    championLevel: Int
+    championPoints: Int
     }
 
     type Build {
@@ -27,13 +34,13 @@ const typeDefs = gql`
         boots: String
         mythic: String
         legendaries: String
-        madeBy: String,
+        madeBy: String
         madeId: String
     }
     type ChampionSummary {
         name: String
         icon: Image
-        blurb: String
+        key: Int
     }
     type Image {
         name: String

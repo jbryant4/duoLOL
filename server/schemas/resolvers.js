@@ -7,13 +7,20 @@ const resolvers = {
     Query: {
         me: async (parent, args, context) => {
             if (context.user) {
-                const user = await User.findOne({ _id: context.user._id })
-                .select('-__v -password')
-                .populate('builds')
-                .populate('friends');
-                
-            // console.log({user})
-                return user;
+                let user = await User.findOne({ _id: context.user._id })
+                    .select('-__v -password')
+                    .populate('builds')
+                    .populate('friends');
+
+                // console.log({user})
+                const masteries = await riotApi.champMasteryData('na1', user.riotId);
+                //!will be a nice to have 
+                // const matchIds = await riotApi.matchHistoryId('americas','ranked', user.puuid)
+
+                // const matchData = await riotApi.matchHistoryData('americas','ranked', matchIds)
+                // console
+                user.masteries = masteries
+                return user
             }
 
             throw new AuthenticationError('Not logged in');
@@ -21,8 +28,8 @@ const resolvers = {
         users: async (parent, args, context) => {
             if (context.user) {
                 const users = await User.find()
-                .select('-__v -password')             
-            // console.log({user})
+                    .select('-__v -password')
+                // console.log({user})
                 return users;
             }
 
@@ -53,19 +60,19 @@ const resolvers = {
             const matches = await riotApi.matchHistoryData(region, type, puuid);
             return matches
         },
-        buildItems: async (parent, {patch}) => {
+        buildItems: async (parent, { patch }) => {
             const items = await riotApi.getBuildItems(patch);
             return items
-            
+
         }
     },
     Mutation: {
-        addUser: async (parent, args ) => {
+        addUser: async (parent, args) => {
             // console.log(args);
             const user = await User.create(args);
 
             const lolData = await riotApi.riotDataSignUp(user.sumName, 'na1')
-            
+
             const updatedUser = await User.findByIdAndUpdate(user._id,
                 {
                     rank: lolData.rank,
@@ -81,7 +88,7 @@ const resolvers = {
         },
         login: async (parent, { email, password }) => {
             // console.log(email , password)
-            const user = await User.findOne( {email} );
+            const user = await User.findOne({ email });
 
             if (!user) {
                 throw new AuthenticationError('Incorrect credentials');
@@ -94,7 +101,6 @@ const resolvers = {
             }
             //call 
             const lolData = await riotApi.riotDataUpdata(user.riotId, 'na1')
-
             const updatedUser = await User.findByIdAndUpdate(user._id,
                 {
                     rank: lolData.rank,
@@ -109,7 +115,7 @@ const resolvers = {
             return { user: updatedUser, token };
         },
         addBuild: async (parent, { content }, context) => {
-            
+
             if (context.user) {
                 const build = await Build.create({ ...content, madeBy: context.user.sumName, madeId: context.user._id });
 

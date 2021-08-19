@@ -14,6 +14,7 @@ export const QUERY_CHAMPIONS = gql`
 	query champions {
 		champions{
     		name
+			key
     		icon {
       			url
     		}
@@ -106,6 +107,11 @@ export const QUERY_ME = gql`
 				_id
 				sumName
 			}
+			masteries{
+          		championId
+          		championLevel
+          		championPoints
+        	}
 		}
 	}
 `;
