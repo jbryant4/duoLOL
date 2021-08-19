@@ -100,7 +100,7 @@ function Home() {
 		}
 
 		const me = data?.me || {};
-
+		console.log(data)
 		
 	
 

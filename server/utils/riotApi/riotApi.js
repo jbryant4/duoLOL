@@ -36,6 +36,7 @@ async function riotDataSignUp(sumName, region = 'na1') {
 //update riot info on login
 async function riotDataUpdata(riotId, region = 'na1') {
     //solo que data
+    
     const lolData = await api.get(region, 'league.getLeagueEntriesForSummoner', riotId)
     //return first slot in array because that is solo que data
     if (lolData.length === 2) {

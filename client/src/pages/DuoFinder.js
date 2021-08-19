@@ -26,7 +26,6 @@ function DuoFinder() {
 			<Navbar />
 			<Container>
 				<Header />
-				<FriendList />
 				<MatchingCard />
 			</Container>
 		</div>

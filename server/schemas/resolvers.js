@@ -7,7 +7,7 @@ const resolvers = {
     Query: {
         me: async (parent, args, context) => {
             if (context.user) {
-                const user = await User.findOne({ _id: context.user._id })
+                let user = await User.findOne({ _id: context.user._id })
                     .select('-__v -password')
                     .populate('builds')
                     .populate('friends');
@@ -18,10 +18,9 @@ const resolvers = {
                 // const matchIds = await riotApi.matchHistoryId('americas','ranked', user.puuid)
 
                 // const matchData = await riotApi.matchHistoryData('americas','ranked', matchIds)
-                
-                const userMe = {...user, masteries}
-                
-                return userMe;
+                // console
+                user.masteries = masteries
+                return user
             }
 
             throw new AuthenticationError('Not logged in');
@@ -102,7 +101,6 @@ const resolvers = {
             }
             //call 
             const lolData = await riotApi.riotDataUpdata(user.riotId, 'na1')
-
             const updatedUser = await User.findByIdAndUpdate(user._id,
                 {
                     rank: lolData.rank,
@@ -113,6 +111,7 @@ const resolvers = {
                 { new: true }
             )
 
+            console.log(updatedUser)
             const token = signToken(updatedUser)
             return { user: updatedUser, token };
         },
