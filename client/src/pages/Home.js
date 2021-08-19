@@ -11,6 +11,8 @@ import TopChamp from "../components/TopChamp"
 import { Container, Box, makeStyles, CardMedia, Card } from "@material-ui/core";
 import MatchComponent from "../components/MatchComponent";
 
+
+
 //gql
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries";
@@ -25,7 +27,12 @@ const useStyles = makeStyles({
 		background: "var(--tertiaryColor)",
 		display: "flex",
 		flexDirection: "row",
+		flexWrap: "wrap",
+		alignContent: "center",
+		justifyContent: "center",
+		alignItems: "center",
 		width: "100%",
+		boxShadow: "inset 0 0 35px black"
 	},
 	imageDiv: {
 		display: "flex",
@@ -57,26 +64,50 @@ const useStyles = makeStyles({
 		flexDirection: "row",
 		justifyContent: "space-between",
 	},
-	friendList: {
+	buildList: {
 		display: "flex",
 		flexDirection: "column",
 		flexWrap: "wrap",
 		alignContent: "center",
-		width: "25%",
+		width: "40%",
 		alignItems: "center",
 		justifyContent: "center",
-		background: "teal",
+		backgroundColor: "var(--altPrimary)",
+		color: "var(--secondaryColor)",
+		boxShadow: "inset 0 0 35px black"
+	},
+	buildContainer: {
+		backgroundColor: "var(--altSecondary)"
+	},
+	friendListContainer: {
+		display: "flex",
+		flexWrap: "wrap",
+		height: 500,
+		overflow: "scroll",
+		overflowX: "hidden",
+		flexDirection: "column",
+		alignContent: "flex-start",
+		justifyContent: "center",
+		alignItems: "center",
+		width: "30%",
+		background: "var(--altSecondary)",
+		color: "var(--primaryColor)",
+		boxShadow: "inset 0 0 35px black"
 	},
 	matchHistory: {
 		display: "flex",
 		flexWrap: "wrap",
 		height: 500,
 		overflow: "scroll",
-		flexDirection: "column",
+		overflowX: "hidden",
+		flexDirection: "row",
 		alignContent: "flex-start",
-		width: "100%",
+		justifyContent: "center",
+		alignItems: "center",
+		width: "30%",
 		background: "var(--altSecondary)",
-		color: "white"
+		color: "var(--primaryColor)",
+		boxShadow: "inset 0 0 35px black"
 	},
 	match: {
 		display: "flex",
@@ -94,16 +125,16 @@ function Home() {
 
 	const { loading, data, error } = useQuery(QUERY_ME);
 
-		if (loading) {
-			return <h2>Loading...</h2>;
-		}
-		if (error) {
-			console.log(error);
-			return
-		}
+	if (loading) {
+		return <h2>Loading...</h2>;
+	}
+	if (error) {
+		console.log(error);
+		return
+	}
 
-		const me = data?.me || {};
-		console.log(data)
+	const me = data?.me || {};
+	console.log(data)
 
 
 
@@ -123,29 +154,36 @@ function Home() {
 						<h4>losses: {me.losses}</h4>
 					</Box>
 					<Box className={classes.duoDiv}>
-
+						<img alt='logo' src="/images/cupid_lol_static.png" style={{
+							width: "55%",
+							transform: "rotate(15deg)"
+						}} />
 					</Box>
 				</Box>
 				<Box className={classes.boxContainer}>
-					<Box className={classes.friendList}>
+					<Box className={classes.friendListContainer}>
 						<h1>Friends List</h1>
 						{me.friends ? <h2>Go make some friends with Duo  Finder</h2> :
 							<FriendList name={me.friends} />
 						}
 					</Box>
-					<Box className={classes.friendList}>
+					<Box className={classes.buildList}>
 						<h1>Custom Builds</h1>
-						<BuildList builds={me.builds} />
-					</Box>
-					<Box className={classes.boxContainer}>
-						<Box className={classes.matchHistory}>
-							<h1>Top Champs</h1>
-							<Box className={classes.match}>
-								{/* <MatchComponent champs={me.masteries}/> */}
-								<TopChamp champsMastery={me.masteries}/>
-							</Box>
+						<Box className={classes.buildContainer}>
+							<BuildList builds={me.builds} />
 						</Box>
 					</Box>
+					{/* <Box className={classes.boxContainer}> */}
+					<Box className={classes.matchHistory}>
+						<Box>
+							<h1>Top Champs</h1>
+						</Box>
+						<Box className={classes.match}>
+							{/* <MatchComponent champs={me.masteries}/> */}
+							<TopChamp champsMastery={me.masteries} />
+						</Box>
+					</Box>
+					{/* </Box> */}
 				</Box>
 			</Container>
 		</div>
