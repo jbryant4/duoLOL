@@ -83,7 +83,7 @@ export default function TopChamp({ champsMastery }) {
                                 component="h3"
                                 className={classes.cardInfo}
                             >
-                                Mastery Lvl {mastery.championLevel}: 
+                                Mastery Lvl {mastery.championLevel}:
                             </Typography>
                             <Typography variant="body" color="textSecondary" component="h3">
                                 {mastery.championPoints}
