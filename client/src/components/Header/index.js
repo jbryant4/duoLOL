@@ -10,6 +10,12 @@ const useStyles = makeStyles((theme) => ({
 	},
 	title: {
 		flexGrow: 1,
+		backgroundColor: "var(--secondaryColor)",
+		boxShadow: "inset 0 0 10px black",
+		display: "flex",
+		justifyContent: "center",
+		fontWeight: "bold",
+		color: "var(--primaryColor)",
 	},
 }));
 
@@ -19,10 +25,8 @@ export default function Header() {
 	return (
 		<div className={classes.root}>
 			<AppBar position="static">
-				<Toolbar>
-					<Typography variant="h5" className={classes.title}>
-						Duo League of Legends
-					</Typography>
+				<Toolbar className={classes.title}>
+					<Typography variant="h5">Cupid LoL</Typography>
 				</Toolbar>
 			</AppBar>
 		</div>
