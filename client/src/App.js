@@ -26,10 +26,8 @@ import Login from "./pages/Login";
 import BuildABuild from "./pages/BuildABuild";
 import ChatPage from "./pages/ChatPage";
 
-
 // Components
-import Chat from "./components/Chat"
-// import Footer from "./components/Footer";
+import Chat from "./components/Chat";
 
 // background css
 import "./App.css";
@@ -73,8 +71,6 @@ function App() {
 					</Switch>
 				</Container>
 			</Router>
-
-			{/* <Footer /> */}
 		</ApolloProvider>
 	);
 }
