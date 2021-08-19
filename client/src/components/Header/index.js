@@ -4,9 +4,9 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 
 //Logo
-import Logo from "../../assets/images/Logo.png";
+// import Logo from "../../assets/images/Logo.png";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
 	root: {
 		flexGrow: 1,
 	},
