@@ -27,8 +27,8 @@ const useStyles = makeStyles((theme) => ({
     },
     popperBtn: {
         position: "absolute",
-        top: "45%",
-        right: '41%',        
+        top: "50%",
+        right: '0%',        
         backgroundColor: 'rgba(240, 248, 255, 0.493)',
         fontWeight: 'bold',
         padding: '8px',
