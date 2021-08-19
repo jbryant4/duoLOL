@@ -109,3 +109,14 @@ export const QUERY_ME = gql`
 		}
 	}
 `;
+
+export const QUERY_USERS = gql`
+	query users {
+  		users{
+    		_id
+    		primRoles
+    		sumName
+    		tier
+  		}
+	}
+`;

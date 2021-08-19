@@ -39,8 +39,25 @@ async function riotDataUpdata(riotId, region = 'na1') {
     //solo que data
     const lolData = await api.get(region, 'league.getLeagueEntriesForSummoner', riotId)
     //return first slot in array because that is solo que data
-    if (lolData[1]) {
-        return lolData[1]
+    if (lolData.length === 2) {
+
+        const rankData = lolData.filter(rank => rank.queueType === 'RANKED_SOLO_5x5')
+        // console.log(rankData)
+        return rankData[0]
+
+    } else if (lolData.length === 1) {
+        if (lolData[0].queueType === 'RANKED_SOLO_5x5') {
+            return lolData[0]
+        } else {
+            const unranked = {
+                rank: 'unranked',
+                tier: 'unranked',
+                wins: 'no ranked wins',
+                losses: 'no ranked losses'
+            }
+            
+            return unranked
+        }
     } else {
         const unranked = {
             rank: 'unranked',
@@ -48,7 +65,7 @@ async function riotDataUpdata(riotId, region = 'na1') {
             wins: 'no ranked wins',
             losses: 'no ranked losses'
         }
-
+        
         return unranked
     }
 }

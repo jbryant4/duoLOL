@@ -2,6 +2,9 @@ import React, { useState, useMemo } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
+import { useQuery } from '@apollo/client';
+import { QUERY_USERS } from '../../utils/queries';
+
 // import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
@@ -31,7 +34,15 @@ import midIcon from "../../assets/images/RoleIcons/mid.png";
 import adcIcon from "../../assets/images/RoleIcons/adc.png";
 import supIcon from "../../assets/images/RoleIcons/sup.png";
 
+const roleObj = {
+    top: topIcon,
+    jng: jngIcon,
+    mid: midIcon,
+    adc: adcIcon,
+    sup: supIcon,
+}
 
+//! what is sent to the card
 const db = [
     {
         name: "Nathan",
@@ -39,31 +50,9 @@ const db = [
         bio: "lorem ipsum",
         mainRoles: [topIcon, adcIcon]
     },
-    {
-        name: "Vini",
-        src: "https://static.wikia.nocookie.net/leagueoflegends/images/5/58/Kassadin_CountLoading.jpg/revision/latest/scale-to-width-down/308?cb=20210517021740",
-        bio: "lorem ipsum dasjiudsainjd asuhjdnasuidnasuidyasbhdui",
-        mainRoles: [supIcon, jngIcon]
-    },
-    {
-        name: "Robert",
-        src: "https://static.wikia.nocookie.net/leagueoflegends/images/2/22/Gangplank_SultanLoading.jpg/revision/latest/scale-to-width-down/308?cb=20200424225909",
-        bio: "lorem ipsum testando",
-        mainRoles: [topIcon, midIcon]
-    },
-    {
-        name: "Cody",
-        src: "https://static.wikia.nocookie.net/leagueoflegends/images/5/59/Lux_CommandoLoading.jpg/revision/latest/scale-to-width-down/308?cb=20200425012143",
-        bio: "lorem ipsum testando",
-        mainRoles: [jngIcon, supIcon]
-    },
-    {
-        name: "Joseph",
-        src: "https://static.wikia.nocookie.net/leagueoflegends/images/7/7f/Graves_CrimeCityLoading.jpg/revision/latest/scale-to-width-down/308?cb=20210810191431",
-        bio: "I love to feed playing jungle with my teammates, always aiming to lose before 15min!!!",
-        mainRoles: [adcIcon, supIcon],
-    }
+
 ]
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -131,21 +120,21 @@ const useStyles = makeStyles((theme) => ({
         bottom: 0,
         right: 90,
         width: 90
-    },    
+    },
     tinderCardWrapper: {
         position: 'relative'
     }
 }));
 
 const alreadyRemoved = []
-let charactersState = db // This fixes issues with updating characters state forcing it to use the current state and not the state that was active when the card was created.
+let usersState = db // This fixes issues with updating users state forcing it to use the current state and not the state that was active when the card was created.
 
 export default function MatchingCard({ }) {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
 
     // tinder op
-    const [characters, setCharacters] = useState(db)
+    const [usersList, setusers] = useState(db)
     const [lastDirection, setLastDirection] = useState()
 
     const childRefs = useMemo(() => Array(db.length).fill(0).map(i => React.createRef()), [])
@@ -158,12 +147,12 @@ export default function MatchingCard({ }) {
 
     const outOfFrame = (name) => {
         console.log(name + ' left the screen!')
-        charactersState = charactersState.filter(character => character.name !== name)
-        setCharacters(charactersState)
+        usersState = usersState.filter(user => user.name !== name)
+        setusers(usersState)
     }
 
     const swipe = (dir) => {
-        const cardsLeft = characters.filter(person => !alreadyRemoved.includes(person.name))
+        const cardsLeft = users.filter(person => !alreadyRemoved.includes(person.name))
         if (cardsLeft.length) {
             const toBeRemoved = cardsLeft[cardsLeft.length - 1].name // Find the card object to be removed
             const index = db.map(person => person.name).indexOf(toBeRemoved) // Find the index of which to make the reference to
@@ -172,57 +161,87 @@ export default function MatchingCard({ }) {
         }
     }
 
+    const { loading, data, error } = useQuery(QUERY_USERS);
+    if (loading) {
+        return <h1>Loading....</h1>;
+    }
+    if (error) {
+        console.log(error);
+    }
+
+    const users = data?.users;
+    console.log(users)
+
+
+
+
     return (
         <Box className={classes.tinderCardContainer}>
-            {characters.map((character, index) =>
-                <Box className={classes.tinderCardWrapper}>
-                    <TinderCard ref={childRefs[index]} className={classes.swipeCard} key={character.name} preventSwipe={['up', 'down']} onSwipe={(dir) => swiped(dir, character.name)} onCardLeftScreen={() => outOfFrame(character.name)}>
-                        <Card className={classes.root} elevation={3}>
-                            <Box className={classes.main} minHeight={300} position={'relative'}>
-                                <CardMedia
-                                    className={classes.media}
-                                    image="https://images-ext-1.discordapp.net/external/KKjfwJamf75_hTOB0hwApPZoj8mGhxBe_Tm5qpc8IZs/http/ddragon.leagueoflegends.com/cdn/img/champion/loading/Aatrox_0.jpg"
+            {users.map((userData, index) => {
+                const role1 = userData.primRoles[0]
+                const icon1 = roleObj[role1]
+                const role2 = userData.primRoles[1]
+                const icon2 = roleObj[role2]
+                const user = {
+                    name: userData.sumName,
+                    src: "Aatrox",
+                    bio: userData._id,
+                    mainRoles: [icon1, icon2]
+                }
+            
 
-                                />
 
-                                <Box className={classes.content}>
-                                    <Typography variant={'h2'} className={classes.title}>
-                                        {character.name}
+
+                return (
+                    < Box className={classes.tinderCardWrapper} >
+                        <TinderCard ref={childRefs[index]} className={classes.swipeCard} key={user.name} preventSwipe={['up', 'down']} onSwipe={(dir) => swiped(dir, user.name)} onCardLeftScreen={() => outOfFrame(user.name)}>
+                            <Card className={classes.root} elevation={3}>
+                                <Box className={classes.main} minHeight={300} position={'relative'}>
+                                    <CardMedia
+                                        className={classes.media}
+                                        image="https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Aatrox_0.jpg"
+
+                                    />
+
+                                    <Box className={classes.content}>
+                                        <Typography variant={'h2'} className={classes.title}>
+                                            {user.name}
+                                        </Typography>
+                                    </Box>
+
+                                    <Box>
+                                        <img className={classes.userCardIcon} src={user.mainRoles[0]} />
+                                    </Box>
+                                    <Box>
+                                        <img className={classes.userSecondCardIcon} src={user.mainRoles[1]} />
+                                    </Box>
+                                </Box>
+
+                                <CardContent>
+                                    <Typography variant="body1" color="textPrimary" component="p" className="disable-select">
+                                        {user.bio}
                                     </Typography>
-                                </Box>
-
-                                <Box>
-                                    <img className={classes.userCardIcon} src={character.mainRoles[0]} />
-                                </Box>
-                                <Box>
-                                    <img className={classes.userSecondCardIcon} src={character.mainRoles[1]} />
-                                </Box>
-                            </Box>
-
-                            <CardContent>
-                                <Typography variant="body1" color="textPrimary" component="p" className="disable-select">
-                                    {character.bio}
-                                </Typography>
-                            </CardContent>
+                                </CardContent>
 
 
-                            <CardActions className={classes.actionBarWrapper}>
+                                <CardActions className={classes.actionBarWrapper}>
 
-                                <CicleButton onClick={() => swipe('left')}>
-                                    <Close className="closeBtn" />
-                                </CicleButton>
+                                    <CicleButton onClick={() => swipe('left')}>
+                                        <Close className="closeBtn" />
+                                    </CicleButton>
 
-                                <CicleButton onClick={() => swipe('right')}>
-                                    <HeartFill className="heartBtn" />
-                                </CicleButton>
+                                    <CicleButton onClick={() => swipe('right')}>
+                                        <HeartFill className="heartBtn" />
+                                    </CicleButton>
 
-                            </CardActions>
+                                </CardActions>
 
-                        </Card >
+                            </Card >
 
-                    </TinderCard>
-                </Box>
-            )}
+                        </TinderCard>
+                    </Box>
+                )
+            })}
             <PositionedPopper className={classes.popperBtnDuoPage} />
         </Box >
     );
