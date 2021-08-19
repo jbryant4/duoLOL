@@ -55,12 +55,7 @@ export default function Navbar() {
 			destination: "/AboutChampion",
 		},
 		{
-			text: "Chat",
-			icon: <QuestionAnswerOutlinedIcon />,
-			destination: "/Chatpage",
-		},
-		{
-			text: "Duo Finder",
+			text: "Duo Partner Finder",
 			icon: <GroupAddIcon />,
 			destination: "/DuoFinder",
 		},
@@ -68,6 +63,11 @@ export default function Navbar() {
 			text: "Build a Build",
 			icon: <BuildIcon />,
 			destination: "/BuildABuild",
+		},
+		{
+			text: "Chat",
+			icon: <QuestionAnswerOutlinedIcon />,
+			destination: "/Chatpage",
 		},
 		{
 			text: "Log Out",
