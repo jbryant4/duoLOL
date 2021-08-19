@@ -1,41 +1,35 @@
 import React from "react";
-import { Link } from "react-router-dom";
-
-// Material UI
 import { makeStyles } from "@material-ui/core/styles";
-import Tabs from "@material-ui/core/Tabs";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
 
-//icons
-import QuestionAnswerOutlinedIcon from "@material-ui/icons/QuestionAnswerOutlined";
-import HomeIcon from "@material-ui/icons/Home";
-import EmojiEventsIcon from "@material-ui/icons/EmojiEvents";
-import GroupAddIcon from "@material-ui/icons/GroupAdd";
-import BuildIcon from "@material-ui/icons/Build";
-import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+//Logo
+// import Logo from "../../assets/images/Logo.png";
 
-//Style
-const useStyles = makeStyles({
-	NavStyle: {
-		alignItems: "center",
-		marginBottom: "25px",
-		display: "flex",
-		textDecoration: "none",
-		color: "white",
-		backgroundColor: "var(--primaryColor)",
-		width: "100%",
+const useStyles = makeStyles(() => ({
+	root: {
+		flexGrow: 2,
 	},
-});
+	title: {
+		backgroundColor: "var(--secondaryColor)",
+		boxShadow: "inset 0 0 35px black",
+		display: "flex",
+		justifyContent: "center",
+		fontWeight: "bold",
+		color: "var(--primaryColor)",
+	},
+}));
 
-// Navbar Function
-export default function LoginNavbar() {
+export default function Header() {
 	const classes = useStyles();
 
 	return (
-		<Tabs className={classes.NavStyle}>
-					<ListItemText primary="Welcome to Cupid League of Legends"/>
-		</Tabs>
+		<div className={classes.root}>
+			<AppBar position="static">
+				<Toolbar className={classes.title}>
+					<h2>Welcome to Cupid LoL</h2>
+				</Toolbar>
+			</AppBar>
+		</div>
 	);
 }
