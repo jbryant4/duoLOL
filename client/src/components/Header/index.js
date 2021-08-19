@@ -4,7 +4,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 
 //Logo
-// import Logo from "../../assets/images/Logo.png";
+import Logo from "../../assets/images/Logo.png";
 
 const useStyles = makeStyles(() => ({
 	root: {
@@ -19,6 +19,10 @@ const useStyles = makeStyles(() => ({
 		fontWeight: "bold",
 		color: "var(--primaryColor)",
 	},
+	imgClass: {
+		width: "5rem",
+		height: "5rem"
+	}
 }));
 
 export default function Header() {
@@ -28,7 +32,8 @@ export default function Header() {
 		<div className={classes.root}>
 			<AppBar position="static">
 				<Toolbar className={classes.title}>
-					<h2>Cupid LoL</h2>
+					<h2>Cupid </h2>
+					<img className={classes.imgClass} src={Logo} alt="Logo"/>
 				</Toolbar>
 			</AppBar>
 		</div>
