@@ -22,7 +22,7 @@ const useStyles = makeStyles({
 		minWidth: "100%",
 	},
 	boxMain: {
-		background: "aqua",
+		background: "var(--tertiaryColor)",
 		display: "flex",
 		flexDirection: "row",
 		width: "100%",
@@ -70,10 +70,13 @@ const useStyles = makeStyles({
 	matchHistory: {
 		display: "flex",
 		flexWrap: "wrap",
+		height: 500,
+		overflow: "scroll",
 		flexDirection: "column",
 		alignContent: "flex-start",
-		width: "75%",
-		background: "var(--secondaryColor)",
+		width: "100%",
+		background: "var(--altSecondary)",
+		color: "white"
 	},
 	match: {
 		display: "flex",
@@ -88,9 +91,9 @@ const useStyles = makeStyles({
 // Home
 function Home() {
 	const classes = useStyles();
-	
+
 	const { loading, data, error } = useQuery(QUERY_ME);
-	
+
 		if (loading) {
 			return <h2>Loading...</h2>;
 		}
@@ -101,8 +104,8 @@ function Home() {
 
 		const me = data?.me || {};
 		console.log(data)
-		
-	
+
+
 
 	return (
 		<div>
