@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 // Material UI
 import { Container, Box, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { Paper } from "@material-ui/core";
 
 //Component
 import Header from "../components/Header";
@@ -18,6 +19,20 @@ import { QUERY_CHAMPIONS } from "../utils/queries";
 const useStyles = makeStyles({
 	selectChampion: {
 		margin: "10px",
+	},
+
+	paper: {
+		width: "100%",
+	},
+
+	title: {
+		backgroundColor: "rgba(30, 28, 74,1)",
+		boxShadow: "inset 0 0 10px black",
+		display: "flex",
+		justifyContent: "center",
+		fontWeight: "bold",
+		color: "goldenrod",
+		marginTop: "10px"
 	},
 });
 // AboutChampion
@@ -42,8 +57,10 @@ const AboutChampion = () => {
 				<Header />
 				<Grid container>
 					<Grid item xs={12} sm={3} md={3} lg={3}>
+						<div className={classes.title}>
+						<h2>Select a Champion</h2>
+						</div>
 						<Box className={classes.selectChampion}>
-							<h2>Select a Champion</h2>
 							<ChampionCard
 								champions={champions}
 								setChamp={setChamp}
@@ -54,15 +71,17 @@ const AboutChampion = () => {
 						</Box>
 					</Grid>
 					<Grid item xs={12} sm={9} md={9} lg={9}>
-						<Box>
-							{champ && (
-								<Champ
-									champ={champ}
-									imgIndex={imgIndex}
-									setImgIndex={setImgIndex}
-								/>
-							)}
-						</Box>
+						<Paper>
+							<Box>
+								{champ && (
+									<Champ
+										champ={champ}
+										imgIndex={imgIndex}
+										setImgIndex={setImgIndex}
+									/>
+								)}
+							</Box>
+						</Paper>
 					</Grid>
 				</Grid>
 			</Container>

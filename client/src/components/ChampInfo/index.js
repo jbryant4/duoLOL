@@ -17,6 +17,13 @@ const useStyles = makeStyles((theme) => ({
 			margin: theme.spacing(2),
 		},
 		flexGrow: 1,
+		display: "flex",
+		flexWrap: "wrap",
+		maxHeight: 660,
+		overflow: "scroll",
+		alignItems: "center",
+		justifyContent: "center",
+		margin: "25px",
 	},
 	paper: {
 		padding: theme.spacing(2),
@@ -24,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 		color: theme.palette.text.secondary,
 	},
 	imageStyle: {
-		width: "100%",
+		width: "80%",
 		margin: "0px -100px",
 	},
 	buttonClass: {
@@ -51,28 +58,30 @@ const useStyles = makeStyles((theme) => ({
 	},
 	infoP: {
 		width: "50%",
-		textAlign: "end",
+		textAlign: "center",
+		fontWeight: "Bold",
+		color: "red",
 	},
 	innerFlex: {
 		display: "flex",
 		flexDirection: "column",
 		alignItems: "center",
-		margin: 0,
 		justifyContent: "space-evenly",
+		color: "Purple",
 	},
 	tipDiv: {
 		display: "flex",
 		alignItems: "flex-start",
-		margin: 0,
 		justifyContent: "space-evenly",
+		margin: 0,
 	},
 	tipDivInner: {
-		width: "45%",
 		display: "flex",
 		flexDirection: "column",
 		alignItems: "center",
-		margin: 0,
 		justifyContent: "space-evenly",
+		margin: 0,
+		lineHeight: 1,
 	},
 }));
 
