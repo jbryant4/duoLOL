@@ -106,6 +106,11 @@ export const QUERY_ME = gql`
 				_id
 				sumName
 			}
+			masteries{
+          		championId
+          		championLevel
+          		championPoints
+        	}
 		}
 	}
 `;

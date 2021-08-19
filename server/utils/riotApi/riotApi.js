@@ -80,22 +80,24 @@ async function champMasteryData(region = 'na1', riotId) {
 
 //! get all match info for the last 20 matches 
 //? (regions: americas asia or europe)(puuid)(ranked or normal)
-async function matchHistoryData(region = 'AMERICAS', type = 'ranked', puuid) {
+
+async function matchHistoryId(region = 'AMERICAS', type = 'ranked', puuid) {
     const link = `https://${region}.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?type=${type}&start=0&count=20`
     const {data} = await axios.get(link)
-    const matchIds = data
+    console.log(data)
     let matchHistoryData = []
 
-    matchIds.map(async function (match) {
-        const link = `https://${region}.api.riotgames.com/lol/match/v5/matches/${match}`
-        const {data} = await axios.get(link)
-        const matchData = data
-        matchHistoryData.push(matchData)
-    });
-
-    return matchHistoryData
+    return data
 }
 
+async function matchHistoryData(region = 'AMERICAS', type = 'ranked',) {
+    const link = `https://${region}.api.riotgames.com/lol/match/v5/matches/${match}`
+    const {data} = await axios.get(link)
+    console.log(data)
+    let matchHistoryData = []
+
+    return data
+}
 
 //Data for champlist component  of current champions
 async function getChampions(_patch) {

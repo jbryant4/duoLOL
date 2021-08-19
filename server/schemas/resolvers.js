@@ -14,10 +14,14 @@ const resolvers = {
 
                 // console.log({user})
                 const masteries = await riotApi.champMasteryData('na1', user.riotId);
-                
-                const matches = await riotApi.matchHistoryData('americas','ranked', user.puuid)
-                console.log(matches)
-                return user;
+                //!will be a nice to have 
+                // const matchIds = await riotApi.matchHistoryId('americas','ranked', user.puuid)
+
+                // const matchData = await riotApi.matchHistoryData('americas','ranked', matchIds)
+                console.log(user)
+                const userMe = {...user, masteries}
+                console.log(userMe)
+                return userMe;
             }
 
             throw new AuthenticationError('Not logged in');
