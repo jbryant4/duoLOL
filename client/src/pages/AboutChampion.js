@@ -1,6 +1,5 @@
 // React
 import React, { useState } from "react";
-
 // Material UI
 import { Container, Box, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -15,6 +14,10 @@ import Navbar from "../components/Navbar";
 //import Riot Data with query
 import { useQuery } from "@apollo/client";
 import { QUERY_CHAMPIONS } from "../utils/queries";
+import Auth from "../utils/auth"
+import { Redirect } from "react-router-dom";
+
+
 
 // Styles
 const useStyles = makeStyles({
@@ -49,6 +52,11 @@ const AboutChampion = () => {
 	const { data, error } = useQuery(QUERY_CHAMPIONS);
 	if (error) {
 		console.log(error);
+	}
+
+	//redirect
+	if (!Auth.loggedIn()) {
+		return <Redirect to='/' />
 	}
 
 	const champions = data?.champions || [];

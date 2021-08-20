@@ -16,6 +16,9 @@ import GroupAddIcon from "@material-ui/icons/GroupAdd";
 import BuildIcon from "@material-ui/icons/Build";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
+//import auth 
+import Auth from "../../utils/auth"
+
 //Style
 const useStyles = makeStyles({
 	menuStyle: {
@@ -48,40 +51,58 @@ export default function Navbar() {
 			text: "Home",
 			icon: <HomeIcon />,
 			destination: "/home",
+			logout: false
 		},
 		{
 			text: "About Champions",
 			icon: <EmojiEventsIcon />,
 			destination: "/AboutChampion",
+			logout: false
 		},
 		{
 			text: "Duo Partner Finder",
 			icon: <GroupAddIcon />,
 			destination: "/DuoFinder",
+			logout: false
 		},
 		{
 			text: "Build a Build",
 			icon: <BuildIcon />,
 			destination: "/BuildABuild",
+			logout: false
 		},
 		{
 			text: "Chat",
 			icon: <QuestionAnswerOutlinedIcon />,
 			destination: "/Chatpage",
+			logout: false
 		},
 		{
 			text: "Log Out",
 			icon: <ExitToAppIcon />,
 			destination: "/",
+			logout: true
 		},
 	];
+
+	function handleButtonClick(logout) {
+		console.log(logout)
+		if (logout) {
+			Auth.logout()
+		} else {
+			if(!Auth.loggedIn()) {
+				window.location.assign("/")
+			}
+		}
+	}
+
 	return (
 		<Tabs>
 			{menuList.map((item) => {
-				const { text, icon, destination } = item;
+				const { text, icon, destination, logout } = item;
 				return (
 					<Link to={destination} className={classes.NavbarBottom}>
-						<ListItem button key={text} className={classes.menuStyle}>
+						<ListItem button key={text} className={classes.menuStyle} onClick={() => handleButtonClick(logout)}>
 							{icon && <ListItemIcon>{icon}</ListItemIcon>}
 							<ListItemText primary={text} />
 						</ListItem>
