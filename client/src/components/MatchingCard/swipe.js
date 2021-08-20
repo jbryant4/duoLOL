@@ -27,8 +27,7 @@ export default function Swipe({children}) {
                 // swipe left is when horizontal velocity is inferior to minus threshold
                 if (vx < -V_THRESHOLD && xPos > -1){
                     setXPos(xp => xp - 1)
-                    console.log('teste', xPos)
-                    
+                    console.log('teste', xPos)                    
                 }
                 // swipe right is when horizontal velocity is superior to threshold
                 else if (vx > V_THRESHOLD && xPos < 1) setXPos(xp => xp + 1)
