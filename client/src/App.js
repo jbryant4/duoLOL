@@ -1,25 +1,79 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
+import {
+	BrowserRouter as Router,
+	Redirect,
+	Route,
+	Switch,
+} from "react-router-dom";
+
+import {
+	ApolloProvider,
+	ApolloClient,
+	InMemoryCache,
+	createHttpLink,
+} from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
+
+//material UI
+import Container from "@material-ui/core/Container";
+
+// Pages
+import Home from "./pages/Home";
+import duoFinder from "./pages/DuoFinder";
+import AboutChampion from "./pages/AboutChampion";
+import Login from "./pages/Login";
+import BuildABuild from "./pages/BuildABuild";
+import ChatPage from "./pages/ChatPage";
+
+// Components
+import Chat from "./components/Chat";
+
+// background css
+import "./App.css";
+
+//!change back to /graphql when we go live
+const httpLink = createHttpLink({
+	uri: "/graphql",
+});
+
+const authLink = setContext((_, { headers }) => {
+	const token = localStorage.getItem("id_token");
+	return {
+		headers: {
+			...headers,
+			authorization: token ? `Bearer ${token}` : "",
+		},
+	};
+});
+
+const client = new ApolloClient({
+	link: authLink.concat(httpLink),
+	cache: new InMemoryCache(),
+});
+
+// Routes
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const currentPath = window.location.pathname;
+
+	return (
+		<ApolloProvider client={client}>
+			<Router>
+				<Container className="noBg" maxWidth="xl" disableGutters={true}>
+					<Switch>
+						<Route exact path="/home" component={Home} />
+						<Route exact path="/" component={Login} />
+						<Route exact path="/duoFinder" component={duoFinder} />
+						<Route exact path="/AboutChampion" component={AboutChampion} />
+						<Route exact path="/BuildABuild" component={BuildABuild} />
+						<Route exact path="/ChatPage" component={ChatPage} />
+						<Route component={Home} />
+					</Switch>
+				</Container>
+			</Router>
+		</ApolloProvider>
+	);
 }
 
+// Export APP
 export default App;
