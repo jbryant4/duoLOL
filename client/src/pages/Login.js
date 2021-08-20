@@ -47,6 +47,9 @@ function Login(props) {
 							{isLogin ? signUpSwitch : loginSwitch}
 						</Button>
 					</Box>
+					<Box>
+						<p> Cupid LOL was created under Riot Games' "Legal Jibber Jabber" policy using assets owned by Riot Games.  Riot Games does not endorse or sponsor this project.</p>
+					</Box>
 				</Container>
 			</div>
 		</Box>

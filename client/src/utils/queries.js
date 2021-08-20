@@ -126,3 +126,33 @@ export const QUERY_USERS = gql`
 		}
 	}
 `;
+
+export const QUERY_USER = gql`
+	query user($_id: ID!) {
+		user(_id:$_id) {
+			_id
+			email
+			rank
+			tier
+			wins
+			losses
+			sumName
+			primRoles
+			riotId
+			puuid
+			builds {
+				_id
+				title
+				champion
+				boots
+				mythic
+				legendaries
+			}
+			masteries {
+				championId
+				championLevel
+				championPoints
+			}
+		}
+	}
+`;
