@@ -30,6 +30,7 @@ const resolvers = {
                 const users = await User.find()
                     .select('-__v -password')
                 // console.log({user})
+
                 return users;
             }
 
@@ -40,9 +41,14 @@ const resolvers = {
         },
         // get a user by username
         user: async (parent, { _id }) => {
-            return User.findOne({ _id })
+            const user =  await User.findOne({ _id })
                 .select('-__v -password')
                 .populate('builds')
+            
+            const masteries = await riotApi.champMasteryData('na1', user.riotId);
+            
+            user.masteries = masteries
+            return user
         },
         champions: async (parent, { patch }) => {
             const champions = await riotApi.getChampions();
