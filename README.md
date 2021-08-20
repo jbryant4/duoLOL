@@ -8,7 +8,8 @@ SAMPLE LOGIN INFORMATION <br>
 Email: demoUser@demo.com <br>
 Password: demoUser <br>
 
-server README:  [https://cupidlolserver.herokuapp.com/] <br>
+server README: [https://github.com/CdHebert/cupid-lol-server]
+<hr />
 
 <img src="preview1.png" alt="previewSearch" width="300" height="200"/> <img src="preview2.png" alt="previewSaved" width="300" height="200"/>
 
@@ -31,7 +32,7 @@ A Full Stack MERN application utilizing GraphQL, Socket.io, and the RIOT API to 
 This project was built using HTML, CSS, Javascript, as well as:
 
 - React
-- Socket.io
+- Socket.io/ Socket.io-client
 - GraphQL
 - RIOT API
 - Node.JS
