@@ -15,6 +15,9 @@ import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries";
 import FriendSug from "../components/FriendSug";
 
+import Auth from "../utils/auth"
+import { Redirect } from "react-router-dom";
+
 //page styles
 const useStyles = makeStyles({
 	containerFull: {
@@ -108,7 +111,7 @@ const useStyles = makeStyles({
 		background: "var(--altSecondary)",
 		color: "var(--primaryColor)",
 		boxShadow: "inset 0 0 35px black",
-		
+
 	},
 	match: {
 		display: "flex",
@@ -125,6 +128,11 @@ function Home() {
 	const classes = useStyles();
 
 	const { loading, data, error } = useQuery(QUERY_ME);
+
+	//redirect
+	if (!Auth.loggedIn()) {
+		return <Redirect to='/' />
+	}
 
 	if (loading) {
 		return <h2>Loading...</h2>;
