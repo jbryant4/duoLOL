@@ -69,7 +69,7 @@ const useStyles = makeStyles({
 		alignContent: "center",
 		width: "40%",
 		alignItems: "center",
-		justifyContent: "center",
+		justifyContent: "flex-start",
 		backgroundColor: "var(--altPrimary)",
 		color: "var(--secondaryColor)",
 		boxShadow: "inset 0 0 35px black"
@@ -85,8 +85,8 @@ const useStyles = makeStyles({
 		overflow: "scroll",
 		overflowX: "hidden",
 		flexDirection: "column",
-		alignContent: "flex-start",
-		justifyContent: "center",
+		alignContent: "center",
+		justifyContent: "flex-start",
 		alignItems: "center",
 		width: "30%",
 		background: "var(--altSecondary)",
@@ -97,7 +97,7 @@ const useStyles = makeStyles({
 	matchHistory: {
 		display: "flex",
 		flexWrap: "wrap",
-		height: 500,
+		height: 700,
 		overflow: "scroll",
 		overflowX: "hidden",
 		flexDirection: "row",
@@ -163,6 +163,7 @@ function Home() {
 				</Box>
 				<Box className={classes.boxContainer}>
 					<Box className={classes.friendListContainer}>
+						<h2>Recommended Friends</h2>
 						<FriendSug
 							currentFriends={me.friends}
 							me={me._id}
@@ -179,7 +180,7 @@ function Home() {
 					{/* <Box className={classes.boxContainer}> */}
 					<Box className={classes.matchHistory}>
 						<Box>
-							<h1>Top Champs</h1>
+							<h2>Most Played Champions</h2>
 						</Box>
 						<Box className={classes.match}>
 							{/* <MatchComponent champs={me.masteries}/> */}
