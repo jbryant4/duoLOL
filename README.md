@@ -4,6 +4,10 @@ GitHub Repo: [https://github.com/jbryant4/duoLOL] <br>
 
 Deployed at: [https://duolol.herokuapp.com/](https://duolol.herokuapp.com/) <br>
 
+SAMPLE LOGIN INFORMATION <br>
+Email: demoUser@demo.com <br>
+Password: demoUser <br>
+
 server README:  [https://cupidlolserver.herokuapp.com/] <br>
 
 <img src="preview1.png" alt="previewSearch" width="300" height="200"/> <img src="preview2.png" alt="previewSaved" width="300" height="200"/>
