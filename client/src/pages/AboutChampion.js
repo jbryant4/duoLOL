@@ -16,6 +16,7 @@ import { useQuery } from "@apollo/client";
 import { QUERY_CHAMPIONS } from "../utils/queries";
 import Auth from "../utils/auth"
 import { Redirect } from "react-router-dom";
+import SearchBar from "../components/SearchBar";
 
 
 
@@ -73,6 +74,7 @@ const AboutChampion = () => {
 						<div className={classes.title}>
 							<h2>Select a Champion</h2>
 						</div>
+						<SearchBar />
 						<Box className={classes.selectChampion}>
 							<ChampionCard
 								champions={champions}
