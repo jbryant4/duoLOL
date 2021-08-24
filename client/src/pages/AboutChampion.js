@@ -1,5 +1,5 @@
 // React
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // Material UI
 import { Container, Box, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -50,18 +50,37 @@ const AboutChampion = () => {
 	const [imgIndex, setImgIndex] = useState(0);
 	const classes = useStyles();
 
+	// for search bar
+	const [input, setInput] = useState('');
+	const [champListDefault, setChampListDefault] = useState();
+	const [champList, setChampList] = useState();
+
+
 	const { data, error } = useQuery(QUERY_CHAMPIONS);
-	if (error) {
-		console.log(error);
+	const setData = async () => {
+		if (error) {
+			console.log(error);
+		}
+
+		const champions = data?.champions || [];
+
+		setChampListDefault(champions)
+		setChampList(champions)
 	}
 
+	const updateInput = async (input) => {
+		const filtered = champListDefault.filter(champion => {
+			return champion.name.toLowerCase().includes(input.toLowerCase())
+		})
+		setInput(input);
+		setChampList(filtered);
+	}
+
+	useEffect(() => { setData() }, []);
 	//redirect
 	if (!Auth.loggedIn()) {
 		return <Redirect to='/' />
 	}
-
-	const champions = data?.champions || [];
-
 	// console.log(champ);
 
 	return (
@@ -74,10 +93,13 @@ const AboutChampion = () => {
 						<div className={classes.title}>
 							<h2>Select a Champion</h2>
 						</div>
-						<SearchBar />
+						<SearchBar
+							keyword={input}
+							setKeyword = {updateInput}
+						/>
 						<Box className={classes.selectChampion}>
 							<ChampionCard
-								champions={champions}
+								champions={champList}
 								setChamp={setChamp}
 								champ={champ}
 								imgIndex={imgIndex}
