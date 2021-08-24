@@ -2,6 +2,7 @@
 	--primaryColor: rgb(218, 165, 32);
 	--secondaryColor: rgba(30, 28, 100, 1);
 	--tertiaryColor: rgba(225, 225, 225, 0.7);
+	--altTertiary: rgba(225, 225, 225, 0.5);
 	--altPrimary: rgba(218, 165, 32, 0.4);
 	--altSecondary: rgba(30, 28, 100, 0.4);
 }
@@ -17,4 +18,5 @@
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
+	font-family: 'STIX Two Text', serif;
 }
