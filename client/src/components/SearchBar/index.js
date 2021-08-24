@@ -2,7 +2,7 @@ import React from "react";
 
 const SearchBar = ({ keyword, setKeyword }) => {
 	const BarStyling = {
-		width: "16rem",
+		width: "80%",
 		background: "(#F2F1F9)",
 		border: "none",
 		borderRadius: "5px",
@@ -14,7 +14,7 @@ const SearchBar = ({ keyword, setKeyword }) => {
 			style={BarStyling}
 			key="random1"
 			value={keyword}
-			placeholder={"Search Champion"}
+			placeholder={"Search Champion..."}
 			// onChange={(e) => setKeyword(e.target.value)}
 		/>
 	);
