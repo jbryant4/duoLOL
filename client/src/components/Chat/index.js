@@ -15,14 +15,17 @@ function Chat() {
     const [messages, setMessages] = useState([]);
     const inputRef = useRef("");
     const joinRef = useRef("");
+    const [user, setUser] = useState([])
     const [room, setRoom] = useState('Global Chat Room');
-    const [oldRoom, setOldRoom] = useState('Global Chat Room');
 
     const token = AuthService.getToken();
 
     const chatter = AuthService.getProfile().data.sumName;
 
     const useStyles = makeStyles({
+        fontContainer: {
+            fontFamily: "'STIX Two Text', serif"
+        },
         contain: {
             width: "100%",
             display: "flex",
@@ -36,83 +39,93 @@ function Chat() {
         box: {
             color: "goldenrod",
             height: "600px",
-            width: "75%",
-            overflow: "scroll",
-            overflowX: "hidden",
+            width: "45%",
+            overflowY: "scroll",
             display: "flex",
             flexDirection: "column",
-            border: "2px solid goldenrod",
-            backgroundImage: `url(/images/testRoom.jpg)`,
+            backgroundColor: "var(--altTertiary)",
             minHeight: "100%",
-            minWidth: "75%",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
-
+            minWidth: "45%",
+            borderRadius: "15px",
+        },
+        peopleBox: {
+            margin: "15px",
+            color: "var(--secondaryColor)",
+            height: "600px",
+            width: "15%",
+            overflowY: "scroll",
+            display: "flex",
+            flexDirection: "column",
+            backgroundColor: "var(--altTertiary)",
+            minHeight: "100%",
+            borderRadius: "15px",
+            alignContent: "center",
+            alignItems: "center",
+        },
+        inputBoxContainer: {
+            display: "flex",
+            flexDirection: "row",
+            width: "100%",
+            flexWrap: "wrap",
+            alignContent: "center",
+            justifyContent: "center",
+            alignItems: "center",
         },
         formBox: {
             display: "flex",
             flexDirection: "column",
-            alignItems: "stretch",
-            justifyContent: "center",
-            width: "75%",
-            alignContent: "center",
             flexWrap: "wrap",
+            alignSelf: "flex-end",
+            alignItems: "stretch",
+            width: "61%",
+            marginLeft: "18px",
+            
         },
         customRoomBox: {
             display: "flex",
             flexDirection: "column",
             flexWrap: "wrap",
-            alignContent: "center",
-            justifyContent: "center",
+            alignSelf: "flex-end",
             alignItems: "stretch",
+            width: "15%",
         },
         messageInput: {
             color: "goldenrod",
-            background: "rgba(3, 0, 165, 0.3)",
-            border: "2px solid darkgoldenrod",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            borderRadius: "15px"
+            background: "var(--altTertiary)",
+            borderRadius: "5px",
+            "&::placeholder": {
+                color: "var(--secondaryColor)"
+            },
         },
         buttonInput: {
             backgroundColor: "goldenrod",
             border: "2px solid darkgoldenrod",
             color: "rgb(3,0,165)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            borderRadius: "15px"
+            borderRadius: "5px"
         },
         joinBox: {
-            margin: "30px",
-            border: "2px solid goldenrod",
-            backgroundColor: "rgba(3, 0, 165, 0.3)",
+            margin: "15px",
+            backgroundColor: "var(--secondaryColor)",
             width: "15%",
             display: "flex",
             alignItems: "center",
             justifyContent: "flex-start",
             height: "600px",
             flexDirection: "column",
-            backgroundImage: `url(/images/testRoom.jpg)`,
+            backgroundColor: "var(--altTertiary)",
             maxWidth: "15%",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
+            borderRadius: "15px",
         },
         roomButtons: {
             display: "flex",
-            opacity: 0.85,
             alignItems: "center",
             justifyContent: "center",
-            border: "2px solid goldenrod",
             width: "100%",
-            margin: "38px 0 20px 0",
-            background: "darkgoldenrod",
-            color: "rgba(3, 0, 165, 1)",
+            padding: "25px 2px 25px 0",
+            color: "var(--secondaryColor)",
+            alignSelf: "center",
             '&:hover': {
-                backgroundColor: 'rgba(3, 0, 165, 0.5)',
+                backgroundColor: 'var(--secondaryColor)',
                 color: 'goldenrod',
             },
         },
@@ -122,11 +135,8 @@ function Chat() {
             justifyContent: "center",
             alignContent: "center",
             alignSelf: "center",
-            border: "2px solid goldenrod",
             width: "100%",
-            background: "darkgoldenrod",
-            color: "rgba(3, 0, 165, .75)",
-            opacity: 0.85
+            color: "var(--secondaryColor)",
         },
         roomName: {
             display: "flex",
@@ -134,16 +144,21 @@ function Chat() {
             justifyContent: "center",
             alignContent: "center",
             alignSelf: "center",
-            color: "rgba(3, 0, 165, .75)",
+            color: "var(--secondaryColor)",
             fontSize: "65px",
             margin: 0,
-            fontFamily: "'STIX Two Text', serif",
         }
     });
 
     const SENDER = {
         name: chatter
     };
+
+    // const makeUsers = () => {
+    //    const users = chatter.map((summoner) => {});
+       
+
+    // }
 
     const chatRooms = [
         "ARAM",
@@ -152,6 +167,7 @@ function Chat() {
         "LCS",
         "Patch Notes",
         "Post Games",
+        "Global Chat Room",
     ];
 
     useEffect(() => {
@@ -172,7 +188,7 @@ function Chat() {
         const message = inputRef.current.value;
         sendMessage({ message, roomName: room }, (cb) => {
             // callback is acknowledgement from server
-            console.log(cb);
+          
             messages.push({
                 message,
                 ...SENDER,
@@ -207,14 +223,13 @@ function Chat() {
             leaveRoom(room);
             joinRoom(newRoom);
         }
-
         setRoom(newRoom);
         setMessages([]);
     };
     const classes = useStyles();
-
+  
     return (
-        <Container>
+        <Container className={classes.fontContainer}>
             <Box className={classes.roomName}>{room}</Box>
             <Box className={classes.contain}>
                 <Box className={classes.joinBox}>
@@ -240,20 +255,24 @@ function Chat() {
                                 background: "navy",
                                 border: "2px solid var(--primaryColor)",
                                 margin: "5px",
-                                padding: "5px",
+                                padding: "8px",
                                 borderRadius: "20px",
-                                opacity: 0.75,
+                                width: "fit-content",
+                                fontWeight: 700,
+                                fontSize: "large",
+                                alignSelf: "flex-start"
                             };
                             if (SENDER.name !== message.name) {
                                 highlightStyle.color = "blue";
                                 highlightStyle.backgroundColor = "var(--primaryColor)";
-                                highlightStyle.opacity = 0.75;
-                                highlightStyle.display = "flex";
-                                highlightStyle.justifyContent = "flex-end";
+                                // highlightStyle.display = "flex";
+                                // highlightStyle.justifyContent = "flex-end";
+                                highlightStyle.alignSelf = "flex-end";
                                 highlightStyle.border = "2px solid navy";
                                 highlightStyle.borderRadius = "20px";
                                 highlightStyle.margin = "5px";
-                                highlightStyle.padding = "5px";
+                                highlightStyle.padding = "8px";
+                                highlightStyle.width = "fit-content"
                             }
                             return (
                                 <Box key={message.id} style={highlightStyle}>
@@ -263,6 +282,18 @@ function Chat() {
                             );
                         })}
                 </Box>
+                <Box className={classes.peopleBox}>
+                        <h4>People In Room </h4>
+                        {/* {SENDER.name((summoners) => {
+                            return ( */}
+                                <Box>
+                                    <h5>{ SENDER.name }</h5>
+                                </Box>
+                            {/* )
+                        })} */}
+                </Box>
+            </Box>
+            <Box className={classes.inputBoxContainer}>
                 <Box className={classes.customRoomBox}>
                     <input
                         className={classes.messageInput}
