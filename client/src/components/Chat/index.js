@@ -90,7 +90,7 @@ function Chat() {
             width: "15%",
         },
         messageInput: {
-            color: "goldenrod",
+            color: "var(--secondaryColor)",
             background: "var(--altTertiary)",
             borderRadius: "5px",
             "&::placeholder": {
@@ -161,13 +161,13 @@ function Chat() {
     // }
 
     const chatRooms = [
+        "Global Chat Room",
         "ARAM",
         "Ranked",
         "Duo",
         "LCS",
         "Patch Notes",
         "Post Games",
-        "Global Chat Room",
     ];
 
     useEffect(() => {
@@ -253,7 +253,6 @@ function Chat() {
                         .map((message) => {
                             const highlightStyle = {
                                 background: "navy",
-                                border: "2px solid var(--primaryColor)",
                                 margin: "5px",
                                 padding: "8px",
                                 borderRadius: "20px",
@@ -265,10 +264,7 @@ function Chat() {
                             if (SENDER.name !== message.name) {
                                 highlightStyle.color = "blue";
                                 highlightStyle.backgroundColor = "var(--primaryColor)";
-                                // highlightStyle.display = "flex";
-                                // highlightStyle.justifyContent = "flex-end";
                                 highlightStyle.alignSelf = "flex-end";
-                                highlightStyle.border = "2px solid navy";
                                 highlightStyle.borderRadius = "20px";
                                 highlightStyle.margin = "5px";
                                 highlightStyle.padding = "8px";
