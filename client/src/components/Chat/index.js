@@ -77,8 +77,8 @@ function Chat() {
             flexWrap: "wrap",
             alignSelf: "flex-end",
             alignItems: "stretch",
-            width: "61%",
-            marginLeft: "18px",
+            width: "44%",
+            marginLeft: "15px",
             
         },
         customRoomBox: {
@@ -282,19 +282,19 @@ function Chat() {
                             );
                         })}
                 </Box>
-                <Box className={classes.peopleBox}>
+                {/* <Box className={classes.peopleBox}>
                         <h4>People In Room </h4>
                         
-                        //! check out all sumnames here cant figure out how to map the data correctly.
+                        //! check out all sumnames here cant figure out how to map the data correctly. */}
                         {/* {SENDER.name((summoners) => {
                             return ( */}
-                                <Box>
+                                {/* <Box>
                                     <h5>{ chatter }</h5>
                                     
-                                </Box>
+                                </Box> */}
                             {/* )
                         })} */}
-                </Box>
+                {/* </Box> */}
             </Box>
             <Box className={classes.inputBoxContainer}>
                 <Box className={classes.customRoomBox}>
