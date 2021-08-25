@@ -40,7 +40,8 @@ const roleObj = {
 const useStyles = makeStyles((theme) => ({
     root: {
         maxWidth: 345,
-        minWidth: 250
+        minWidth: 250,
+        overflow: "unset"
     },
     media: {
         height: 150,
@@ -108,7 +109,7 @@ export default function FriendSug({ currentFriends, me, }) {
         })
 
         var item = newFriends[Math.floor(Math.random() * newFriends.length)];
-        console.log(newFriends)
+        
         setUser(item)
     }, [user])
 
@@ -164,5 +165,5 @@ export default function FriendSug({ currentFriends, me, }) {
                 </IconButton>
             </CardActions>
         </Card>
-    );
+        );
 }
