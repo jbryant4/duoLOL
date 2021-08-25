@@ -289,7 +289,8 @@ function Chat() {
                         {/* {SENDER.name((summoners) => {
                             return ( */}
                                 <Box>
-                                    <h5>{ SENDER.name }</h5>
+                                    <h5>{ chatter }</h5>
+                                    
                                 </Box>
                             {/* )
                         })} */}

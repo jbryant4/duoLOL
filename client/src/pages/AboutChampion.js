@@ -55,6 +55,7 @@ const AboutChampion = () => {
 	const [champListDefault, setChampListDefault] = useState();
 	const [champList, setChampList] = useState();
 
+	
 
 	const { data, error } = useQuery(QUERY_CHAMPIONS);
 	const setData = async () => {

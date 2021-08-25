@@ -162,9 +162,13 @@ function Friend() {
                     </Box>
                     <Box className={classes.summonerDiv}>
                         <h2>{me.sumName}</h2>
-                        <h4>{me.tier} {me.rank}</h4>
-                        <h4>Wins: {me.wins}</h4>
-                        <h4>losses: {me.losses}</h4>
+                        {console.log(me.tier)}
+                        {me.tier !== "unranked" ?
+							
+								<h4>{me.tier} {me.rank} <br/> Wins: {me.wins} <br/> losses: {me.losses}</h4>
+							
+							: <h4> has not yet played any ranked games</h4>
+						}
                     </Box>
                     <Box className={classes.duoDiv}>
                         <img alt='logo' src="/images/cupid_lol_static.png" style={{

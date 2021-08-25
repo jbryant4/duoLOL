@@ -27,11 +27,33 @@ const resolvers = {
         },
         users: async (parent, args, context) => {
             if (context.user) {
-                const users = await User.find()
+                let users = await User.find()
+                    .select('-__v -password');
+                const user = await User.findOne({ _id: context.user._id })
                     .select('-__v -password')
-                // console.log({user})
+                    .populate('friends');
 
-                return users;
+                const allIds = users.map(user => user._id)
+                let idsToFilter = user.friends.map(friend => friend._id)
+                idsToFilter.push(user._id)
+
+                //filter friends out 
+                const newFriendsIds = allIds.filter(
+                    function (e) {
+                        return this.indexOf(e) < 0;
+                    },
+                    idsToFilter
+                );
+                
+                let newFriends = []; 
+
+                newFriendsIds.map(id => {
+                    const data = users.filter(user => user._id === id)
+                    newFriends.push(data[0])
+                })
+
+                
+                return newFriends;
             }
 
             throw new AuthenticationError('Not logged in');
@@ -41,12 +63,12 @@ const resolvers = {
         },
         // get a user by username
         user: async (parent, { _id }) => {
-            const user =  await User.findOne({ _id })
+            const user = await User.findOne({ _id })
                 .select('-__v -password')
                 .populate('builds')
-            
+
             const masteries = await riotApi.champMasteryData('na1', user.riotId);
-            
+
             user.masteries = masteries
             return user
         },

@@ -1,6 +1,8 @@
 import { io } from 'socket.io-client';
 
+
 let socket;
+
 
 // initiates socket connection with auth
 export const initiateSocketConnection = (token) => {
@@ -41,7 +43,7 @@ export const sendMessage = ({ message, roomName }, cb) => {
 
 export const joinRoom = (roomName) => {
 	socket.emit("join", roomName);
-
+	
 };
 
 export const leaveRoom = (roomName) => {
