@@ -284,7 +284,7 @@ function Chat() {
                 </Box>
                 <Box className={classes.peopleBox}>
                         <h4>People In Room </h4>
-
+                        
                         //! check out all sumnames here cant figure out how to map the data correctly.
                         {/* {SENDER.name((summoners) => {
                             return ( */}
