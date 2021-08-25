@@ -26,8 +26,7 @@ import Login from "./pages/Login";
 import BuildABuild from "./pages/BuildABuild";
 import ChatPage from "./pages/ChatPage";
 import Friend from "./pages/Friend";
-// Components
-import Chat from "./components/Chat";
+
 
 // background css
 import "./App.css";
@@ -63,7 +62,9 @@ function App() {
 	return (
 		<ApolloProvider client={client}>
 			<Router>
-				<Container className="noBg" maxWidth="xl" disableGutters={true}>
+				<Container className="noBg" style={{
+					fontFamily: "'STIX Two Text', serif"
+				}} maxWidth="xl" disableGutters={true}>
 					<Switch>
 						<Route exact path="/home" component={Home} />
 						<Route exact path="/" component={Login} />
