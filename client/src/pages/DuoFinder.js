@@ -13,6 +13,7 @@ import { QUERY_USERS } from "../utils/queries";
 
 import Auth from "../utils/auth"
 import { Redirect } from "react-router-dom";
+import FriendSug from "../components/FriendSug";
 // DuoFinder
 function DuoFinder() {
 	const { loading, error } = useQuery(QUERY_USERS);
@@ -34,7 +35,7 @@ function DuoFinder() {
 			<Navbar />
 			<Container>
 				<Header />
-				<MatchingCard />
+				<FriendSug/>
 			</Container>
 		</div>
 	);

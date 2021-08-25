@@ -175,12 +175,6 @@ function Home() {
 				</Box>
 				<Box className={classes.boxContainer}>
 					<Box className={classes.friendListContainer}>
-						<h2>Recommended Friends</h2>
-						<FriendSug
-							currentFriends={me.friends}
-							me={me._id}
-							style={{ overflow: "scroll" }}
-						/>
 						<h1 width='100%'>Friends List</h1>
 						<FriendList friends={me.friends} />
 					</Box>

@@ -17,6 +17,8 @@ import { IconButton } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
 
+//import component
+import SearchBar from '../SearchBar';
 
 
 
@@ -39,13 +41,18 @@ const roleObj = {
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        maxWidth: 345,
-        minWidth: 250,
-        overflow: "unset"
+        width: "300px",
+        overflow: "unset",
+        margin: "10px 0px",
+        padding: 3,
+        display: "flex",
+        flexWrap: "wrap"
+
     },
     media: {
         height: 150,
-
+        width: "100%",
+        margin: 0
     },
     expand: {
         transform: 'rotate(0deg)',
@@ -65,12 +72,27 @@ const useStyles = makeStyles((theme) => ({
     },
     innerCard: {
         display: 'flex',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        width: "100%"
 
     },
     roleContainer: {
         display: 'flex',
-        flexDirection: 'column'
+    },
+    container: {
+        display: "flex",
+        margin: "20px auto"
+    },
+    searchBars: {
+        width: "20%"
+
+    },
+    cardContainer: {
+        width: "80%",
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "space-around"
+
     }
 }));
 
@@ -79,91 +101,118 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function FriendSug({ currentFriends, me, }) {
+    // style
     const classes = useStyles();
-    const [user, setUser] = useState({})
+    //mutation and querys 
     const [addFriend] = useMutation(ADD_FRIEND)
     const { loading, data, error } = useQuery(QUERY_USERS);
 
-    let newFriends = []
+    // for search bar
+    const [roleInput, setRoleInput] = useState('');
+    const [rankInput, setRankInput] = useState('');
+    const [userListDefault, setUserListDefault] = useState();
+    const [userList, setUserList] = useState();
 
-    useEffect(() => {
-        if (loading) return <h2>Loading....</h2>
-        if (error) { console.log(error) }
-        const users = data?.users || []
-
-        const allIds = users.map(user => user._id)
-        let idsToFilter = currentFriends.map(friend => friend._id)
-        idsToFilter.push(me)
-
-        //filter friends out 
-        const newFriendsIds = allIds.filter(
-            function (e) {
-                return this.indexOf(e) < 0;
-            },
-            idsToFilter
-        );
-
-        newFriendsIds.map(id => {
-            const data = users.filter(user => user._id === id)
-            newFriends.push(data[0])
-        })
-
-        var item = newFriends[Math.floor(Math.random() * newFriends.length)];
-        
-        setUser(item)
-    }, [user])
-
-
-    async function handleBtnClick(add, friendId) {
-        if (add === 'no') {
-            setUser({})
-        } else if (add === 'yes') {
-            try {
-                const {data} = await addFriend({
-                    variables: {friendId: friendId}
-                })
-            } catch (err) {
-                console.error(err)
-            }
-
-            setUser({})
+    const setData = async () => {
+        if (loading) {
+            return <h1>Loading....</h1>;
         }
+        if (error) {
+            console.log(error);
+        }
+
+        const newFriends = data?.users || [];
+
+        setUserListDefault(newFriends)
+        setUserList(newFriends)
     }
 
+    const updateRoleInput = async (input) => {
+        const filtered = userListDefault.filter(user => {
+            const roles = `${user.primRoles[0]}${user.primRoles[1]}`
+            return roles.toLowerCase().includes(input.toLowerCase())
+            // return user.primRoles.map(role => role.toLowerCase().includes(input.toLowerCase()))
+        })
+        setRoleInput(input);
+        setUserList(filtered);
+    }
+    const updateRankInput = async (input) => {
+        const filtered = userListDefault.filter(user => {
+            return user.tier.toLowerCase().includes(input.toLowerCase())
+        })
+        setRankInput(input);
+        setUserList(filtered);
+    }
 
+    useEffect(() => { setData() }, []);
 
+    async function handleBtnClick(friendId) {
+        try {
+            const { data } = await addFriend({
+                variables: { friendId: friendId }
+            })
+        } catch (err) {
+            console.error(err)
+        }
+
+        //filter 
+        const refresh = userList.filter(user => user._id !== friendId)
+        setUserList(refresh)
+    }
 
     return (
-        <Card className={classes.root}>
-            <CardActionArea>
-                <CardMedia
-                    className={classes.media}
-                    image="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_0.jpg"
-                    title="Top Champ"
+        <div className={classes.container}>
+            <div className={classes.searchBars}>
+                <h2>Filter by Rank</h2>
+                <SearchBar
+                    keyword={rankInput}
+                    setKeyword={updateRankInput}
                 />
-                <CardContent className={classes.innerCard}>
-                    <div>
-                        <Typography gutterBottom variant="h5" component="h2">
-                            {user.sumName}
-                        </Typography>
-                        <Typography variant="body2" color="textSecondary" component="p">
-                            {user.tier}
-                        </Typography>
-                    </div>
-                    <div className={classes.roleContainer}>
-                        <img src={roleObj.top} className={classes.roles} />
-                        <img src={roleObj.mid} className={classes.roles} />
-                    </div>
-                </CardContent>
-            </CardActionArea>
-            <CardActions>
-                <IconButton aria-label="add to favorites" onClick={() => handleBtnClick('yes', user._id)}>
-                    <AddIcon />
-                </IconButton>
-                <IconButton aria-label="share" onClick={() => handleBtnClick('no', user._id)}>
-                    <SkipNextIcon />
-                </IconButton>
-            </CardActions>
-        </Card>
-        );
+                <h2>Filter by Role</h2>
+                <SearchBar
+                    keyword={roleInput}
+                    setKeyword={updateRoleInput}
+                />
+            </div>
+            <div className={classes.cardContainer}>
+
+                {userList && userList.map(newFriend => {
+
+                    const role1 = newFriend.primRoles[0]
+                    const role2 = newFriend.primRoles[1]
+
+                    return (
+                        <Card className={classes.root}>
+                            <CardMedia
+                                className={classes.media}
+                                image="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_0.jpg"
+                                title="Top Champ"
+                            />
+                            <CardContent className={classes.innerCard}>
+                                <div>
+                                    <Typography gutterBottom variant="h5" component="h2">
+                                        {newFriend.sumName}
+                                    </Typography>
+                                    <Typography variant="body2" color="textSecondary" component="p">
+                                        {newFriend.tier}
+                                    </Typography>
+                                </div>
+                            </CardContent>
+                            <div className={classes.innerCard}>
+                                <CardActions>
+                                    <IconButton aria-label="add to favorites" onClick={() => handleBtnClick(newFriend._id)}>
+                                        <AddIcon />
+                                    </IconButton>
+                                </CardActions>
+                                <div className={classes.roleContainer}>
+                                    <img src={roleObj[role1]} className={classes.roles} />
+                                    <img src={roleObj[role2]} className={classes.roles} />
+                                </div>
+                            </div>
+                        </Card>
+                    )
+                })}
+            </div>
+        </div>
+    );
 }
