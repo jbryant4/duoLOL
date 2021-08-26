@@ -157,16 +157,6 @@ function Chat() {
 
 	// }
 
-	const chatRooms = [
-		"ARAM",
-		"Ranked",
-		"Duo",
-		"LCS",
-		"Patch Notes",
-		"Post Games",
-		"Global Chat Room",
-	];
-
     const chatRooms = [
         "Global Chat Room",
         "ARAM",
@@ -259,7 +249,6 @@ function Chat() {
 						.map((message) => {
 							const highlightStyle = {
 								background: "navy",
-								border: "2px solid var(--primaryColor)",
 								margin: "5px",
 								padding: "8px",
 								borderRadius: "20px",
@@ -270,9 +259,6 @@ function Chat() {
 							};
 							if (SENDER.name !== message.name) {
 								highlightStyle.color = "blue";
-								highlightStyle.backgroundColor = "var(--primaryColor)";
-								// highlightStyle.display = "flex";
-								// highlightStyle.justifyContent = "flex-end";
 								highlightStyle.alignSelf = "flex-end";
 								highlightStyle.border = "2px solid navy";
 								highlightStyle.borderRadius = "20px";
@@ -288,18 +274,18 @@ function Chat() {
 							);
 						})}
 				</Box>
-				<Box className={classes.peopleBox}>
-					<h4>People In Room </h4>
+				{/* <Box className={classes.peopleBox}>
+					<h4>People In Room </h4> */}
 					{/* //! check out all sumnames here cant figure out how to map the data
 					correctly. */}
 					{/* {SENDER.name((summoners) => {
                             return ( */}
-					<Box>
+					{/* <Box>
 						<h5>{chatter}</h5>
-					</Box>
+					</Box> */}
 					{/* )
                         })} */}
-				</Box>
+				{/* </Box> */}
 			</Box>
 			<Box className={classes.inputBoxContainer}>
 				<Box className={classes.customRoomBox}>
