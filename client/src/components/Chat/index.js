@@ -76,8 +76,8 @@ function Chat() {
 			flexWrap: "wrap",
 			alignSelf: "flex-end",
 			alignItems: "stretch",
-			width: "61%",
-			marginLeft: "18px",
+			width: "44%",
+			marginLeft: "15px",
 		},
 		customRoomBox: {
 			display: "flex",
@@ -259,8 +259,8 @@ function Chat() {
 							};
 							if (SENDER.name !== message.name) {
 								highlightStyle.color = "blue";
+								highlightStyle.backgroundColor = "var(--primaryColor)"
 								highlightStyle.alignSelf = "flex-end";
-								highlightStyle.border = "2px solid navy";
 								highlightStyle.borderRadius = "20px";
 								highlightStyle.margin = "5px";
 								highlightStyle.padding = "8px";
@@ -274,15 +274,15 @@ function Chat() {
 							);
 						})}
 				</Box>
-				{/* <Box className={classes.peopleBox}>
-					<h4>People In Room </h4> */}
+				{/* <Box className={classes.peopleBox}> */}
+					{/* <h4>People In Room </h4> */}
 					{/* //! check out all sumnames here cant figure out how to map the data
 					correctly. */}
 					{/* {SENDER.name((summoners) => {
                             return ( */}
-					{/* <Box>
-						<h5>{chatter}</h5>
-					</Box> */}
+					{/* <Box> */}
+						{/* <h5>{chatter}</h5> */}
+					{/* </Box> */}
 					{/* )
                         })} */}
 				{/* </Box> */}
