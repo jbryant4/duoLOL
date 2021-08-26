@@ -88,7 +88,7 @@ function Chat() {
 			width: "15%",
 		},
 		messageInput: {
-			color: "goldenrod",
+			color: "var(--secondaryColor)",
 			background: "var(--altTertiary)",
 			borderRadius: "5px",
 			"&::placeholder": {
