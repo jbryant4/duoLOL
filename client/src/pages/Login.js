@@ -14,7 +14,7 @@ function Login(props) {
 	const [isLogin, setIsLogin] = useState(true);
 	const loginSwitch = "Or login instead";
 	const signUpSwitch =
-		"Doesn't have an account? Click here and create one right now!";
+		"Don't have an account? Click here and create one right now!";
 
 	// responsiveness for break points
 	const useStyles = makeStyles((theme) => ({

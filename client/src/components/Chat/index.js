@@ -76,8 +76,8 @@ function Chat() {
 			flexWrap: "wrap",
 			alignSelf: "flex-end",
 			alignItems: "stretch",
-			width: "61%",
-			marginLeft: "18px",
+			width: "44%",
+			marginLeft: "15px",
 		},
 		customRoomBox: {
 			display: "flex",
@@ -88,7 +88,7 @@ function Chat() {
 			width: "15%",
 		},
 		messageInput: {
-			color: "goldenrod",
+			color: "var(--secondaryColor)",
 			background: "var(--altTertiary)",
 			borderRadius: "5px",
 			"&::placeholder": {
@@ -157,16 +157,15 @@ function Chat() {
 
 	// }
 
-	const chatRooms = [
-		"ARAM",
-		"Ranked",
-		"Duo",
-		"LCS",
-		"Patch Notes",
-		"Post Games",
-		"Global Chat Room",
-	];
-
+    const chatRooms = [
+        "Global Chat Room",
+        "ARAM",
+        "Ranked",
+        "Duo",
+        "LCS",
+        "Patch Notes",
+        "Post Games",
+    ];
 	useEffect(() => {
 		if (token) {
 			initiateSocketConnection(token);
@@ -250,7 +249,6 @@ function Chat() {
 						.map((message) => {
 							const highlightStyle = {
 								background: "navy",
-								border: "2px solid var(--primaryColor)",
 								margin: "5px",
 								padding: "8px",
 								borderRadius: "20px",
@@ -261,11 +259,8 @@ function Chat() {
 							};
 							if (SENDER.name !== message.name) {
 								highlightStyle.color = "blue";
-								highlightStyle.backgroundColor = "var(--primaryColor)";
-								// highlightStyle.display = "flex";
-								// highlightStyle.justifyContent = "flex-end";
+								highlightStyle.backgroundColor = "var(--primaryColor)"
 								highlightStyle.alignSelf = "flex-end";
-								highlightStyle.border = "2px solid navy";
 								highlightStyle.borderRadius = "20px";
 								highlightStyle.margin = "5px";
 								highlightStyle.padding = "8px";
@@ -279,18 +274,18 @@ function Chat() {
 							);
 						})}
 				</Box>
-				<Box className={classes.peopleBox}>
-					<h4>People In Room </h4>
+				{/* <Box className={classes.peopleBox}> */}
+					{/* <h4>People In Room </h4> */}
 					{/* //! check out all sumnames here cant figure out how to map the data
 					correctly. */}
 					{/* {SENDER.name((summoners) => {
                             return ( */}
-					<Box>
-						<h5>{chatter}</h5>
-					</Box>
+					{/* <Box> */}
+						{/* <h5>{chatter}</h5> */}
+					{/* </Box> */}
 					{/* )
                         })} */}
-				</Box>
+				{/* </Box> */}
 			</Box>
 			<Box className={classes.inputBoxContainer}>
 				<Box className={classes.customRoomBox}>
